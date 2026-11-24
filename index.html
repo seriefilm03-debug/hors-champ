@@ -29,7 +29,9 @@
   color-scheme: dark;
 }
 * { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; overflow-x: hidden; }
+section, .page { overflow-x: clip; }
+[hidden] { display: none !important; }
 body {
   background: var(--bg); color: var(--fg);
   font-family: var(--body); font-size: 17px; line-height: 1.65;
@@ -73,6 +75,7 @@ p { margin: 0; }
 .btn svg { width: 18px; height: 18px; transition: transform .2s; }
 .btn:hover svg { transform: translateX(3px); }
 .btn.sm { padding: 10px 18px; font-size: .92rem; border-radius: 11px; box-shadow: none; }
+.btn.sm .short { display: none; }
 .btn.ghost { background: var(--glass); border: 1px solid var(--border); box-shadow: none; }
 .btn.block { width: 100%; padding-block: 18px; font-size: 1.08rem; }
 
@@ -312,16 +315,88 @@ footer a:hover { color: var(--fg); }
   .pains { grid-template-columns: minmax(0, 1fr); }
 }
 @media (max-width: 620px) {
+  body { font-size: 16px; }
+  .wrap { padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+  section { padding-block: 56px; }
+  .glow { width: 300px !important; height: 300px !important; filter: blur(70px); }
+
+  /* Header compact */
+  .top { padding-block: 10px; }
+  .top .bar { padding: 8px 8px 8px 14px; border-radius: 16px; }
   .top nav a.link { display: none; }
-  .phones { height: 440px; }
-  .phone { width: 196px; }
-  .p1 { transform: translate(-98%, -44%) rotate(-9deg) scale(.8); }
-  .p3 { transform: translate(-2%, -44%) rotate(9deg) scale(.8); }
-  .phones:hover .p1 { transform: translate(-98%, -44%) rotate(-9deg) scale(.8); }
-  .phones:hover .p3 { transform: translate(-2%, -44%) rotate(9deg) scale(.8); }
+  .brand { font-size: 1.02rem; white-space: nowrap; gap: 8px; }
+  .logo { width: 26px; height: 26px; border-radius: 8px; }
+  .btn.sm { white-space: nowrap; padding: 10px 14px; font-size: .86rem; }
+  .btn.sm .long { display: none; }
+  .btn.sm .short { display: inline; }
+
+  /* Héros */
+  .hero { padding-top: 20px !important; padding-bottom: 32px; }
+  .hero-copy { gap: 18px; }
+  .eyebrow { font-size: .68rem; padding: 6px 12px; letter-spacing: .04em; }
+  .hero h1 { font-size: clamp(2.2rem, 10.5vw, 2.8rem); letter-spacing: -0.04em; }
+  .lede { font-size: 1rem; }
+  .cta-row { flex-direction: column; gap: 10px; width: 100%; }
+  .cta-row .btn { width: 100%; }
+  .price-inline { text-align: center; }
+  .checks { gap: 6px 16px; font-size: .86rem; }
+  .phones { height: 380px; margin-top: 4px; }
+  .phone { width: 170px; border-radius: 30px; padding: 7px; }
+  .phone .screen { border-radius: 24px; }
+  .caption { font-size: .92rem; left: 10px; right: 46px; }
+  .side-ui { right: 8px; gap: 10px; }
+  .side-ui i { width: 24px; height: 24px; }
+  .result .v { font-size: 1.75rem; }
+  .p1 { transform: translate(-100%, -46%) rotate(-9deg) scale(.82); }
+  .p3 { transform: translate(0%, -46%) rotate(9deg) scale(.82); }
+  .phones:hover .p1 { transform: translate(-100%, -46%) rotate(-9deg) scale(.82); }
+  .phones:hover .p3 { transform: translate(0%, -46%) rotate(9deg) scale(.82); }
+  .platforms { font-size: .8rem; gap: 8px; padding-bottom: 8px; }
+  .platforms span.p { padding: 6px 12px; }
+
+  /* Grilles en une colonne */
   .bento, .toc, .bonuses, .sources { grid-template-columns: minmax(0, 1fr); }
   .fmt.wide { grid-column: auto; }
-  .answer { grid-template-columns: minmax(0, 1fr); }
+  .answer { grid-template-columns: minmax(0, 1fr); gap: 16px; }
+  .head { margin-bottom: 28px; gap: 12px; }
+  h2 { font-size: clamp(1.7rem, 7.4vw, 2.1rem); }
+  .card { border-radius: 18px; }
+  .pain, .fmt, .ch, .src { padding: 20px; }
+  .ch { grid-template-columns: auto minmax(0, 1fr); column-gap: 14px; }
+  .ch .n { font-size: 1.7rem; grid-row: span 2; }
+  .bonus { padding: 14px 16px; }
+
+  /* Simulateur et offre */
+  .sim { padding: 20px; gap: 18px; }
+  .seg button { font-size: .78rem; padding: 9px 4px; }
+  .book-stage { padding-block: 8px; }
+  .book { width: min(230px, 62vw); padding: 22px 20px; }
+  .price-card { padding: 24px 20px; }
+  .amount { font-size: 3rem; }
+  .faq details { padding-inline: 18px; }
+  .faq summary { font-size: .98rem; padding-block: 17px; }
+  .final-card { padding: 36px 20px; }
+  .final-card .btn { width: 100%; }
+  footer .wrap { flex-direction: column; align-items: flex-start; }
+  body.has-bar { padding-bottom: calc(76px + env(safe-area-inset-bottom, 0px)); }
+}
+
+/* Barre d'achat fixe sur mobile */
+.buybar { display: none; }
+@media (max-width: 620px) {
+  .buybar {
+    display: flex; position: fixed; left: 0; right: 0; bottom: 0; z-index: 25;
+    align-items: center; justify-content: space-between; gap: 12px;
+    padding: 12px max(16px, env(safe-area-inset-right, 0px)) calc(12px + env(safe-area-inset-bottom, 0px)) max(16px, env(safe-area-inset-left, 0px));
+    background: rgba(12, 12, 18, .9); border-top: 1px solid var(--border);
+    backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+    transform: translateY(110%); transition: transform .3s ease;
+  }
+  .buybar.show { transform: none; }
+  .buybar .t { display: grid; line-height: 1.2; min-width: 0; }
+  .buybar .t strong { font-family: var(--display); font-size: 1rem; }
+  .buybar .t span { font-size: .78rem; color: var(--muted); }
+  .buybar .btn { padding: 12px 18px; font-size: .92rem; white-space: nowrap; box-shadow: none; }
 }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; }
@@ -349,7 +424,7 @@ footer a:hover { color: var(--fg); }
         <a class="link" href="#sommaire">Contenu</a>
         <a class="link" href="#revenus">Revenus</a>
         <a class="link" href="#faq">FAQ</a>
-        <a class="btn sm" href="#offre">Obtenir le guide</a>
+        <a class="btn sm" href="#offre"><span class="long">Obtenir le guide</span><span class="short">Acheter</span></a>
       </nav>
     </div>
   </div>
@@ -645,6 +720,11 @@ footer a:hover { color: var(--fg); }
   </div>
 </main>
 
+<div class="buybar" id="buybar" aria-hidden="true">
+  <div class="t"><strong>Hors Champ</strong><span>Guide PDF · <span data-price>49 €</span></span></div>
+  <a class="btn" href="#offre" tabindex="-1">Obtenir le guide</a>
+</div>
+
 <footer>
   <div class="wrap">
     <a class="brand" href="#"><span class="logo"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="5" fill="#fff"/></svg></span>Hors Champ</a>
@@ -698,6 +778,23 @@ const PRICE = "49 €";
   }
   window.addEventListener("hashchange", route);
   route();
+
+  // Barre d'achat mobile : visible après le héros, masquée sur l'offre et les pages secondaires
+  const bar = document.getElementById("buybar");
+  const heroCta = document.querySelector(".hero .cta-row");
+  const offer = document.getElementById("offre");
+  let pastHero = false, onOffer = false;
+  function updateBar() {
+    const home = !document.getElementById("view-home").hidden;
+    const show = home && pastHero && !onOffer;
+    bar.classList.toggle("show", show);
+    document.body.classList.toggle("has-bar", home);
+  }
+  if ("IntersectionObserver" in window) {
+    new IntersectionObserver(([e]) => { pastHero = !e.isIntersecting && e.boundingClientRect.top < 0; updateBar(); }).observe(heroCta);
+    new IntersectionObserver(([e]) => { onOffer = e.isIntersecting; updateBar(); }, { threshold: 0.15 }).observe(offer);
+  }
+  window.addEventListener("hashchange", updateBar);
 
   // Onde voix off
   const wave = document.getElementById("wave");
