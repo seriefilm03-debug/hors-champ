@@ -293,6 +293,11 @@ footer a:hover { color: var(--fg); }
 .steps li { counter-increment: s; display: grid; grid-template-columns: 44px minmax(0, 1fr); gap: 16px; align-items: start; padding: 20px; border-radius: 18px; background: var(--glass); border: 1px solid var(--border); }
 .steps li::before { content: counter(s); width: 44px; height: 44px; border-radius: 12px; display: grid; place-items: center; background: var(--grad); color: #fff; font-family: var(--display); font-weight: 800; font-size: 1.2rem; }
 .steps strong { color: var(--fg); }
+.dl-card { margin-top: 24px; padding: 24px; display: grid; gap: 14px; justify-items: start; background: linear-gradient(var(--bg-2), var(--bg-2)) padding-box, var(--grad) border-box; border: 1.5px solid transparent; }
+.dl-card div { display: grid; gap: 2px; }
+.dl-card div strong { font-family: var(--display); font-size: 1.15rem; }
+.dl-card div span { color: var(--muted); font-size: .9rem; }
+.dl-alt { font-size: .88rem; color: var(--muted); }
 
 /* Responsive */
 @media (max-width: 980px) {
@@ -519,7 +524,7 @@ footer a:hover { color: var(--fg); }
         <div class="amount-row"><span class="amount" data-price>49 €</span><span class="meta">TTC · paiement unique · sans abonnement</span></div>
         <a class="btn block" id="buy-main" href="#">Acheter et télécharger <svg><use href="#i-arrow"/></svg></a>
         <p class="notice" id="notice">Le lien de paiement n'est pas encore configuré. Remplace <code>CHECKOUT_URL</code> dans le script en bas de la page par ton lien Gumroad, Lemon Squeezy ou Stripe.</p>
-        <div class="trust"><span><svg><use href="#i-lock"/></svg>Paiement sécurisé</span><span>PDF envoyé par email</span><span>Carte bancaire</span></div>
+        <div class="trust"><span><svg><use href="#i-lock"/></svg>Paiement sécurisé</span><span>Téléchargement immédiat</span><span>Carte bancaire</span></div>
       </div>
     </div>
   </section>
@@ -532,7 +537,7 @@ footer a:hover { color: var(--fg); }
         <details><summary>Combien de temps avant de gagner de l'argent ?</summary><p>Cela dépend de ta régularité et de ta niche. L'affiliation et les produits numériques peuvent rapporter dès les premières semaines, alors que les programmes YouTube et TikTok demandent d'atteindre leurs seuils, ce qui prend en général plusieurs mois. Personne ne peut te garantir un montant.</p></details>
         <details><summary>Je peux utiliser une voix générée par IA ?</summary><p>Oui, avec des règles. Les plateformes demandent de signaler certains contenus générés par IA, et YouTube ne monétise pas les vidéos répétitives sans valeur ajoutée. Le guide explique comment rester dans les règles.</p></details>
         <details><summary>Je débute complètement, c'est pour moi ?</summary><p>Oui. Le guide part de zéro : création des comptes, choix de la niche, premier montage. Si tu as déjà une chaîne, les chapitres scripts, croissance et monétisation te seront les plus utiles.</p></details>
-        <details><summary>Comment je reçois le guide ?</summary><p>Juste après le paiement, tu reçois un email avec ton lien de téléchargement. Pense à vérifier tes spams si tu ne le vois pas.</p></details>
+        <details><summary>Comment je reçois le guide ?</summary><p>Juste après le paiement, tu arrives sur une page avec ton bouton de téléchargement. Enregistre le PDF tout de suite et garde la page dans tes favoris.</p></details>
         <details><summary>Puis-je être remboursé ?</summary><p>Le guide est un contenu numérique livré immédiatement. En validant ta commande, tu acceptes sa livraison immédiate et renonces à ton droit de rétractation (article L221-28 du Code de la consommation). Si tu as un problème de téléchargement, écris-nous.</p></details>
       </div>
     </div>
@@ -557,10 +562,15 @@ footer a:hover { color: var(--fg); }
     <span class="eyebrow"><span class="pulse"></span>Commande confirmée</span>
     <h1>Merci ! <span class="grad">Ton guide arrive.</span></h1>
     <p>Ton paiement est validé. Voici la suite :</p>
+    <div class="card dl-card" id="dl-card" hidden>
+      <div><strong>Hors Champ · Guide PDF</strong><span>62 pages · 9 chapitres · 4 bonus</span></div>
+      <a class="btn" id="dl-btn" href="#" rel="noopener">Télécharger le guide <svg><use href="#i-arrow"/></svg></a>
+      <a class="dl-alt" id="dl-view" href="#" rel="noopener">Ou l'ouvrir dans Google Drive</a>
+    </div>
     <ol class="steps">
-      <li><span><strong>Ouvre ta boîte mail.</strong> Tu as reçu un email avec ton lien de téléchargement. S'il n'est pas là, regarde dans les spams ou l'onglet Promotions.</span></li>
-      <li><span><strong>Télécharge le PDF</strong> sur ton téléphone ou ton ordinateur et garde-le, le lien peut expirer.</span></li>
-      <li><span><strong>Commence par le chapitre 1</strong> et le plan de 30 jours. Ta première vidéo peut être en ligne cette semaine.</span></li>
+      <li><span><strong>Télécharge le PDF</strong> avec le bouton ci-dessus et enregistre-le sur ton téléphone ou ton ordinateur. Garde aussi cette page dans tes favoris.</span></li>
+      <li><span><strong>Lis les chapitres 1 à 3</strong> avant de filmer quoi que ce soit : ils décident de tout le reste.</span></li>
+      <li><span><strong>Suis le plan de 30 jours.</strong> Ta première vidéo peut être en ligne cette semaine.</span></li>
     </ol>
     <p style="margin-top:24px">Un problème ? Écris à <span class="fill">[ton-email@exemple.fr]</span> avec ton numéro de commande.</p>
     <a class="btn ghost back" href="#">Retour à l'accueil</a>
@@ -598,7 +608,7 @@ footer a:hover { color: var(--fg); }
     <h2>3. Commande et paiement</h2>
     <p>La commande s'effectue en ligne via la plateforme de paiement <span class="fill">[Gumroad / Lemon Squeezy / Stripe]</span>. Le paiement par carte bancaire est exigible immédiatement.</p>
     <h2>4. Livraison</h2>
-    <p>Le guide est livré par email sous forme de lien de téléchargement, immédiatement après la validation du paiement. L'acheteur doit indiquer une adresse email valide.</p>
+    <p>Le guide est livré sous forme de lien de téléchargement, affiché immédiatement après la validation du paiement. En cas de difficulté, l'acheteur peut écrire à l'adresse indiquée dans les mentions légales pour recevoir le lien par email.</p>
     <h2>5. Droit de rétractation</h2>
     <p>Conformément à l'article L221-28, 13° du Code de la consommation, le droit de rétractation ne peut être exercé pour un contenu numérique fourni sur un support immatériel dont l'exécution a commencé avec l'accord préalable exprès du consommateur et sa renonciation expresse à son droit de rétractation. En validant sa commande, l'acheteur donne cet accord et renonce à ce droit.</p>
     <h2>6. Licence d'utilisation</h2>
@@ -671,7 +681,15 @@ const PRICE = "49 €";
   // Pages (#merci, #cgv…)
   const views = ["merci", "mentions-legales", "cgv", "confidentialite"];
   function route() {
-    const h = location.hash.replace("#", "");
+    let h = location.hash.replace("#", "");
+    // Lien de livraison : #merci-<identifiant du fichier Google Drive>
+    const m = h.match(/^merci-([A-Za-z0-9_-]{20,})$/);
+    if (m) {
+      h = "merci";
+      document.getElementById("dl-btn").href = "https://drive.google.com/uc?export=download&id=" + m[1];
+      document.getElementById("dl-view").href = "https://drive.google.com/file/d/" + m[1] + "/view";
+      document.getElementById("dl-card").hidden = false;
+    }
     const isPage = views.includes(h);
     document.getElementById("view-home").hidden = isPage;
     views.forEach(v => document.getElementById("view-" + v).hidden = v !== h);
