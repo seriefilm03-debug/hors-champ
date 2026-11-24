@@ -301,6 +301,8 @@ footer a:hover { color: var(--fg); }
 .dl-card div strong { font-family: var(--display); font-size: 1.15rem; }
 .dl-card div span { color: var(--muted); font-size: .9rem; }
 .dl-alt { font-size: .88rem; color: var(--muted); }
+.dl-copy { background: none; border: 0; padding: 0; text-align: left; font: inherit; font-size: .88rem; text-decoration: underline; cursor: pointer; }
+.dl-inapp { margin: 0; padding: 12px 14px; border-radius: 12px; background: rgba(255,145,66,.12); border: 1px solid rgba(255,145,66,.35); font-size: .92rem; line-height: 1.5; }
 
 /* Responsive */
 @media (max-width: 980px) {
@@ -639,11 +641,13 @@ footer a:hover { color: var(--fg); }
     <p>Ton paiement est validé. Voici la suite :</p>
     <div class="card dl-card" id="dl-card" hidden>
       <div><strong>Hors Champ · Guide PDF</strong><span>58 pages · 9 chapitres · 4 bonus</span></div>
+      <p class="dl-inapp" id="dl-inapp" hidden><strong>Tu es dans l'appli TikTok, Instagram ou Snapchat ?</strong> Leur navigateur bloque les téléchargements. Touche <strong>•••</strong> en haut à droite, puis <strong>« Ouvrir dans le navigateur »</strong> (Safari ou Chrome), et appuie sur le bouton ci-dessous.</p>
       <a class="btn" id="dl-btn" href="#" rel="noopener">Télécharger le guide <svg><use href="#i-arrow"/></svg></a>
       <a class="dl-alt" id="dl-view" href="#" rel="noopener">Ou l'ouvrir dans Google Drive</a>
+      <button type="button" class="dl-alt dl-copy" id="dl-copy">Copier le lien de cette page pour le garder</button>
     </div>
     <ol class="steps">
-      <li><span><strong>Télécharge le PDF</strong> avec le bouton ci-dessus et enregistre-le sur ton téléphone ou ton ordinateur. Garde aussi cette page dans tes favoris.</span></li>
+      <li><span><strong>Ouvre le PDF</strong> avec le bouton ci-dessus. Sur iPhone : touche l'icône de partage puis <strong>« Enregistrer dans Fichiers »</strong> ou <strong>« Livres »</strong>. Sur Android : touche <strong>⋮</strong> puis <strong>Télécharger</strong>. Garde aussi cette page dans tes favoris : le lien reste valable.</span></li>
       <li><span><strong>Lis le chapitre 1</strong> : toute la méthode tient sur une page. Garde CapCut ouvert à côté du guide pour suivre les étapes.</span></li>
       <li><span><strong>Suis le plan de 30 jours.</strong> Ta première vidéo peut être en ligne cette semaine.</span></li>
     </ol>
@@ -766,9 +770,27 @@ const PRICE = "49 €";
     const m = h.match(/^merci-([A-Za-z0-9_-]{20,})$/);
     if (m) {
       h = "merci";
-      document.getElementById("dl-btn").href = "https://drive.google.com/uc?export=download&id=" + m[1];
-      document.getElementById("dl-view").href = "https://drive.google.com/file/d/" + m[1] + "/view";
+      // Sur téléphone, le téléchargement direct de Drive ne montre rien (iPhone)
+      // ou est bloqué (navigateurs intégrés) : on ouvre plutôt la visionneuse Drive.
+      const ua = navigator.userAgent;
+      const mobile = /iPhone|iPad|iPod|Android/i.test(ua) || (navigator.maxTouchPoints > 1 && /Macintosh/.test(ua));
+      const inApp = /Instagram|FBAN|FBAV|FB_IAB|TikTok|musical_ly|BytedanceWebview|Snapchat|Line\//i.test(ua);
+      const dl = "https://drive.google.com/uc?export=download&id=" + m[1];
+      const view = "https://drive.google.com/file/d/" + m[1] + "/view";
+      const btn = document.getElementById("dl-btn"), alt = document.getElementById("dl-view");
+      if (mobile) {
+        btn.href = view; btn.firstChild.textContent = "Ouvrir le guide (PDF) ";
+        alt.href = dl; alt.textContent = "Ou télécharger le fichier directement";
+      } else {
+        btn.href = dl; alt.href = view;
+      }
+      document.getElementById("dl-inapp").hidden = !inApp;
       document.getElementById("dl-card").hidden = false;
+      document.getElementById("dl-copy").onclick = e => {
+        const done = () => e.target.textContent = "Lien copié ✓";
+        if (navigator.clipboard) navigator.clipboard.writeText(location.href).then(done, () => prompt("Copie ce lien :", location.href));
+        else prompt("Copie ce lien :", location.href);
+      };
     }
     const isPage = views.includes(h);
     document.getElementById("view-home").hidden = isPage;
