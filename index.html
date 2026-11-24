@@ -1,0 +1,737 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Hors Champ</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Hors Champ : le guide pour créer des vidéos sans montrer ton visage et les monétiser sur TikTok, YouTube et Instagram.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap">
+<style>
+/* Layout : page de vente sombre et premium, héros avec trois téléphones en éventail, sections en cartes vitrées, un seul dégradé rose-orange comme signature. */
+:root {
+  --bg: #08080C;
+  --bg-2: #101017;
+  --glass: rgba(255, 255, 255, 0.045);
+  --glass-2: rgba(255, 255, 255, 0.08);
+  --border: rgba(255, 255, 255, 0.09);
+  --fg: #F6F6F8;
+  --muted: #A3A3B2;
+  --dim: #6E6E7E;
+  --pink: #FF3D7F;
+  --orange: #FF9142;
+  --grad: linear-gradient(120deg, #FF3D7F 0%, #FF6A5C 50%, #FF9142 100%);
+  --display: "Plus Jakarta Sans", "Segoe UI", system-ui, sans-serif;
+  --body: "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --wrap: 1160px;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg); color: var(--fg);
+  font-family: var(--body); font-size: 17px; line-height: 1.65;
+  -webkit-font-smoothing: antialiased; overflow-x: hidden;
+}
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 30; background: var(--bg); }
+a { color: inherit; }
+:focus-visible { outline: 2px solid var(--orange); outline-offset: 3px; border-radius: 8px; }
+.wrap {
+  max-width: var(--wrap); margin: 0 auto;
+  padding-left: max(20px, env(safe-area-inset-left, 0px));
+  padding-right: max(20px, env(safe-area-inset-right, 0px));
+}
+h1, h2, h3 { font-family: var(--display); margin: 0; line-height: 1.08; letter-spacing: -0.03em; text-wrap: balance; }
+h2 { font-size: clamp(2rem, 4.4vw, 3.1rem); font-weight: 800; }
+h3 { font-size: 1.15rem; font-weight: 700; letter-spacing: -0.01em; }
+p { margin: 0; }
+.grad { background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.lede { color: var(--muted); font-size: 1.12rem; max-width: 58ch; }
+.eyebrow {
+  display: inline-flex; align-items: center; gap: 8px; width: fit-content;
+  font-size: 0.8rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--fg);
+  padding: 7px 14px; border-radius: 999px; background: var(--glass); border: 1px solid var(--border);
+}
+.eyebrow .pulse { width: 7px; height: 7px; border-radius: 50%; background: var(--pink); box-shadow: 0 0 0 0 rgba(255,61,127,.6); animation: pulse 2s infinite; }
+@keyframes pulse { 70% { box-shadow: 0 0 0 8px rgba(255,61,127,0); } 100% { box-shadow: 0 0 0 0 rgba(255,61,127,0); } }
+
+/* Fond lumineux */
+.glow { position: absolute; border-radius: 50%; filter: blur(90px); pointer-events: none; opacity: .55; z-index: 0; }
+
+/* Boutons */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+  background: var(--grad); color: #fff; text-decoration: none; border: 0; cursor: pointer;
+  font-family: var(--display); font-weight: 700; font-size: 1.02rem; letter-spacing: -0.01em;
+  padding: 16px 28px; border-radius: 14px;
+  box-shadow: 0 10px 30px -8px rgba(255, 61, 127, .55), inset 0 1px 0 rgba(255,255,255,.25);
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+.btn:hover { transform: translateY(-2px); box-shadow: 0 16px 40px -8px rgba(255, 61, 127, .7), inset 0 1px 0 rgba(255,255,255,.25); }
+.btn svg { width: 18px; height: 18px; transition: transform .2s; }
+.btn:hover svg { transform: translateX(3px); }
+.btn.sm { padding: 10px 18px; font-size: .92rem; border-radius: 11px; box-shadow: none; }
+.btn.ghost { background: var(--glass); border: 1px solid var(--border); box-shadow: none; }
+.btn.block { width: 100%; padding-block: 18px; font-size: 1.08rem; }
+
+/* Header */
+.top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; padding-block: 14px; }
+.top .bar {
+  display: flex; align-items: center; justify-content: space-between; gap: 16px;
+  padding: 10px 10px 10px 20px; border-radius: 18px;
+  background: rgba(16, 16, 23, .72); border: 1px solid var(--border);
+  backdrop-filter: blur(16px) saturate(140%); -webkit-backdrop-filter: blur(16px) saturate(140%);
+}
+.brand { display: flex; align-items: center; gap: 10px; text-decoration: none; font-family: var(--display); font-weight: 800; font-size: 1.15rem; letter-spacing: -0.02em; }
+.logo { width: 30px; height: 30px; border-radius: 9px; background: var(--grad); display: grid; place-items: center; }
+.logo svg { width: 16px; height: 16px; }
+.top nav { display: flex; align-items: center; gap: 26px; font-size: .94rem; }
+.top nav a.link { text-decoration: none; color: var(--muted); transition: color .15s; }
+.top nav a.link:hover { color: var(--fg); }
+
+/* Héros */
+.hero { position: relative; padding-block: clamp(40px, 6vw, 72px) clamp(64px, 8vw, 110px); }
+.hero .wrap { position: relative; z-index: 1; display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr); gap: clamp(32px, 5vw, 64px); align-items: center; }
+.hero-copy { display: grid; gap: 24px; justify-items: start; }
+.hero h1 { font-size: clamp(2.7rem, 6.4vw, 4.9rem); font-weight: 800; letter-spacing: -0.045em; line-height: 1.02; }
+.cta-row { display: flex; flex-wrap: wrap; align-items: center; gap: 16px 24px; margin-top: 6px; }
+.price-inline { display: grid; line-height: 1.2; }
+.price-inline strong { font-family: var(--display); font-size: 1.5rem; font-weight: 800; }
+.price-inline span { font-size: .85rem; color: var(--muted); }
+.checks { display: flex; flex-wrap: wrap; gap: 10px 22px; list-style: none; padding: 0; margin: 4px 0 0; color: var(--muted); font-size: .93rem; }
+.checks li { display: inline-flex; align-items: center; gap: 8px; }
+.checks svg { width: 17px; height: 17px; flex: none; }
+
+/* Téléphones */
+.phones { position: relative; height: 560px; }
+.phone {
+  position: absolute; top: 50%; left: 50%; width: 236px; aspect-ratio: 9 / 19;
+  border-radius: 38px; padding: 9px; background: linear-gradient(160deg, #2A2A34, #15151C);
+  box-shadow: 0 40px 80px -24px rgba(0,0,0,.8), 0 0 0 1px rgba(255,255,255,.07), inset 0 0 0 1px rgba(255,255,255,.05);
+}
+.phone .screen { position: relative; width: 100%; height: 100%; border-radius: 30px; overflow: hidden; background: #0B0B10; }
+.phone .notch { position: absolute; top: 9px; left: 50%; width: 74px; height: 20px; border-radius: 12px; background: #000; transform: translateX(-50%); z-index: 5; }
+.p1 { transform: translate(-112%, -46%) rotate(-9deg) scale(.86); opacity: .9; }
+.p2 { transform: translate(-50%, -50%); z-index: 2; }
+.p3 { transform: translate(12%, -46%) rotate(9deg) scale(.86); opacity: .9; }
+.phones:hover .p1 { transform: translate(-118%, -47%) rotate(-11deg) scale(.86); }
+.phones:hover .p3 { transform: translate(18%, -47%) rotate(11deg) scale(.86); }
+.phone { transition: transform .5s cubic-bezier(.2,.8,.2,1); }
+
+.tag-pill { position: absolute; top: 40px; left: 14px; z-index: 4; font-size: .68rem; font-weight: 600; letter-spacing: .04em; padding: 5px 10px; border-radius: 999px; background: rgba(0,0,0,.45); border: 1px solid rgba(255,255,255,.14); backdrop-filter: blur(6px); }
+.side-ui { position: absolute; right: 10px; bottom: 90px; z-index: 4; display: grid; gap: 14px; }
+.side-ui i { display: block; width: 30px; height: 30px; border-radius: 50%; background: rgba(255,255,255,.16); backdrop-filter: blur(4px); }
+.side-ui i:first-child { background: var(--grad); }
+.meta-ui { position: absolute; left: 14px; right: 54px; bottom: 26px; z-index: 4; display: grid; gap: 6px; }
+.meta-ui b { display: block; height: 8px; border-radius: 4px; background: rgba(255,255,255,.55); }
+.meta-ui b:nth-child(2) { width: 70%; background: rgba(255,255,255,.3); }
+
+/* Écran 1 : mains / recette */
+.s-hands { position: absolute; inset: 0; background: radial-gradient(70% 45% at 50% 52%, #E9A15A 0 36%, transparent 37%), radial-gradient(85% 55% at 50% 52%, #3A2618 0 46%, transparent 47%), linear-gradient(180deg, #5A3A26, #2B1C14); }
+.s-hands::before { content: ""; position: absolute; left: 18%; top: 44%; width: 64%; height: 16%; border-radius: 50%; background: radial-gradient(circle at 30% 40%, #C2462D 0 10%, transparent 11%), radial-gradient(circle at 62% 55%, #5C8F3A 0 9%, transparent 10%), radial-gradient(circle at 48% 30%, #F2D36B 0 8%, transparent 9%), radial-gradient(circle at 75% 35%, #C2462D 0 7%, transparent 8%); }
+.s-hands::after { content: "RECETTE EN 30 SEC"; position: absolute; top: 20%; left: 0; right: 0; text-align: center; font-family: var(--display); font-weight: 800; font-size: 1rem; letter-spacing: -0.01em; text-shadow: 0 2px 10px rgba(0,0,0,.5); }
+
+/* Écran 2 : voix off + b-roll */
+.s-voice { position: absolute; inset: 0; background: radial-gradient(90% 50% at 70% 20%, rgba(255,145,66,.8), transparent 60%), radial-gradient(90% 50% at 10% 90%, rgba(255,61,127,.55), transparent 60%), linear-gradient(180deg, #1C1628, #0C0B12); }
+.s-voice::before { content: ""; position: absolute; left: 0; right: 0; bottom: 30%; height: 30%; background: #0A0A10; clip-path: polygon(0 45%, 10% 45%, 10% 22%, 20% 22%, 20% 55%, 30% 55%, 30% 6%, 40% 6%, 40% 38%, 50% 38%, 50% 18%, 62% 18%, 62% 48%, 70% 48%, 70% 0, 78% 0, 78% 30%, 88% 30%, 88% 14%, 100% 14%, 100% 100%, 0 100%); }
+.caption { position: absolute; left: 14px; right: 14px; top: 40%; z-index: 3; text-align: center; font-family: var(--display); font-weight: 800; font-size: 1.35rem; line-height: 1.12; letter-spacing: -0.02em; text-shadow: 0 2px 14px rgba(0,0,0,.7); min-height: 3em; }
+.caption .w { display: inline-block; opacity: .3; transition: opacity .12s, transform .15s; }
+.caption .w.on { opacity: 1; }
+.caption .w.hot { color: #FFC24A; transform: scale(1.08); }
+.wave { position: absolute; left: 16px; right: 56px; bottom: 64px; height: 26px; display: flex; align-items: center; gap: 3px; z-index: 3; }
+.wave i { flex: 1; border-radius: 2px; background: rgba(255,255,255,.85); height: 30%; animation: wave 1s ease-in-out infinite; }
+@keyframes wave { 0%,100% { height: 16%; } 50% { height: 100%; } }
+
+/* Écran 3 : tutoriel écran */
+.s-screen { position: absolute; inset: 0; background: linear-gradient(180deg, #14141E, #0B0B12); }
+.win { position: absolute; left: 12px; right: 12px; top: 74px; height: 46%; border-radius: 12px; background: #1E1E2A; border: 1px solid rgba(255,255,255,.08); overflow: hidden; }
+.win::before { content: ""; position: absolute; top: 9px; left: 10px; width: 34px; height: 8px; background: radial-gradient(circle at 4px 4px, #FF5F57 3.5px, transparent 4px), radial-gradient(circle at 16px 4px, #FEBC2E 3.5px, transparent 4px), radial-gradient(circle at 28px 4px, #28C840 3.5px, transparent 4px); }
+.win .rows { position: absolute; top: 30px; left: 12px; right: 12px; display: grid; gap: 8px; }
+.win .rows b { display: block; height: 9px; border-radius: 3px; background: rgba(255,255,255,.12); }
+.win .rows b:nth-child(2) { width: 75%; } .win .rows b:nth-child(3) { width: 55%; background: var(--grad); opacity: .9; } .win .rows b:nth-child(4) { width: 82%; }
+.cursor { position: absolute; width: 14px; height: 14px; z-index: 3; left: 40%; top: 46%; animation: cur 4s ease-in-out infinite; }
+.cursor svg { width: 100%; height: 100%; }
+@keyframes cur { 0%,100% { left: 30%; top: 30%; } 40% { left: 62%; top: 40%; } 60% { left: 62%; top: 40%; transform: scale(.85); } 80% { left: 42%; top: 56%; } }
+.s-screen::after { content: "Tuto : automatiser Excel avec l'IA"; position: absolute; left: 14px; right: 14px; top: 64%; font-family: var(--display); font-weight: 700; font-size: .95rem; line-height: 1.25; }
+
+/* Bandeau plateformes */
+.platforms { position: relative; z-index: 1; display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 10px 14px; padding-block: 0 20px; color: var(--dim); font-size: .9rem; }
+.platforms span.p { padding: 8px 16px; border-radius: 999px; border: 1px solid var(--border); color: var(--muted); background: var(--glass); font-weight: 500; }
+
+/* Sections */
+section { position: relative; padding-block: clamp(72px, 9vw, 120px); }
+.head { display: grid; gap: 16px; justify-items: start; margin-bottom: clamp(36px, 5vw, 60px); max-width: 720px; }
+.head.center { justify-items: center; text-align: center; margin-inline: auto; }
+.card { background: var(--glass); border: 1px solid var(--border); border-radius: 22px; }
+
+/* Problème */
+.pains { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+.pain { padding: 28px; display: grid; gap: 14px; align-content: start; }
+.pain .ic { width: 46px; height: 46px; border-radius: 13px; display: grid; place-items: center; background: rgba(255,61,127,.12); border: 1px solid rgba(255,61,127,.25); }
+.pain .ic svg { width: 22px; height: 22px; }
+.pain p { color: var(--muted); font-size: .98rem; }
+.answer { margin-top: 18px; padding: clamp(26px, 4vw, 40px); display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 24px; align-items: center; background: linear-gradient(120deg, rgba(255,61,127,.12), rgba(255,145,66,.08)); border-color: rgba(255,106,92,.3); }
+.answer .big { font-family: var(--display); font-weight: 800; font-size: clamp(1.25rem, 2.4vw, 1.6rem); letter-spacing: -0.02em; line-height: 1.3; }
+.answer .mark { width: 56px; height: 56px; border-radius: 16px; background: var(--grad); display: grid; place-items: center; }
+.answer .mark svg { width: 26px; height: 26px; }
+
+/* Formats : bento */
+.bento { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
+.fmt { padding: 26px; display: grid; gap: 10px; align-content: start; position: relative; overflow: hidden; transition: border-color .2s, transform .2s; }
+.fmt:hover { border-color: rgba(255,106,92,.4); transform: translateY(-3px); }
+.fmt.wide { grid-column: span 2; }
+.fmt .num { font-family: var(--display); font-weight: 800; font-size: .8rem; color: var(--orange); letter-spacing: .02em; }
+.fmt p { color: var(--muted); font-size: .95rem; }
+.fmt .niches { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 6px; }
+.fmt .niches span { font-size: .75rem; padding: 4px 10px; border-radius: 999px; background: var(--glass-2); color: var(--muted); }
+.fmt.feature { background: linear-gradient(150deg, rgba(255,61,127,.16), rgba(255,145,66,.06) 60%, var(--glass)); border-color: rgba(255,106,92,.3); }
+
+/* Sommaire */
+.toc { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.ch { padding: 26px; display: grid; gap: 10px; align-content: start; }
+.ch .n { font-family: var(--display); font-weight: 800; font-size: 2.2rem; line-height: 1; letter-spacing: -0.04em; }
+.ch p { color: var(--muted); font-size: .95rem; }
+.bonuses { margin-top: 28px; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
+.bonus { padding: 18px 20px; display: flex; gap: 12px; align-items: center; border-radius: 16px; background: var(--glass); border: 1px dashed rgba(255,145,66,.4); font-weight: 600; font-size: .93rem; }
+.bonus .b { flex: none; font-family: var(--display); font-size: .68rem; font-weight: 800; letter-spacing: .06em; padding: 4px 8px; border-radius: 6px; background: var(--grad); color: #fff; }
+
+/* Revenus */
+.rev { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 20px; align-items: start; }
+.sources { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+.src { padding: 22px; display: grid; gap: 8px; align-content: start; }
+.src .cond { width: fit-content; font-size: .72rem; font-weight: 600; padding: 4px 10px; border-radius: 999px; background: rgba(255,145,66,.12); color: var(--orange); border: 1px solid rgba(255,145,66,.25); }
+.src p { color: var(--muted); font-size: .9rem; line-height: 1.55; }
+.sim { position: sticky; top: 100px; padding: clamp(24px, 3vw, 34px); display: grid; gap: 22px; background: linear-gradient(170deg, rgba(255,255,255,.07), rgba(255,255,255,.02)); }
+.sim h3 { font-size: 1.4rem; font-weight: 800; letter-spacing: -0.02em; }
+.field { display: grid; gap: 10px; }
+.field label { font-size: .9rem; color: var(--muted); display: flex; justify-content: space-between; gap: 12px; }
+.field output { color: var(--fg); font-weight: 600; font-variant-numeric: tabular-nums; }
+.seg { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; padding: 5px; border-radius: 14px; background: rgba(0,0,0,.35); border: 1px solid var(--border); }
+.seg button { font: inherit; font-size: .85rem; font-weight: 600; color: var(--muted); background: transparent; border: 0; border-radius: 10px; padding: 10px 6px; cursor: pointer; line-height: 1.25; }
+.seg button[aria-pressed="true"] { background: var(--grad); color: #fff; }
+input[type="range"] { -webkit-appearance: none; appearance: none; width: 100%; height: 6px; border-radius: 999px; background: linear-gradient(90deg, var(--pink), var(--orange)) 0 / var(--fill, 15%) 100% no-repeat, rgba(255,255,255,.12); outline-offset: 6px; }
+input[type="range"]::-webkit-slider-thumb { -webkit-appearance: none; width: 22px; height: 22px; border-radius: 50%; background: #fff; box-shadow: 0 2px 10px rgba(0,0,0,.5), 0 0 0 4px rgba(255,61,127,.35); cursor: pointer; }
+input[type="range"]::-moz-range-thumb { width: 22px; height: 22px; border: 0; border-radius: 50%; background: #fff; box-shadow: 0 0 0 4px rgba(255,61,127,.35); cursor: pointer; }
+.result { padding: 22px; border-radius: 16px; background: rgba(0,0,0,.35); border: 1px solid var(--border); display: grid; gap: 4px; }
+.result .k { font-size: .82rem; color: var(--muted); }
+.result .v { font-family: var(--display); font-weight: 800; font-size: clamp(2rem, 4.4vw, 2.7rem); letter-spacing: -0.03em; line-height: 1.1; font-variant-numeric: tabular-nums; }
+.result .rpm { font-size: .8rem; color: var(--dim); }
+.note { font-size: .8rem; color: var(--dim); line-height: 1.55; }
+
+/* Offre */
+.offer { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(32px, 6vw, 80px); align-items: center; }
+.book-stage { position: relative; display: grid; place-items: center; padding-block: 30px; perspective: 1400px; }
+.book {
+  position: relative; width: min(300px, 70vw); aspect-ratio: 3 / 4; border-radius: 4px 14px 14px 4px;
+  transform: rotateY(-24deg) rotateX(6deg); transform-style: preserve-3d; transition: transform .6s cubic-bezier(.2,.8,.2,1);
+  background: linear-gradient(155deg, #1D1626 0%, #120F18 60%, #0B0A10 100%);
+  box-shadow: 30px 40px 70px -20px rgba(0,0,0,.85), inset 4px 0 10px rgba(255,255,255,.06);
+  padding: 30px 26px; display: flex; flex-direction: column; justify-content: space-between; overflow: hidden;
+}
+.book-stage:hover .book { transform: rotateY(-12deg) rotateX(3deg); }
+.book::before { content: ""; position: absolute; inset: 0; background: radial-gradient(80% 50% at 80% 10%, rgba(255,145,66,.55), transparent 60%), radial-gradient(70% 45% at 0% 100%, rgba(255,61,127,.5), transparent 60%); }
+.book::after { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 14px; background: linear-gradient(90deg, rgba(0,0,0,.55), rgba(255,255,255,.08) 60%, transparent); }
+.book > * { position: relative; z-index: 1; }
+.book .bt { font-size: .66rem; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: rgba(255,255,255,.75); display: flex; justify-content: space-between; }
+.book .bt .dot { color: #FF6A7F; }
+.book .title { font-family: var(--display); font-weight: 800; font-size: clamp(2.6rem, 6vw, 3.6rem); line-height: .92; letter-spacing: -0.05em; }
+.book .sub { font-size: .85rem; color: rgba(255,255,255,.78); max-width: 22ch; line-height: 1.45; }
+.book .sil { width: 54px; height: 54px; opacity: .9; }
+.book-shadow { position: absolute; bottom: 8px; width: 60%; height: 30px; border-radius: 50%; background: rgba(255,61,127,.35); filter: blur(30px); }
+
+.price-card { padding: clamp(26px, 4vw, 38px); display: grid; gap: 22px; position: relative; background: linear-gradient(var(--bg-2), var(--bg-2)) padding-box, var(--grad) border-box; border: 1.5px solid transparent; box-shadow: 0 30px 80px -30px rgba(255,61,127,.45); }
+.price-card .badge { position: absolute; top: -13px; left: 28px; font-size: .74rem; font-weight: 700; letter-spacing: .04em; padding: 5px 12px; border-radius: 999px; background: var(--grad); color: #fff; }
+.price-card h3 { font-size: 1.5rem; font-weight: 800; letter-spacing: -0.02em; }
+.incl { list-style: none; margin: 0; padding: 0; display: grid; gap: 13px; }
+.incl li { display: grid; grid-template-columns: 22px minmax(0, 1fr); gap: 12px; font-size: .98rem; }
+.incl svg { width: 20px; height: 20px; margin-top: 3px; }
+.amount-row { display: flex; align-items: baseline; flex-wrap: wrap; gap: 4px 12px; padding-top: 20px; border-top: 1px solid var(--border); }
+.amount { font-family: var(--display); font-weight: 800; font-size: 3.6rem; letter-spacing: -0.04em; line-height: 1; }
+.amount-row .meta { color: var(--muted); font-size: .9rem; }
+.trust { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 18px; font-size: .82rem; color: var(--dim); }
+.trust span { display: inline-flex; align-items: center; gap: 6px; }
+.trust svg { width: 14px; height: 14px; }
+.notice { display: none; font-size: .88rem; padding: 12px 14px; border-radius: 12px; background: rgba(255,145,66,.1); border: 1px solid rgba(255,145,66,.35); color: var(--fg); }
+.notice.show { display: block; }
+.notice code { font-size: .85em; color: var(--orange); }
+
+/* FAQ */
+.faq { display: grid; gap: 12px; max-width: 820px; margin-inline: auto; }
+.faq details { border-radius: 16px; background: var(--glass); border: 1px solid var(--border); padding-inline: 24px; transition: border-color .2s; }
+.faq details[open] { border-color: rgba(255,106,92,.35); }
+.faq summary { cursor: pointer; list-style: none; padding-block: 20px; font-family: var(--display); font-weight: 700; font-size: 1.05rem; letter-spacing: -0.01em; display: flex; justify-content: space-between; align-items: center; gap: 16px; }
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after { content: ""; flex: none; width: 26px; height: 26px; border-radius: 50%; background: var(--glass-2) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23FF9142' stroke-width='2.5' stroke-linecap='round'%3E%3Cpath d='M12 6v12M6 12h12'/%3E%3C/svg%3E") center / 14px no-repeat; transition: transform .25s; }
+.faq details[open] summary::after { transform: rotate(45deg); }
+.faq details p { color: var(--muted); padding-bottom: 22px; max-width: 68ch; }
+
+/* CTA final */
+.final-card { padding: clamp(36px, 6vw, 72px); text-align: center; display: grid; gap: 22px; justify-items: center; overflow: hidden; position: relative; background: linear-gradient(150deg, rgba(255,61,127,.18), rgba(255,145,66,.08) 60%, rgba(255,255,255,.02)); border-color: rgba(255,106,92,.3); }
+.final-card h2 { max-width: 18ch; }
+.disclaimer { font-size: .8rem; color: var(--dim); max-width: 80ch; margin: 28px auto 0; text-align: center; }
+
+/* Footer */
+footer { border-top: 1px solid var(--border); padding-block: 34px; font-size: .88rem; color: var(--dim); }
+footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 16px 32px; }
+footer nav { display: flex; flex-wrap: wrap; gap: 8px 22px; }
+footer a { color: var(--muted); text-decoration: none; }
+footer a:hover { color: var(--fg); }
+
+/* Pages secondaires */
+.page { position: relative; padding-block: clamp(40px, 6vw, 80px) clamp(64px, 8vw, 100px); }
+.page .wrap { max-width: 820px; position: relative; z-index: 1; }
+.page h1 { font-size: clamp(2.2rem, 5.4vw, 3.6rem); font-weight: 800; letter-spacing: -0.04em; margin-block: 18px 26px; }
+.page h2 { font-size: 1.25rem; letter-spacing: -0.02em; margin-top: 34px; margin-bottom: 10px; }
+.page p, .page li { color: var(--muted); }
+.page p + p { margin-top: 12px; }
+.page ul { padding-left: 20px; display: grid; gap: 6px; }
+.fill { background: rgba(255,145,66,.14); color: var(--orange); padding: 1px 6px; border-radius: 5px; font-size: .92em; }
+.back { margin-top: 40px; }
+.steps { list-style: none; padding: 0; margin: 28px 0 0; display: grid; gap: 14px; counter-reset: s; }
+.steps li { counter-increment: s; display: grid; grid-template-columns: 44px minmax(0, 1fr); gap: 16px; align-items: start; padding: 20px; border-radius: 18px; background: var(--glass); border: 1px solid var(--border); }
+.steps li::before { content: counter(s); width: 44px; height: 44px; border-radius: 12px; display: grid; place-items: center; background: var(--grad); color: #fff; font-family: var(--display); font-weight: 800; font-size: 1.2rem; }
+.steps strong { color: var(--fg); }
+
+/* Responsive */
+@media (max-width: 980px) {
+  .hero .wrap, .offer, .rev { grid-template-columns: minmax(0, 1fr); }
+  .hero-copy { justify-items: center; text-align: center; }
+  .cta-row, .checks { justify-content: center; }
+  .phones { height: 520px; }
+  .bento { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .toc { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .bonuses { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .sim { position: static; }
+  .pains { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 620px) {
+  .top nav a.link { display: none; }
+  .phones { height: 440px; }
+  .phone { width: 196px; }
+  .p1 { transform: translate(-98%, -44%) rotate(-9deg) scale(.8); }
+  .p3 { transform: translate(-2%, -44%) rotate(9deg) scale(.8); }
+  .phones:hover .p1 { transform: translate(-98%, -44%) rotate(-9deg) scale(.8); }
+  .phones:hover .p3 { transform: translate(-2%, -44%) rotate(9deg) scale(.8); }
+  .bento, .toc, .bonuses, .sources { grid-template-columns: minmax(0, 1fr); }
+  .fmt.wide { grid-column: auto; }
+  .answer { grid-template-columns: minmax(0, 1fr); }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+  html { scroll-behavior: auto; }
+}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FF3D7F"/><stop offset="1" stop-color="#FF9142"/></linearGradient>
+    <symbol id="i-check" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="url(#g)" opacity=".18"/><path d="M7.5 12.5l3 3 6-6.5" fill="none" stroke="#FF9142" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-lock" viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="10" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3" fill="none" stroke="currentColor" stroke-width="2"/></symbol>
+  </defs>
+</svg>
+
+<header class="top">
+  <div class="wrap">
+    <div class="bar">
+      <a class="brand" href="#"><span class="logo"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="5" fill="#fff"/></svg></span>Hors Champ</a>
+      <nav aria-label="Navigation principale">
+        <a class="link" href="#formats">Formats</a>
+        <a class="link" href="#sommaire">Contenu</a>
+        <a class="link" href="#revenus">Revenus</a>
+        <a class="link" href="#faq">FAQ</a>
+        <a class="btn sm" href="#offre">Obtenir le guide</a>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<main id="view-home">
+  <section class="hero" style="padding-top:clamp(28px,5vw,56px)">
+    <div class="glow" style="width:520px;height:520px;background:#FF3D7F;top:-120px;right:-120px"></div>
+    <div class="glow" style="width:420px;height:420px;background:#FF9142;top:220px;left:-220px;opacity:.28"></div>
+    <div class="wrap">
+      <div class="hero-copy">
+        <span class="eyebrow"><span class="pulse"></span>Le guide des créateurs sans visage</span>
+        <h1>Crée des vidéos qui rapportent, <span class="grad">sans jamais montrer ton visage.</span></h1>
+        <p class="lede">La méthode pas à pas pour lancer une chaîne TikTok, YouTube ou Instagram en restant anonyme, et la transformer en revenus chaque mois.</p>
+        <div class="cta-row">
+          <a class="btn" href="#offre">Je veux le guide <svg><use href="#i-arrow"/></svg></a>
+          <div class="price-inline"><strong data-price>49 €</strong><span>paiement unique</span></div>
+        </div>
+        <ul class="checks">
+          <li><svg><use href="#i-check"/></svg>Accès immédiat</li>
+          <li><svg><use href="#i-check"/></svg>Juste ton téléphone</li>
+          <li><svg><use href="#i-check"/></svg>Plan de 30 jours</li>
+        </ul>
+      </div>
+
+      <div class="phones" aria-hidden="true">
+        <div class="phone p1"><div class="screen"><span class="notch"></span><div class="s-hands"></div><span class="tag-pill">Mains · POV</span><div class="side-ui"><i></i><i></i><i></i></div><div class="meta-ui"><b></b><b></b></div></div></div>
+        <div class="phone p3"><div class="screen"><span class="notch"></span><div class="s-screen"><div class="win"><div class="rows"><b></b><b></b><b></b><b></b></div></div><span class="cursor"><svg viewBox="0 0 24 24"><path d="M4 2l16 9-7 2-3 7z" fill="#fff" stroke="#000" stroke-width="1.2"/></svg></span></div><span class="tag-pill">Tutoriel écran</span><div class="side-ui"><i></i><i></i><i></i></div><div class="meta-ui"><b></b><b></b></div></div></div>
+        <div class="phone p2"><div class="screen"><span class="notch"></span><div class="s-voice"></div><span class="tag-pill">Voix off · b-roll</span><div class="caption" id="caption"></div><div class="wave" id="wave"></div><div class="side-ui"><i></i><i></i><i></i></div><div class="meta-ui"><b></b><b></b></div></div></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="platforms wrap">
+    <span>Fonctionne sur</span><span class="p">TikTok</span><span class="p">YouTube</span><span class="p">Shorts</span><span class="p">Instagram Reels</span><span class="p">Pinterest</span>
+  </div>
+
+  <section>
+    <div class="wrap">
+      <div class="head center">
+        <span class="eyebrow">Le blocage</span>
+        <h2>Tu as envie de créer. <span class="grad">Pas d'être filmé.</span></h2>
+      </div>
+      <div class="pains">
+        <div class="card pain"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#FF6A7F" stroke-width="2" stroke-linecap="round"><path d="M3 3l18 18M10.6 5.1A9.8 9.8 0 0 1 12 5c5 0 9 4.5 10 7-.4 1-1.3 2.4-2.6 3.7M6.2 6.2C4 7.6 2.6 9.8 2 12c1 2.5 5 7 10 7 1.9 0 3.6-.6 5-1.5"/><path d="M9.9 9.9a3 3 0 0 0 4.2 4.2"/></svg></span><h3>Rester anonyme</h3><p>Tu ne veux pas que ta famille, tes collègues ou ton patron tombent sur tes vidéos.</p></div>
+        <div class="card pain"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#FF6A7F" stroke-width="2" stroke-linecap="round"><rect x="3" y="6" width="13" height="12" rx="2"/><path d="M16 10l5-3v10l-5-3"/></svg></span><h3>La caméra te bloque</h3><p>Dès que tu appuies sur REC, tu perds tes moyens et tu recommences dix fois.</p></div>
+        <div class="card pain"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#FF6A7F" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .9-1 1.6V14M12 17.5v.01"/></svg></span><h3>Tu ne sais pas par où commencer</h3><p>Quelle niche, quel format, quels outils, et surtout comment ça rapporte vraiment.</p></div>
+      </div>
+      <div class="card answer">
+        <span class="mark"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>
+        <p class="big">Une grande partie des vidéos que tu regardes ne montrent personne : une voix, des mains, un écran. Ces chaînes vivent de leur format, pas d'un visage. <span class="grad">Hors Champ te donne la méthode.</span></p>
+      </div>
+    </div>
+  </section>
+
+  <section id="formats">
+    <div class="wrap">
+      <div class="head">
+        <span class="eyebrow">Formats</span>
+        <h2>8 formats qui cartonnent <span class="grad">sans visage</span></h2>
+        <p class="lede">Chaque format est détaillé dans le guide : matériel, structure, temps de production et niches qui marchent.</p>
+      </div>
+      <div class="bento">
+        <article class="card fmt wide feature"><span class="num">01</span><h3>Voix off + images</h3><p>Ta voix raconte, des images d'illustration défilent. Le format roi des chaînes d'histoire, de faits et d'explications.</p><div class="niches"><span>Histoire</span><span>Faits divers</span><span>Finance</span></div></article>
+        <article class="card fmt"><span class="num">02</span><h3>Mains / POV</h3><p>La caméra filme ce que tu fais, jamais ta tête.</p><div class="niches"><span>Cuisine</span><span>DIY</span></div></article>
+        <article class="card fmt"><span class="num">03</span><h3>Tutoriel écran</h3><p>Tu enregistres ton écran pour montrer une appli ou un logiciel.</p><div class="niches"><span>IA</span><span>Excel</span></div></article>
+        <article class="card fmt"><span class="num">04</span><h3>Texte animé</h3><p>Phrases fortes et astuces à l'écran. Aucune voix nécessaire.</p><div class="niches"><span>Motivation</span><span>Psycho</span></div></article>
+        <article class="card fmt"><span class="num">05</span><h3>Top & sélections</h3><p>Classements commentés avec des images libres de droits.</p><div class="niches"><span>Voyage</span><span>Produits</span></div></article>
+        <article class="card fmt wide"><span class="num">06</span><h3>Ambiance & ASMR</h3><p>Pluie, bureau, routine filmée de dos : des vidéos longues qui se regardent en fond et accumulent des heures de visionnage.</p><div class="niches"><span>Study with me</span><span>Relax</span><span>ASMR</span></div></article>
+        <article class="card fmt wide"><span class="num">07</span><h3>Animation simple</h3><p>Personnages ou schémas animés dans CapCut ou Canva pour expliquer une idée en 60 secondes.</p><div class="niches"><span>Éducation</span><span>Santé</span><span>Business</span></div></article>
+        <article class="card fmt wide"><span class="num">08</span><h3>Créateur de dos</h3><p>Tu apparais sans visage : de dos, en contre-jour, cadré au niveau du torse. Idéal pour le sport et le lifestyle.</p><div class="niches"><span>Sport</span><span>Lifestyle</span><span>Routines</span></div></article>
+      </div>
+    </div>
+  </section>
+
+  <section id="sommaire">
+    <div class="glow" style="width:480px;height:480px;background:#FF3D7F;top:20%;left:-260px;opacity:.18"></div>
+    <div class="wrap" style="position:relative;z-index:1">
+      <div class="head">
+        <span class="eyebrow">Contenu du guide</span>
+        <h2>9 chapitres, <span class="grad">de zéro à ton premier revenu</span></h2>
+        <p class="lede">Les chapitres suivent l'ordre dans lequel tu vas lancer ta chaîne.</p>
+      </div>
+      <div class="toc">
+        <div class="card ch"><span class="n grad">01</span><h3>Choisir une niche qui paie</h3><p>Une vraie demande, des annonceurs qui paient bien, un format répétable.</p></div>
+        <div class="card ch"><span class="n grad">02</span><h3>Trouver ton format</h3><p>Le test simple pour choisir le format qui te correspond.</p></div>
+        <div class="card ch"><span class="n grad">03</span><h3>Le setup à moins de 100 €</h3><p>Téléphone, micro, lumière, applis gratuites et images libres de droits.</p></div>
+        <div class="card ch"><span class="n grad">04</span><h3>Des scripts qui retiennent</h3><p>L'accroche des 3 premières secondes et des modèles à remplir.</p></div>
+        <div class="card ch"><span class="n grad">05</span><h3>La voix</h3><p>Enregistrer ta voix proprement, ou utiliser une voix IA dans les règles.</p></div>
+        <div class="card ch"><span class="n grad">06</span><h3>Monter vite et bien</h3><p>Sous-titres, rythme et son dans CapCut, en moins d'une heure.</p></div>
+        <div class="card ch"><span class="n grad">07</span><h3>Publier et grandir</h3><p>Cadence, titres, mots-clés et lecture des statistiques.</p></div>
+        <div class="card ch"><span class="n grad">08</span><h3>Monétiser</h3><p>Les 6 sources de revenus et dans quel ordre les activer.</p></div>
+        <div class="card ch"><span class="n grad">09</span><h3>Ton plan de 30 jours</h3><p>Un calendrier jour par jour jusqu'à ta 30<sup>e</sup> vidéo.</p></div>
+      </div>
+      <div class="bonuses">
+        <div class="bonus"><span class="b">BONUS</span>100 idées de vidéos</div>
+        <div class="bonus"><span class="b">BONUS</span>Modèles de scripts</div>
+        <div class="bonus"><span class="b">BONUS</span>Outils gratuits</div>
+        <div class="bonus"><span class="b">BONUS</span>Checklist publication</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="revenus">
+    <div class="wrap">
+      <div class="head">
+        <span class="eyebrow">Revenus</span>
+        <h2>D'où vient <span class="grad">l'argent</span></h2>
+        <p class="lede">Une chaîne sans visage se monétise comme les autres. Le guide détaille chaque source et le bon moment pour la lancer.</p>
+      </div>
+      <div class="rev">
+        <div class="sources">
+          <div class="card src"><span class="cond">1 000 abonnés</span><h3>Partenariat YouTube</h3><p>Part des revenus pub. 1 000 abonnés + 4 000 h de visionnage sur 12 mois, ou 10 M de vues Shorts sur 90 jours.</p></div>
+          <div class="card src"><span class="cond">10 000 abonnés</span><h3>Récompenses TikTok</h3><p>Rémunère les vidéos de plus d'une minute. 10 000 abonnés et 100 000 vues sur 30 jours.</p></div>
+          <div class="card src"><span class="cond">Dès 0 abonné</span><h3>Affiliation</h3><p>Une commission sur les produits que tu recommandes. Possible dès les premières vidéos.</p></div>
+          <div class="card src"><span class="cond">Dès 0 abonné</span><h3>Produits numériques</h3><p>Guides, modèles, presets : tu vends ton savoir, sans stock.</p></div>
+          <div class="card src"><span class="cond">Niche engagée</span><h3>Partenariats de marques</h3><p>Une marque paie pour apparaître dans tes vidéos.</p></div>
+          <div class="card src"><span class="cond">Dès 0 abonné</span><h3>UGC pour les marques</h3><p>Tu crées des vidéos sans visage pour d'autres comptes, payées à la vidéo.</p></div>
+        </div>
+
+        <div class="card sim">
+          <span class="eyebrow">Simulateur</span>
+          <h3>Combien peut rapporter la pub ?</h3>
+          <div class="field">
+            <label id="seg-label">Plateforme</label>
+            <div class="seg" role="group" aria-labelledby="seg-label">
+              <button type="button" id="seg-yt" data-k="yt" aria-pressed="true">YouTube<br>longues</button>
+              <button type="button" id="seg-tt" data-k="tt" aria-pressed="false">TikTok<br>+1 min</button>
+              <button type="button" id="seg-sh" data-k="shorts" aria-pressed="false">YouTube<br>Shorts</button>
+            </div>
+          </div>
+          <div class="field">
+            <label for="sim-views">Vues par mois <output id="sim-views-out">300 000</output></label>
+            <input type="range" id="sim-views" min="10000" max="2000000" step="10000" value="300000">
+          </div>
+          <div class="result" aria-live="polite">
+            <span class="k">Revenu publicitaire estimé</span>
+            <span class="v grad" id="sim-result">450 – 1 500 € / mois</span>
+            <span class="rpm" id="sim-rpm">RPM : 1,50 € à 5,00 € pour 1 000 vues</span>
+          </div>
+          <p class="note">Fourchettes indicatives pour une audience francophone. Le revenu réel dépend de la niche, du pays des spectateurs et de la saison. Hors affiliation et partenariats. Ce n'est pas une promesse de gain.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="offre">
+    <div class="glow" style="width:560px;height:560px;background:#FF3D7F;top:10%;right:-200px;opacity:.25"></div>
+    <div class="wrap offer" style="position:relative;z-index:1">
+      <div class="book-stage" aria-hidden="true">
+        <div class="book">
+          <div class="bt"><span><span class="dot">●</span> REC</span><span>Guide PDF</span></div>
+          <div>
+            <svg class="sil" viewBox="0 0 100 110"><circle cx="50" cy="36" r="22" fill="none" stroke="rgba(255,255,255,.8)" stroke-width="3" stroke-dasharray="6 6"/><path d="M10 108C12 78 30 66 50 66s38 12 40 42" fill="none" stroke="rgba(255,255,255,.8)" stroke-width="3" stroke-dasharray="6 6"/></svg>
+            <div class="title">Hors<br><span class="grad">Champ</span></div>
+          </div>
+          <p class="sub">Créer et monétiser des vidéos sans montrer son visage</p>
+        </div>
+        <div class="book-shadow"></div>
+      </div>
+
+      <div class="card price-card">
+        <span class="badge">Accès immédiat</span>
+        <h3>Le guide complet Hors Champ</h3>
+        <ul class="incl">
+          <li><svg><use href="#i-check"/></svg><span><strong>Le guide en PDF</strong>, lisible sur téléphone, ordinateur et liseuse</span></li>
+          <li><svg><use href="#i-check"/></svg><span>Les 8 formats sans visage détaillés</span></li>
+          <li><svg><use href="#i-check"/></svg><span>Modèles de scripts + 100 idées de vidéos</span></li>
+          <li><svg><use href="#i-check"/></svg><span>Le plan d'action sur 30 jours</span></li>
+          <li><svg><use href="#i-check"/></svg><span>Les mises à jour du guide, gratuites</span></li>
+        </ul>
+        <div class="amount-row"><span class="amount" data-price>49 €</span><span class="meta">TTC · paiement unique · sans abonnement</span></div>
+        <a class="btn block" id="buy-main" href="#">Acheter et télécharger <svg><use href="#i-arrow"/></svg></a>
+        <p class="notice" id="notice">Le lien de paiement n'est pas encore configuré. Remplace <code>CHECKOUT_URL</code> dans le script en bas de la page par ton lien Gumroad, Lemon Squeezy ou Stripe.</p>
+        <div class="trust"><span><svg><use href="#i-lock"/></svg>Paiement sécurisé</span><span>PDF envoyé par email</span><span>Carte bancaire</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq">
+    <div class="wrap">
+      <div class="head center"><span class="eyebrow">FAQ</span><h2>Questions fréquentes</h2></div>
+      <div class="faq">
+        <details><summary>Faut-il du matériel coûteux ?</summary><p>Non. Un smartphone récent suffit pour commencer. Le guide liste un équipement complet pour moins de 100 €, avec des logiciels de montage gratuits.</p></details>
+        <details><summary>Combien de temps avant de gagner de l'argent ?</summary><p>Cela dépend de ta régularité et de ta niche. L'affiliation et les produits numériques peuvent rapporter dès les premières semaines, alors que les programmes YouTube et TikTok demandent d'atteindre leurs seuils, ce qui prend en général plusieurs mois. Personne ne peut te garantir un montant.</p></details>
+        <details><summary>Je peux utiliser une voix générée par IA ?</summary><p>Oui, avec des règles. Les plateformes demandent de signaler certains contenus générés par IA, et YouTube ne monétise pas les vidéos répétitives sans valeur ajoutée. Le guide explique comment rester dans les règles.</p></details>
+        <details><summary>Je débute complètement, c'est pour moi ?</summary><p>Oui. Le guide part de zéro : création des comptes, choix de la niche, premier montage. Si tu as déjà une chaîne, les chapitres scripts, croissance et monétisation te seront les plus utiles.</p></details>
+        <details><summary>Comment je reçois le guide ?</summary><p>Juste après le paiement, tu reçois un email avec ton lien de téléchargement. Pense à vérifier tes spams si tu ne le vois pas.</p></details>
+        <details><summary>Puis-je être remboursé ?</summary><p>Le guide est un contenu numérique livré immédiatement. En validant ta commande, tu acceptes sa livraison immédiate et renonces à ton droit de rétractation (article L221-28 du Code de la consommation). Si tu as un problème de téléchargement, écris-nous.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding-top:0">
+    <div class="wrap">
+      <div class="card final-card">
+        <h2>Ta première vidéo sans visage peut sortir <span class="grad">cette semaine.</span></h2>
+        <p class="lede">Le guide, les modèles et le plan de 30 jours pour <span data-price>49 €</span>.</p>
+        <a class="btn" href="#offre">Obtenir Hors Champ <svg><use href="#i-arrow"/></svg></a>
+      </div>
+      <p class="disclaimer">Les exemples de revenus présentés sur cette page sont des calculs indicatifs et ne constituent pas une garantie de résultat. Les résultats dépendent du travail fourni, de la niche choisie et des règles des plateformes, qui peuvent évoluer.</p>
+    </div>
+  </section>
+</main>
+
+<!-- Pages secondaires (#merci, #mentions-legales, #cgv, #confidentialite) -->
+<main id="view-merci" class="page" hidden>
+  <div class="glow" style="width:500px;height:500px;background:#FF3D7F;top:-160px;right:-160px;opacity:.3"></div>
+  <div class="wrap">
+    <span class="eyebrow"><span class="pulse"></span>Commande confirmée</span>
+    <h1>Merci ! <span class="grad">Ton guide arrive.</span></h1>
+    <p>Ton paiement est validé. Voici la suite :</p>
+    <ol class="steps">
+      <li><span><strong>Ouvre ta boîte mail.</strong> Tu as reçu un email avec ton lien de téléchargement. S'il n'est pas là, regarde dans les spams ou l'onglet Promotions.</span></li>
+      <li><span><strong>Télécharge le PDF</strong> sur ton téléphone ou ton ordinateur et garde-le, le lien peut expirer.</span></li>
+      <li><span><strong>Commence par le chapitre 1</strong> et le plan de 30 jours. Ta première vidéo peut être en ligne cette semaine.</span></li>
+    </ol>
+    <p style="margin-top:24px">Un problème ? Écris à <span class="fill">[ton-email@exemple.fr]</span> avec ton numéro de commande.</p>
+    <a class="btn ghost back" href="#">Retour à l'accueil</a>
+  </div>
+</main>
+
+<main id="view-mentions-legales" class="page" hidden>
+  <div class="wrap">
+    <span class="eyebrow">Informations légales</span>
+    <h1>Mentions légales</h1>
+    <h2>Éditeur du site</h2>
+    <p>Nom ou raison sociale : <span class="fill">[Prénom Nom ou nom de l'entreprise]</span><br>
+    Statut : <span class="fill">[Micro-entreprise / SASU…]</span> · SIRET : <span class="fill">[000 000 000 00000]</span><br>
+    Adresse : <span class="fill">[Adresse postale]</span><br>
+    Email : <span class="fill">[ton-email@exemple.fr]</span><br>
+    Directeur de la publication : <span class="fill">[Prénom Nom]</span></p>
+    <h2>Hébergement</h2>
+    <p>Le site est hébergé par <span class="fill">[Netlify, Inc., 512 2nd Street, Suite 200, San Francisco, CA 94107, USA]</span>.</p>
+    <h2>Paiement</h2>
+    <p>Les paiements sont traités par <span class="fill">[Gumroad / Lemon Squeezy / Stripe]</span>. Aucune donnée bancaire n'est stockée sur ce site.</p>
+    <h2>Propriété intellectuelle</h2>
+    <p>Le guide Hors Champ, les textes et visuels de ce site sont protégés par le droit d'auteur. Toute reproduction, revente ou diffusion sans autorisation écrite est interdite.</p>
+    <a class="btn ghost back" href="#">Retour à l'accueil</a>
+  </div>
+</main>
+
+<main id="view-cgv" class="page" hidden>
+  <div class="wrap">
+    <span class="eyebrow">Informations légales</span>
+    <h1>Conditions générales de vente</h1>
+    <h2>1. Objet</h2>
+    <p>Les présentes conditions régissent la vente du guide numérique « Hors Champ » (format PDF) par <span class="fill">[Prénom Nom / entreprise]</span>, SIRET <span class="fill">[000 000 000 00000]</span>.</p>
+    <h2>2. Prix</h2>
+    <p>Le prix est indiqué en euros toutes taxes comprises sur la page de vente. <span class="fill">[Si micro-entreprise en franchise : « TVA non applicable, art. 293 B du CGI ».]</span> Le prix appliqué est celui affiché au moment de la commande.</p>
+    <h2>3. Commande et paiement</h2>
+    <p>La commande s'effectue en ligne via la plateforme de paiement <span class="fill">[Gumroad / Lemon Squeezy / Stripe]</span>. Le paiement par carte bancaire est exigible immédiatement.</p>
+    <h2>4. Livraison</h2>
+    <p>Le guide est livré par email sous forme de lien de téléchargement, immédiatement après la validation du paiement. L'acheteur doit indiquer une adresse email valide.</p>
+    <h2>5. Droit de rétractation</h2>
+    <p>Conformément à l'article L221-28, 13° du Code de la consommation, le droit de rétractation ne peut être exercé pour un contenu numérique fourni sur un support immatériel dont l'exécution a commencé avec l'accord préalable exprès du consommateur et sa renonciation expresse à son droit de rétractation. En validant sa commande, l'acheteur donne cet accord et renonce à ce droit.</p>
+    <h2>6. Licence d'utilisation</h2>
+    <p>L'achat donne droit à un usage personnel du guide. Le partage, la revente ou la diffusion publique du fichier sont interdits.</p>
+    <h2>7. Absence de garantie de résultat</h2>
+    <p>Le guide fournit des méthodes et des informations. Le vendeur ne garantit aucun niveau d'audience ni de revenu, qui dépendent du travail de l'acheteur et des règles des plateformes tierces.</p>
+    <h2>8. Réclamations et médiation</h2>
+    <p>Pour toute réclamation : <span class="fill">[ton-email@exemple.fr]</span>. En cas de litige, le consommateur peut recourir gratuitement au médiateur de la consommation : <span class="fill">[nom et site du médiateur]</span>.</p>
+    <h2>9. Droit applicable</h2>
+    <p>Les présentes conditions sont soumises au droit français.</p>
+    <a class="btn ghost back" href="#">Retour à l'accueil</a>
+  </div>
+</main>
+
+<main id="view-confidentialite" class="page" hidden>
+  <div class="wrap">
+    <span class="eyebrow">Informations légales</span>
+    <h1>Politique de confidentialité</h1>
+    <h2>Données collectées</h2>
+    <p>Lors d'un achat, la plateforme de paiement collecte ton nom, ton adresse email et tes informations de paiement afin de traiter la commande et de t'envoyer le guide. Ce site ne collecte pas lui-même de données bancaires.</p>
+    <h2>Finalités</h2>
+    <ul>
+      <li>Traiter et livrer ta commande</li>
+      <li>Répondre à tes demandes de support</li>
+      <li>Respecter les obligations comptables et fiscales</li>
+    </ul>
+    <h2>Durée de conservation</h2>
+    <p>Les données de commande sont conservées pendant la durée légale de conservation des pièces comptables (10 ans).</p>
+    <h2>Tes droits</h2>
+    <p>Conformément au RGPD, tu disposes d'un droit d'accès, de rectification, d'effacement et d'opposition. Pour l'exercer : <span class="fill">[ton-email@exemple.fr]</span>. Tu peux aussi saisir la CNIL (cnil.fr).</p>
+    <h2>Cookies</h2>
+    <p>Ce site n'utilise pas de cookies publicitaires. La plateforme de paiement peut déposer des cookies nécessaires au fonctionnement du paiement.</p>
+    <a class="btn ghost back" href="#">Retour à l'accueil</a>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <a class="brand" href="#"><span class="logo"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="5" fill="#fff"/></svg></span>Hors Champ</a>
+    <nav aria-label="Liens légaux">
+      <a href="#mentions-legales">Mentions légales</a>
+      <a href="#cgv">CGV</a>
+      <a href="#confidentialite">Confidentialité</a>
+    </nav>
+    <span>© <span id="year">2026</span> Hors Champ</span>
+  </div>
+</footer>
+
+<script>
+/* ================= CONFIGURATION =================
+   CHECKOUT_URL : colle ici ton lien de paiement (Gumroad, Lemon Squeezy, Stripe Payment Link).
+   PRICE        : le prix affiché partout sur la page.
+   Sur la plateforme de paiement, mets comme page de redirection après achat :
+   https://ton-site.fr/#merci
+=================================================== */
+const CHECKOUT_URL = "https://TON-LIEN-DE-PAIEMENT";
+const PRICE = "49 €";
+
+(function () {
+  document.querySelectorAll("[data-price]").forEach(el => el.textContent = PRICE);
+  document.getElementById("year").textContent = new Date().getFullYear();
+
+  // Bouton d'achat
+  const configured = !CHECKOUT_URL.includes("TON-LIEN");
+  const buy = document.getElementById("buy-main");
+  const notice = document.getElementById("notice");
+  if (configured) { buy.href = CHECKOUT_URL; buy.rel = "noopener"; }
+  buy.addEventListener("click", e => { if (!configured) { e.preventDefault(); notice.classList.add("show"); } });
+
+  // Pages (#merci, #cgv…)
+  const views = ["merci", "mentions-legales", "cgv", "confidentialite"];
+  function route() {
+    const h = location.hash.replace("#", "");
+    const isPage = views.includes(h);
+    document.getElementById("view-home").hidden = isPage;
+    views.forEach(v => document.getElementById("view-" + v).hidden = v !== h);
+    if (isPage) window.scrollTo(0, 0);
+    else if (h) { const t = document.getElementById(h); if (t) t.scrollIntoView(); }
+  }
+  window.addEventListener("hashchange", route);
+  route();
+
+  // Onde voix off
+  const wave = document.getElementById("wave");
+  for (let i = 0; i < 26; i++) {
+    const b = document.createElement("i");
+    b.style.animationDelay = (-(i * 137) % 1000) + "ms";
+    b.style.animationDuration = (700 + (i * 53) % 600) + "ms";
+    wave.appendChild(b);
+  }
+
+  // Sous-titres mot à mot
+  const lines = [
+    ["Personne", "ne", "connaît", "*mon", "*visage"],
+    ["Pourtant", "ma", "chaîne", "*grandit", "chaque", "jour"],
+    ["Une", "voix,", "des", "images,", "un", "*téléphone"]
+  ];
+  const cap = document.getElementById("caption");
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  let li = 0;
+  function showLine() {
+    const words = lines[li];
+    cap.innerHTML = words.map(w => `<span class="w${w.startsWith("*") ? " key" : ""}">${w.replace("*", "")}</span>`).join(" ");
+    const spans = [...cap.querySelectorAll(".w")];
+    if (reduce) { spans.forEach(s => s.classList.add("on")); return; }
+    spans.forEach((s, i) => setTimeout(() => { s.classList.add("on"); if (s.classList.contains("key")) s.classList.add("hot"); }, 240 * i));
+    li = (li + 1) % lines.length;
+    setTimeout(showLine, 240 * words.length + 1500);
+  }
+  showLine();
+
+  // Simulateur (RPM indicatifs en € pour 1 000 vues)
+  const RPM = { yt: [1.5, 5], tt: [0.4, 1], shorts: [0.03, 0.08] };
+  let key = "yt";
+  const fmt = new Intl.NumberFormat("fr-FR");
+  const dec = n => n.toFixed(2).replace(".", ",");
+  const money = v => v < 10 ? dec(v) : fmt.format(Math.round(v / 10) * 10);
+  const rng = document.getElementById("sim-views");
+  const segs = document.querySelectorAll(".seg button");
+  segs.forEach(b => b.addEventListener("click", () => {
+    key = b.dataset.k;
+    segs.forEach(x => x.setAttribute("aria-pressed", String(x === b)));
+    sim();
+  }));
+  function sim() {
+    const v = +rng.value, [lo, hi] = RPM[key];
+    rng.style.setProperty("--fill", ((v - rng.min) / (rng.max - rng.min) * 100) + "%");
+    document.getElementById("sim-views-out").textContent = fmt.format(v);
+    document.getElementById("sim-result").textContent = `${money(v / 1000 * lo)} – ${money(v / 1000 * hi)} € / mois`;
+    document.getElementById("sim-rpm").textContent = `RPM : ${dec(lo)} € à ${dec(hi)} € pour 1 000 vues`;
+  }
+  rng.addEventListener("input", sim); sim();
+})();
+</script>
+</body>
+</html>
