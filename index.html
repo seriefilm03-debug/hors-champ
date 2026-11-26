@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&display=swap">
 <style>
-/* Concept : la table de montage. Le héros fait tourner la méthode elle-même (un plan toutes les 2 à 3 s,
+/* Concept : la table de montage. Le héros fait tourner la méthode elle-même (un plan toutes les 5 s maximum,
    sous-titres mot à mot, timeline). Le reste de la page reste calme : fond gris-bleu, encre indigo,
    jaune surligneur pour les actions, bleu « plan » et rouge « coupe » réservés à la timeline. */
 :root {
@@ -116,7 +116,7 @@ p { margin: 0; }
 .steps .time { display: block; font-size: .86rem; font-weight: 650; color: var(--ink-2); margin-bottom: 10px; font-variant-numeric: tabular-nums; }
 .steps p { font-size: .98rem; color: var(--ink-2); }
 
-/* La règle des 3 secondes */
+/* La règle des 5 secondes */
 .rule { background: var(--paper); }
 .rule .wrap { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: clamp(32px, 6vw, 80px); align-items: start; }
 .rule h2 { margin-bottom: 22px; }
@@ -309,16 +309,16 @@ footer .brand svg { width: 24px; height: 24px; }
     <div class="wrap">
       <div>
         <h1>Des vidéos qui rapportent. Ton visage reste hors champ.</h1>
-        <p class="lede">Une voix off générée par IA, des extraits vidéo libres de droits, un nouveau plan toutes les 2 à 3 secondes. Le guide t'apprend cette méthode clic par clic, de l'idée à la vidéo publiée.</p>
+        <p class="lede">Une voix off générée par IA, des extraits de YouTube, TikTok, de films et de séries, un nouveau plan toutes les 5 secondes maximum. Le guide t'apprend cette méthode clic par clic, de l'idée à la vidéo publiée.</p>
         <div class="cta">
           <a class="btn" href="#offre">Acheter le guide pour <span data-price>49 €</span></a>
-          <p class="small muted">Paiement unique. PDF de 58 pages, disponible juste après le paiement.</p>
+          <p class="small muted">Paiement unique. PDF de 61 pages, disponible juste après le paiement.</p>
         </div>
         <p class="need">Il te faut <strong>un téléphone ou un ordinateur</strong>, <strong>CapCut</strong> (gratuit) et <strong>une heure par jour</strong>. Pas de caméra, pas de micro.</p>
       </div>
 
       <div class="rig">
-        <div class="phone" role="img" aria-label="Exemple de vidéo faite avec la méthode : un nouveau plan toutes les 2 à 3 secondes, avec la voix off écrite en sous-titres.">
+        <div class="phone" role="img" aria-label="Exemple de vidéo faite avec la méthode : un nouveau plan toutes les 5 secondes maximum, avec la voix off écrite en sous-titres.">
           <div class="screen" id="screen">
             <div class="scene" data-i="0"><svg viewBox="0 0 90 160" preserveAspectRatio="xMidYMid slice"><rect width="90" height="160" fill="#5468FF"/><circle cx="20" cy="22" r="7" fill="#FFD23F"/><circle cx="20" cy="22" r="4.4" fill="none" stroke="#C89A00" stroke-width="1"/><circle cx="66" cy="12" r="5.5" fill="#FFD23F"/><circle cx="74" cy="40" r="6.5" fill="#FFD23F"/><circle cx="74" cy="40" r="4" fill="none" stroke="#C89A00" stroke-width="1"/><circle cx="38" cy="44" r="5" fill="#FFD23F"/><rect x="14" y="58" width="62" height="40" rx="6" fill="#1A1D3A"/><path d="M14 66h62v10H48a5 5 0 0 1 0-10" fill="#2C3170"/><rect x="58" y="69" width="18" height="10" rx="3" fill="#8FA0FF"/><circle cx="64" cy="74" r="2.2" fill="#1A1D3A"/></svg></div>
             <div class="scene" data-i="1"><svg viewBox="0 0 90 160" preserveAspectRatio="xMidYMid slice"><rect width="90" height="160" fill="#FFD23F"/><path d="M36 22c-3 5 3 7 0 12M46 18c-3 5 3 7 0 12M56 22c-3 5 3 7 0 12" fill="none" stroke="#1A1D3A" stroke-width="2.4" stroke-linecap="round" opacity=".55"/><rect x="26" y="40" width="40" height="7" rx="3" fill="#1A1D3A"/><path d="M29 47h34l-4 52H33z" fill="#fff"/><path d="M31 62h30l-1.6 20H32.6z" fill="#F2542D"/><circle cx="46" cy="72" r="4" fill="#fff"/></svg></div>
@@ -330,7 +330,7 @@ footer .brand svg { width: 24px; height: 24px; }
         </div>
 
         <div class="tl" aria-hidden="true">
-          <div class="tl-head"><span>Timeline CapCut</span><span><strong id="tc">00:00</strong> / 00:13</span></div>
+          <div class="tl-head"><span>Timeline CapCut</span><span><strong id="tc">00:00</strong> / 00:19</span></div>
           <div class="tracks">
             <div class="track"><span>Vidéo</span><div class="lane v" id="lane-v"></div></div>
             <div class="track"><span>Voix IA</span><div class="lane a" id="lane-a"></div></div>
@@ -346,17 +346,17 @@ footer .brand svg { width: 24px; height: 24px; }
     <div class="wrap">
       <div class="steps-head">
         <h2>Cinq étapes, de l'idée à la vidéo publiée</h2>
-        <p class="lede">Avec un peu d'habitude, une vidéo d'une minute te prend environ 1 h 15. La barre montre où part ce temps.</p>
+        <p class="lede">Avec un peu d'habitude, une vidéo d'une minute te prend environ 1 h 25. La barre montre où part ce temps.</p>
       </div>
       <div class="bar" aria-hidden="true">
-        <i style="flex:15;background:var(--ink)"></i><i style="flex:5;background:#C89A00"></i><i style="flex:20;background:var(--clip)"></i><i style="flex:30;background:var(--clip-2)"></i><i style="flex:5;background:var(--cut)"></i>
+        <i style="flex:15;background:var(--ink)"></i><i style="flex:5;background:#C89A00"></i><i style="flex:30;background:var(--clip)"></i><i style="flex:30;background:var(--clip-2)"></i><i style="flex:5;background:var(--cut)"></i>
       </div>
-      <div class="bar-legend" aria-hidden="true"><span>0 min</span><span>40 min</span><span>1 h 15</span></div>
+      <div class="bar-legend" aria-hidden="true"><span>0 min</span><span>45 min</span><span>1 h 25</span></div>
       <ol class="steps">
-        <li style="--c:var(--ink)"><h3>L'idée et le script</h3><span class="time">15 min</span><p>Une accroche dans les 3 premières secondes, 150 mots pour une minute. À côté de chaque phrase, le mot-clé de l'extrait qui l'illustrera.</p></li>
-        <li style="--c:#C89A00"><h3>La voix off IA</h3><span class="time">5 min</span><p>Tu colles le texte dans ElevenLabs, ou dans les voix gratuites de CapCut ou Clipchamp, et tu télécharges l'audio.</p></li>
-        <li style="--c:var(--clip)"><h3>Les extraits vidéo</h3><span class="time">20 min</span><p>Un extrait par phrase, pris sur Pexels, Pixabay ou dans le domaine public. Rien qui puisse bloquer ta vidéo.</p></li>
-        <li style="--c:var(--clip-2)"><h3>Le montage</h3><span class="time">30 min</span><p>Dans CapCut : la voix d'abord, puis un plan à chaque phrase, sous-titres automatiques, musique basse.</p></li>
+        <li style="--c:var(--ink)"><h3>L'idée et le script</h3><span class="time">15 min</span><p>Une accroche dans les 3 premières secondes, 150 mots pour une minute. À côté de chaque phrase, la scène qui l'illustrera.</p></li>
+        <li style="--c:#C89A00"><h3>La voix off IA</h3><span class="time">5 min</span><p>Tu colles le texte dans un site de voix IA gratuit, tu choisis une voix française et tu télécharges l'audio.</p></li>
+        <li style="--c:var(--clip)"><h3>Les extraits vidéo</h3><span class="time">30 min</span><p>Une scène par phrase, trouvée sur YouTube, TikTok ou dans un film, téléchargée en 1080p.</p></li>
+        <li style="--c:var(--clip-2)"><h3>Le montage</h3><span class="time">30 min</span><p>Dans CapCut : la voix d'abord, puis un plan à chaque phrase, le son d'origine coupé, sous-titres automatiques, musique basse.</p></li>
         <li style="--c:var(--cut)"><h3>La publication</h3><span class="time">5 min</span><p>Le même fichier sur TikTok, YouTube Shorts et Reels, avec le mot-clé dans l'accroche et la description.</p></li>
       </ol>
     </div>
@@ -365,20 +365,20 @@ footer .brand svg { width: 24px; height: 24px; }
   <section class="section rule">
     <div class="wrap">
       <div>
-        <h2>Une phrase, un plan. Jamais plus de 3 secondes.</h2>
+        <h2>Une phrase, un plan. Jamais plus de 5 secondes.</h2>
         <p class="lede">C'est ce rythme qui retient le spectateur. Son œil reçoit sans arrêt une nouvelle image, et chaque phrase de la voix off est illustrée par ce qu'elle raconte.</p>
-        <p class="lede">Une vidéo d'une minute, c'est donc 20 à 30 extraits. Le guide te montre comment les trouver vite et les caler sur les mots dans CapCut.</p>
+        <p class="lede">Une vidéo d'une minute, c'est donc 12 à 20 extraits. Le guide te montre comment les trouver vite et les caler sur les mots dans CapCut.</p>
       </div>
       <table class="script">
         <caption>Extrait du chapitre 3 : le script d'une vidéo de 60 secondes, découpé plan par plan.</caption>
-        <thead><tr><th>Temps</th><th>Voix off</th><th>Extrait à chercher</th></tr></thead>
+        <thead><tr><th>Temps</th><th>Voix off</th><th>Scène à trouver</th></tr></thead>
         <tbody>
-          <tr><td>0:00</td><td>Ces cinq habitudes te font perdre de l'argent… sans que tu le remarques.</td><td>wallet empty</td></tr>
-          <tr><td>0:04</td><td>Et la troisième, tout le monde la fait.</td><td>crowd city walking</td></tr>
-          <tr><td>0:07</td><td>Un : le café acheté tous les matins.</td><td>coffee to go cup</td></tr>
-          <tr><td>0:10</td><td>Trois euros par jour, c'est plus de mille euros par an.</td><td>coins counting</td></tr>
-          <tr><td>0:15</td><td>Deux : les abonnements que tu as oubliés.</td><td>phone scrolling apps</td></tr>
-          <tr><td>0:23</td><td>Trois : faire les courses le ventre vide.</td><td>supermarket aisle</td></tr>
+          <tr><td>0:00</td><td>Ces cinq habitudes te font perdre de l'argent… sans que tu le remarques.</td><td>portefeuille vide</td></tr>
+          <tr><td>0:04</td><td>Et la troisième, tout le monde la fait.</td><td>foule dans la rue</td></tr>
+          <tr><td>0:07</td><td>Un : le café acheté tous les matins.</td><td>commande au comptoir d'un café</td></tr>
+          <tr><td>0:10</td><td>Trois euros par jour, c'est plus de mille euros par an.</td><td>pièces qu'on compte</td></tr>
+          <tr><td>0:15</td><td>Deux : les abonnements que tu as oubliés.</td><td>doigt qui fait défiler des applis</td></tr>
+          <tr><td>0:23</td><td>Trois : faire les courses le ventre vide.</td><td>rayon de supermarché</td></tr>
         </tbody>
       </table>
     </div>
@@ -390,9 +390,9 @@ footer .brand svg { width: 24px; height: 24px; }
         <div class="pages">
           <figure><img src="img/page-1.jpg" alt="Couverture du guide Hors Champ" width="758" height="1075" loading="lazy"><figcaption>La couverture</figcaption></figure>
           <figure><img src="img/page-6.jpg" alt="Page 6 du guide : la piste de montage d'une vidéo de 30 secondes et le temps passé par étape" width="758" height="1075" loading="lazy"><figcaption>Page 6 : à quoi ressemble une vidéo finie</figcaption></figure>
-          <figure><img src="img/page-26.jpg" alt="Page 26 du guide : le montage dans CapCut expliqué étape par étape" width="758" height="1075" loading="lazy"><figcaption>Page 26 : le montage dans CapCut</figcaption></figure>
+          <figure><img src="img/page-28.jpg" alt="Page 28 du guide : le montage dans CapCut expliqué étape par étape" width="758" height="1075" loading="lazy"><figcaption>Page 28 : le montage dans CapCut</figcaption></figure>
         </div>
-        <p class="pages-note">58 pages au format A5, faciles à lire sur téléphone. Chaque étape est écrite pour être suivie avec CapCut ouvert à côté.</p>
+        <p class="pages-note">61 pages au format A5, faciles à lire sur téléphone. Chaque étape est écrite pour être suivie avec CapCut ouvert à côté.</p>
       </div>
       <div>
         <h2>Ce que tu apprends, chapitre par chapitre</h2>
@@ -400,9 +400,9 @@ footer .brand svg { width: 24px; height: 24px; }
           <li><strong>La méthode en un coup d'œil</strong><span>Les étapes, le rythme des plans, l'organisation de tes fichiers.</span></li>
           <li><strong>Choisir sa niche et trouver ses idées</strong><span>Les niches faciles à illustrer, et 30 idées en 20 minutes.</span></li>
           <li><strong>Écrire le script de voix off</strong><span>L'accroche, la structure, le découpage en plans.</span></li>
-          <li><strong>Créer la voix off avec l'IA</strong><span>ElevenLabs, CapCut et Clipchamp, réglages compris.</span></li>
-          <li><strong>Trouver les extraits vidéo</strong><span>Les sources autorisées, et l'erreur qui fait bloquer les chaînes.</span></li>
-          <li><strong>Le montage plan par plan</strong><span>CapCut en 10 étapes, un plan toutes les 2 à 3 secondes.</span></li>
+          <li><strong>Créer la voix off avec l'IA</strong><span>Un site gratuit pas à pas, et ElevenLabs si tu veux aller plus loin.</span></li>
+          <li><strong>Récupérer les extraits vidéo</strong><span>YouTube, TikTok, films et séries : trouver la scène, la télécharger, connaître les risques.</span></li>
+          <li><strong>Le montage plan par plan</strong><span>CapCut en 10 étapes, un plan toutes les 5 secondes maximum.</span></li>
           <li><strong>Publier et faire grandir la chaîne</strong><span>Rythme de publication, titres, hashtags, statistiques.</span></li>
           <li><strong>Monétiser</strong><span>Les 6 sources de revenus et les règles d'originalité à respecter.</span></li>
           <li><strong>Ton plan de 30 jours</strong><span>Jour par jour, jusqu'à ta 30<sup>e</sup> vidéo.</span></li>
@@ -457,9 +457,9 @@ footer .brand svg { width: 24px; height: 24px; }
       <div>
         <h2>Le guide complet Hors Champ</h2>
         <ul class="incl">
-          <li><svg aria-hidden="true"><use href="#tick"/></svg><span>Le guide en PDF de 58 pages, lisible sur téléphone, ordinateur et liseuse</span></li>
+          <li><svg aria-hidden="true"><use href="#tick"/></svg><span>Le guide en PDF de 61 pages, lisible sur téléphone, ordinateur et liseuse</span></li>
           <li><svg aria-hidden="true"><use href="#tick"/></svg><span>La méthode voix off IA + extraits vidéo, clic par clic</span></li>
-          <li><svg aria-hidden="true"><use href="#tick"/></svg><span>Les sources d'extraits vidéo que tu as le droit d'utiliser</span></li>
+          <li><svg aria-hidden="true"><use href="#tick"/></svg><span>Où trouver tes extraits et comment éviter les réclamations</span></li>
           <li><svg aria-hidden="true"><use href="#tick"/></svg><span>5 modèles de scripts et 100 idées de vidéos</span></li>
           <li><svg aria-hidden="true"><use href="#tick"/></svg><span>Le plan d'action sur 30 jours</span></li>
           <li><svg aria-hidden="true"><use href="#tick"/></svg><span>Les mises à jour du guide, gratuites</span></li>
@@ -477,8 +477,8 @@ footer .brand svg { width: 24px; height: 24px; }
       <h2>Questions fréquentes</h2>
       <div>
         <details><summary>Faut-il du matériel coûteux ?</summary><p>Non. Pas de caméra ni de micro : un ordinateur ou un smartphone récent suffit. Le montage se fait dans CapCut (gratuit) et la voix avec un outil d'IA, gratuit pour commencer.</p></details>
-        <details><summary>Où je trouve les extraits vidéo ?</summary><p>Dans des banques de vidéos gratuites que tu as le droit d'utiliser, même pour gagner de l'argent (Pexels, Pixabay, archives du domaine public…). Le guide explique pourquoi les extraits de films, de séries ou d'autres créateurs font bloquer ou démonétiser les vidéos, et comment trouver vite l'extrait qui illustre chaque phrase.</p></details>
-        <details><summary>Je peux utiliser une voix générée par IA ?</summary><p>Oui, c'est le cœur de la méthode. Le guide explique quels outils utiliser, comment vérifier que leur licence autorise l'usage commercial, et comment garder des vidéos assez originales pour être monétisées.</p></details>
+        <details><summary>Où je trouve les extraits vidéo ?</summary><p>Sur YouTube, TikTok et dans des films et des séries. Le guide explique comment trouver vite la scène qui illustre chaque phrase, comment la télécharger en bonne qualité, et ce qui peut arriver avec des images qui ne t'appartiennent pas (réclamations, avertissements, monétisation refusée) pour limiter ces risques.</p></details>
+        <details><summary>Je peux utiliser une voix générée par IA ?</summary><p>Oui, c'est le cœur de la méthode. Le guide explique quels outils utiliser, comment vérifier que leurs conditions autorisent l'usage commercial, et comment garder des vidéos assez originales pour être monétisées.</p></details>
         <details><summary>Combien de temps avant de gagner de l'argent ?</summary><p>Cela dépend de ta régularité et de ta niche. L'affiliation et les produits numériques peuvent rapporter dès les premières semaines, alors que les programmes YouTube et TikTok demandent d'atteindre leurs seuils, ce qui prend en général plusieurs mois. Personne ne peut te garantir un montant.</p></details>
         <details><summary>Je débute complètement, c'est pour moi ?</summary><p>Oui. Le guide part de zéro et chaque étape est expliquée clic par clic : création des comptes, choix de la niche, premier script, première voix, premier montage.</p></details>
         <details><summary>Comment je reçois le guide ?</summary><p>Juste après le paiement, tu arrives sur une page avec le bouton pour ouvrir ou télécharger le PDF. Enregistre-le tout de suite et garde la page dans tes favoris : le lien reste valable.</p></details>
@@ -504,7 +504,7 @@ footer .brand svg { width: 24px; height: 24px; }
     <p class="done"><svg aria-hidden="true"><use href="#ok"/></svg>Paiement validé</p>
     <h1>Merci ! Voici ton guide.</h1>
     <div class="dl-card" id="dl-card" hidden>
-      <p class="what"><strong>Hors Champ, le guide PDF</strong><span>58 pages, 9 chapitres et 4 bonus</span></p>
+      <p class="what"><strong>Hors Champ, le guide PDF</strong><span>61 pages, 9 chapitres et 4 bonus</span></p>
       <p class="dl-inapp" id="dl-inapp" hidden><strong>Tu es dans l'appli TikTok, Instagram ou Snapchat ?</strong> Leur navigateur bloque les téléchargements. Touche <strong>•••</strong> en haut à droite, puis <strong>« Ouvrir dans le navigateur »</strong> (Safari ou Chrome), et appuie sur le bouton ci-dessous.</p>
       <a class="btn" id="dl-btn" href="#" rel="noopener">Télécharger le guide</a>
       <a class="dl-alt" id="dl-view" href="#" rel="noopener">Ou l'ouvrir dans Google Drive</a>
@@ -684,13 +684,13 @@ const PRICE = "49 €";
   }
   window.addEventListener("hashchange", updateBar);
 
-  // Le banc de montage : un plan toutes les 2 à 3 s, sous-titres mot à mot, tête de lecture
+  // Le banc de montage : un plan toutes les 5 s maximum, sous-titres mot à mot, tête de lecture
   const SCENES = [
-    { d: 2.6, w: ["Ces", "*5", "*habitudes", "te", "coûtent", "cher"] },
-    { d: 2.2, w: ["Un :", "le", "*café", "du", "matin"] },
-    { d: 2.8, w: ["*1 000 €", "par", "an"] },
-    { d: 2.4, w: ["Deux :", "les", "*abonnements", "oubliés"] },
-    { d: 3.0, w: ["Trois :", "les", "courses", "le", "*ventre", "*vide"] }
+    { d: 3.6, w: ["Ces", "*5", "*habitudes", "te", "coûtent", "cher"] },
+    { d: 3.0, w: ["Un :", "le", "*café", "du", "matin"] },
+    { d: 4.6, w: ["*1 000 €", "par", "an"] },
+    { d: 3.6, w: ["Deux :", "les", "*abonnements", "oubliés"] },
+    { d: 4.2, w: ["Trois :", "les", "courses", "le", "*ventre", "*vide"] }
   ];
   const TOTAL = SCENES.reduce((s, x) => s + x.d, 0);
   const starts = []; SCENES.reduce((s, x, i) => (starts[i] = s, s + x.d), 0);
