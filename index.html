@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Hors Champ, le guide des vidéos sans visage</title>
 <meta name="claude:viewport-fit-sides" content="cover">
-<meta name="description" content="Hors Champ : la méthode voix off IA + extraits vidéo pour créer des vidéos qui rapportent sur TikTok, YouTube et Instagram, sans montrer ton visage.">
+<meta name="description" content="Hors Champ : le guide pour créer des vidéos qui rapportent sur TikTok, YouTube et Instagram, sans montrer ton visage.">
 <meta name="theme-color" content="#16B45C">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -151,42 +151,14 @@ p { margin: 0; }
 }
 .honest strong { display: block; margin-bottom: 4px; }
 
-/* Étapes : une piste verticale */
-.steps { list-style: none; margin: 36px 0 0; padding: 0; counter-reset: s; max-width: 720px; }
-.steps li { counter-increment: s; position: relative; padding: 0 0 30px 62px; }
-.steps li::before {
-  content: counter(s); position: absolute; left: 0; top: -4px; width: 44px; height: 44px; border-radius: 50%;
-  background: var(--green); color: var(--forest); display: grid; place-items: center;
-  font: 800 1.25rem/1 var(--display);
-}
-.steps li::after { content: ""; position: absolute; left: 21px; top: 46px; bottom: 4px; width: 2px; background: var(--line); }
-.steps li:last-child { padding-bottom: 0; }
-.steps li:last-child::after { display: none; }
-.steps .head { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; }
-.steps .time { font-size: .9rem; color: var(--muted); white-space: nowrap; font-variant-numeric: tabular-nums; }
-.steps p { margin-top: 6px; color: var(--muted); }
-.dark .steps p, .dark .steps .time { color: #C9D8CD; }
-.dark .steps li::after { background: rgba(255,255,255,.18); }
-
-/* La règle des 5 secondes : les plans défilent comme dans une timeline */
-.reel {
-  list-style: none; margin: 34px calc(var(--pad) * -1) 0; padding: 0 var(--pad) 10px;
-  display: flex; gap: 10px; overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding: 0 var(--pad);
-  -webkit-overflow-scrolling: touch;
-}
-.reel li { flex: 0 0 150px; scroll-snap-align: start; }
-.clip {
-  position: relative; aspect-ratio: 9 / 16; border-radius: 14px; overflow: hidden;
-  background: var(--bg, #1F5B3A); display: flex; flex-direction: column; justify-content: space-between; padding: 10px;
-}
-.clip .tcode { display: flex; justify-content: space-between; font-size: .8rem; font-variant-numeric: tabular-nums; color: rgba(255,255,255,.85); }
-.clip .tcode b { background: rgba(0,0,0,.35); padding: 1px 7px; border-radius: 999px; font-weight: 700; color: #fff; }
-.clip .scene { font: italic 400 .88rem/1.3 var(--body); color: rgba(255,255,255,.78); text-align: center; }
-.clip .says {
-  font: 800 .92rem/1.15 var(--display); font-stretch: 90%; color: #fff; text-align: center;
-  text-shadow: 1px 0 0 #000, -1px 0 0 #000, 0 1px 0 #000, 0 -1px 0 #000, 0 2px 0 #000;
-}
-.reel-note { margin-top: 14px; font-size: .92rem; color: #C9D8CD; }
+/* Ce que le guide contient : des chapitres « verrouillés » qu'on ouvre en achetant */
+.locks { list-style: none; margin: 34px 0 0; padding: 0; display: grid; gap: 12px; max-width: 760px; }
+.locks li { display: grid; grid-template-columns: 40px 1fr; gap: 14px; align-items: start; padding: 16px 18px; border-radius: 18px; background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.12); }
+.locks svg { width: 40px; height: 40px; }
+.locks strong { display: block; font-size: 1.08rem; line-height: 1.3; }
+.locks span span { display: block; color: #C9D8CD; font-size: .95rem; margin-top: 2px; }
+.sec-cta { margin-top: 30px; }
+.sec-cta .btn { width: 100%; max-width: 380px; }
 
 /* Le guide */
 .pages {
@@ -204,36 +176,6 @@ p { margin: 0; }
 .chapters span { display: block; color: var(--muted); font-size: .95rem; }
 .chapters h3 { margin-bottom: 4px; }
 .bonus { margin-top: 26px; background: var(--yellow); border-radius: 18px; padding: 18px 20px; }
-
-/* Revenus */
-.sources { margin: 30px 0 0; }
-.sources div { padding: 14px 0; border-top: 1px solid var(--line); }
-.sources dt { font-weight: 700; }
-.sources dd { margin: 2px 0 0; color: var(--muted); font-size: .95rem; }
-.sources .when { display: inline-block; margin-top: 6px; font-size: .8rem; font-weight: 700; padding: 2px 10px; border-radius: 999px; background: #E2EDE3; }
-.sim { margin-top: 40px; background: var(--card); border: 2px solid var(--forest); border-radius: 22px; padding: 22px 20px; }
-.field { margin-top: 18px; }
-.field > label, .field > .lab { display: flex; justify-content: space-between; font-weight: 700; font-size: .95rem; margin-bottom: 8px; }
-.field output { font-variant-numeric: tabular-nums; }
-.seg { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; background: #E2EDE3; padding: 5px; border-radius: 16px; }
-.seg button {
-  min-height: 52px; border: 0; border-radius: 12px; background: transparent; color: var(--forest);
-  font: 700 .82rem/1.2 var(--body); cursor: pointer; padding: 6px 4px;
-}
-.seg button[aria-pressed="true"] { background: var(--forest); color: #fff; }
-input[type=range] {
-  -webkit-appearance: none; appearance: none; width: 100%; height: 34px; background: transparent; margin: 0;
-  --fill: 15%;
-}
-input[type=range]::-webkit-slider-runnable-track { height: 8px; border-radius: 99px; background: linear-gradient(90deg, var(--green) var(--fill), #DCE5DC var(--fill)); }
-input[type=range]::-moz-range-track { height: 8px; border-radius: 99px; background: linear-gradient(90deg, var(--green) var(--fill), #DCE5DC var(--fill)); }
-input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; width: 28px; height: 28px; margin-top: -10px; border-radius: 50%; background: var(--forest); border: 4px solid #fff; box-shadow: 0 0 0 1px var(--forest); }
-input[type=range]::-moz-range-thumb { width: 22px; height: 22px; border-radius: 50%; background: var(--forest); border: 4px solid #fff; }
-.result { margin-top: 20px; padding-top: 18px; border-top: 1px dashed var(--line); }
-.result .k { display: block; font-size: .9rem; color: var(--muted); }
-.result .v { display: block; font: 800 1.9rem/1.1 var(--display); font-stretch: 88%; margin-top: 4px; font-variant-numeric: tabular-nums; }
-.result .rpm { display: block; font-size: .88rem; color: var(--muted); margin-top: 4px; }
-.sim .note { margin-top: 14px; font-size: .82rem; color: var(--muted); }
 
 /* Offre */
 .offer { background: var(--green); }
@@ -336,12 +278,9 @@ footer nav a { padding: 6px 0; }
   .proof-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: start; }
   .proof-totals { margin-top: 0; gap: 20px; }
   .vids { grid-auto-flow: row; grid-template-columns: repeat(3, 1fr); overflow: visible; margin: 18px 0 0; padding: 0; }
-  .reel { flex-wrap: nowrap; }
-  .reel li { flex-basis: 156px; }
-  .guide-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: start; }
   .pages { grid-auto-columns: 46%; }
-  .money-wrap { display: grid; grid-template-columns: 1.1fr .9fr; gap: 56px; align-items: start; }
-  .sim { margin-top: 0; position: sticky; top: 84px; padding: 28px; }
+  .sec-cta .btn { width: auto; }
+  .locks { grid-template-columns: 1fr 1fr; max-width: none; }
   .offer .wrap { grid-template-columns: .8fr 1.2fr; align-items: center; gap: 48px; }
   .offer .cover { width: 80%; }
   .card { padding: 36px; }
@@ -350,9 +289,6 @@ footer nav a { padding: 6px 0; }
 }
 @media (min-width: 1000px) {
   .pages { grid-auto-flow: row; grid-template-columns: repeat(3, 1fr); overflow: visible; margin: 34px 0 0; padding: 0; }
-  .guide-wrap { grid-template-columns: 1.05fr .95fr; }
-  .reel { overflow: visible; margin: 34px 0 0; padding: 0; }
-  .reel li { flex: 1 1 0; min-width: 0; }
 }
 @media (max-width: 359px) {
   .clock { display: none; }
@@ -372,6 +308,7 @@ footer nav a { padding: 6px 0; }
     <symbol id="logo" viewBox="0 0 32 32"><path d="M4 11V4h7M21 4h7v7M28 21v7h-7M11 28H4v-7" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><circle cx="16" cy="16" r="5" fill="#FF3B30"/></symbol>
     <symbol id="tick" viewBox="0 0 24 24"><circle cx="12" cy="12" r="12" fill="#16B45C"/><path d="M7 12.5l3.2 3.2L17 9" fill="none" stroke="#0B2416" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
     <symbol id="lock" viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="10" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3" fill="none" stroke="currentColor" stroke-width="2"/></symbol>
+    <symbol id="locked" viewBox="0 0 40 40"><circle cx="20" cy="20" r="20" fill="#FFE14D"/><rect x="12.5" y="18" width="15" height="11" rx="2.5" fill="#0B2416"/><path d="M15.5 18v-3a4.5 4.5 0 0 1 9 0v3" fill="none" stroke="#0B2416" stroke-width="2.4"/></symbol>
     <symbol id="ok" viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" fill="#12A052"/><path d="M7 12.5l3.2 3.2L17 9" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
   </defs>
 </svg>
@@ -381,8 +318,7 @@ footer nav a { padding: 6px 0; }
     <a class="brand" href="#"><svg aria-hidden="true"><use href="#logo"/></svg>Hors Champ</a>
     <nav class="nav" aria-label="Sections">
       <a href="#preuves">Mes résultats</a>
-      <a href="#methode">La méthode</a>
-      <a href="#guide">Le guide</a>
+      <a href="#methode">Dans le guide</a>
       <a href="#faq">Questions</a>
     </nav>
     <span class="clock" aria-hidden="true"><strong id="clock-t">0:00</strong> / 1:00</span>
@@ -398,7 +334,7 @@ footer nav a { padding: 6px 0; }
     <svg class="ghost" viewBox="0 0 300 330" aria-hidden="true"><g fill="none" stroke="#0B2416" stroke-width="4" stroke-dasharray="10 9" stroke-linecap="round"><circle cx="150" cy="118" r="66"/><path d="M28 330c0-78 54-128 122-128s122 50 122 128"/></g></svg>
     <div class="wrap">
       <h1 id="hero-title">Personne ne voit ton visage. Ta chaîne tourne quand même.</h1>
-      <p class="lede">Une voix off générée par IA, des extraits de YouTube, TikTok, de films et de séries, un nouveau plan toutes les 5 secondes maximum. Le guide t'apprend cette méthode clic par clic, de l'idée à la vidéo publiée.</p>
+      <p class="lede">La méthode que j'utilise pour faire des vidéos qui rapportent sur TikTok, YouTube et Instagram. Sans caméra, sans micro, sans jamais montrer ton visage. Tout est expliqué clic par clic dans un guide de 61 pages.</p>
       <div class="cta">
         <a class="btn" href="#offre">Acheter le guide pour <span data-price>49 €</span></a>
         <p class="small">Paiement unique. PDF de 61 pages, disponible juste après le paiement.</p>
@@ -416,7 +352,7 @@ footer nav a { padding: 6px 0; }
       <div class="proof-wrap">
         <div>
           <h2>Ce que mes vidéos m'ont rapporté sur TikTok</h2>
-          <p class="lede">Ma chaîne moto est faite exactement comme le guide l'explique : voix off IA, extraits vidéo, jamais mon visage. Voici les captures de mon tableau de bord, programme Récompenses pour les créateurs.</p>
+          <p class="lede">Ma chaîne moto est faite exactement comme le guide l'explique, sans jamais montrer mon visage. Voici les captures de mon tableau de bord, programme Récompenses pour les créateurs.</p>
         </div>
         <div class="proof-totals">
           <figure class="total">
@@ -455,100 +391,37 @@ footer nav a { padding: 6px 0; }
         <strong>Ce sont mes résultats, pas une promesse.</strong>
         Pour toucher ces récompenses, il faut au moins 10 000 abonnés et des vidéos de plus d'une minute. Beaucoup de créateurs gagnent moins, d'autres plus : ça dépend de ton travail, de ta niche et des règles de TikTok, qui changent.
       </div>
+      <p class="sec-cta"><a class="btn" href="#offre">Acheter le guide pour <span data-price>49 €</span></a></p>
     </div>
   </section>
 
   <section class="sec dark" id="methode">
     <div class="wrap">
-      <h2>Cinq étapes, de l'idée à la vidéo publiée</h2>
-      <p class="lede">Avec un peu d'habitude, une vidéo d'une minute te prend environ 1 h 25.</p>
-      <ol class="steps">
-        <li><div class="head"><h3>L'idée et le script</h3><span class="time">15 min</span></div><p>Une accroche dans les 3 premières secondes, 150 mots pour une minute. À côté de chaque phrase, la scène qui l'illustrera.</p></li>
-        <li><div class="head"><h3>La voix off IA</h3><span class="time">5 min</span></div><p>Tu colles le texte dans un site de voix IA gratuit, tu choisis une voix française et tu télécharges l'audio.</p></li>
-        <li><div class="head"><h3>Les extraits vidéo</h3><span class="time">30 min</span></div><p>Une scène par phrase, trouvée sur YouTube, TikTok ou dans un film, téléchargée en 1080p.</p></li>
-        <li><div class="head"><h3>Le montage</h3><span class="time">30 min</span></div><p>Dans CapCut : la voix d'abord, puis un plan à chaque phrase, le son d'origine coupé, sous-titres automatiques, musique basse.</p></li>
-        <li><div class="head"><h3>La publication</h3><span class="time">5 min</span></div><p>Le même fichier sur TikTok, YouTube Shorts et Reels, avec le mot-clé dans l'accroche et la description.</p></li>
-      </ol>
-
-      <h2 style="margin-top:88px">Une phrase, un plan. Jamais plus de 5 secondes.</h2>
-      <p class="lede" style="margin-top:16px">C'est ce rythme qui retient le spectateur : son œil reçoit sans arrêt une nouvelle image, et chaque phrase de la voix off montre ce qu'elle raconte. Une vidéo d'une minute, c'est donc 12 à 20 extraits.</p>
-      <ol class="reel" aria-label="Extrait du chapitre 3 : le début d'un script de 60 secondes, découpé plan par plan">
-        <li><div class="clip" style="--bg:#2E7D4F"><span class="tcode"><span>0:00</span><b>4 s</b></span><span class="scene">portefeuille vide</span><span class="says">Ces cinq habitudes te font perdre de l'argent…</span></div></li>
-        <li><div class="clip" style="--bg:#345E6B"><span class="tcode"><span>0:04</span><b>3 s</b></span><span class="scene">foule dans la rue</span><span class="says">Et la troisième, tout le monde la fait.</span></div></li>
-        <li><div class="clip" style="--bg:#6B5A2E"><span class="tcode"><span>0:07</span><b>3 s</b></span><span class="scene">commande au comptoir d'un café</span><span class="says">Un : le café acheté tous les matins.</span></div></li>
-        <li><div class="clip" style="--bg:#1F5B3A"><span class="tcode"><span>0:10</span><b>5 s</b></span><span class="scene">pièces qu'on compte</span><span class="says">Trois euros par jour, plus de mille euros par an.</span></div></li>
-        <li><div class="clip" style="--bg:#4A4F7A"><span class="tcode"><span>0:15</span><b>3 s</b></span><span class="scene">doigt qui fait défiler des applis</span><span class="says">Deux : les abonnements oubliés.</span></div></li>
-        <li><div class="clip" style="--bg:#345E6B"><span class="tcode"><span>0:18</span><b>5 s</b></span><span class="scene">salle de sport vide</span><span class="says">Ils se cachent sur ton relevé.</span></div></li>
-        <li><div class="clip" style="--bg:#7A3B2E"><span class="tcode"><span>0:23</span><b>3 s</b></span><span class="scene">rayon de supermarché</span><span class="says">Trois : les courses le ventre vide.</span></div></li>
-        <li><div class="clip" style="--bg:#2E7D4F"><span class="tcode"><span>0:26</span><b>4 s</b></span><span class="scene">caddie plein qui roule</span><span class="says">Ton cerveau remplit le caddie.</span></div></li>
-      </ol>
-      <p class="reel-note">Extrait du chapitre 3 : en haut, le temps et la durée du plan ; au milieu, la scène à chercher ; en bas, la phrase de la voix off.</p>
+      <h2>Ce que tu découvres dans le guide</h2>
+      <p class="lede">Toute la méthode que j'utilise pour ma chaîne, pas à pas. Pas besoin d'expérience : tu suis les pages avec CapCut ouvert à côté.</p>
+      <ul class="locks">
+        <li><svg aria-hidden="true"><use href="#locked"/></svg><span><strong>La méthode exacte derrière mes vidéos</strong><span>Celle qui m'a rapporté 61 € avec une seule vidéo. De l'idée à la vidéo publiée, en 9 chapitres.</span></span></li>
+        <li><svg aria-hidden="true"><use href="#locked"/></svg><span><strong>Ta voix off en 5 minutes, sans payer</strong><span>Le site que j'utilise et les réglages pour une voix française naturelle.</span></span></li>
+        <li><svg aria-hidden="true"><use href="#locked"/></svg><span><strong>Où trouver les images de tes vidéos</strong><span>Mes sources, et comment limiter les réclamations.</span></span></li>
+        <li><svg aria-hidden="true"><use href="#locked"/></svg><span><strong>La règle de montage qui retient le spectateur</strong><span>Le rythme à suivre dans CapCut pour qu'on regarde jusqu'au bout.</span></span></li>
+        <li><svg aria-hidden="true"><use href="#locked"/></svg><span><strong>Les niches qui marchent sans visage</strong><span>Comment choisir la tienne, avec 100 idées de vidéos prêtes à faire.</span></span></li>
+        <li><svg aria-hidden="true"><use href="#locked"/></svg><span><strong>Comment être payé</strong><span>Les seuils de TikTok et YouTube, et 6 façons de gagner de l'argent avec ta chaîne.</span></span></li>
+        <li><svg aria-hidden="true"><use href="#locked"/></svg><span><strong>5 modèles de scripts à remplir</strong><span>Tu changes le sujet, la structure est déjà écrite.</span></span></li>
+        <li><svg aria-hidden="true"><use href="#locked"/></svg><span><strong>Ton plan de 30 jours</strong><span>Jour par jour, pour sortir ta première vidéo dès cette semaine.</span></span></li>
+      </ul>
+      <p class="sec-cta"><a class="btn yellow" href="#offre">Acheter le guide pour <span data-price>49 €</span></a></p>
     </div>
   </section>
 
   <section class="sec" id="guide">
-    <div class="wrap guide-wrap">
-      <div>
-        <h2>Ce que tu apprends, chapitre par chapitre</h2>
-        <div class="pages">
-          <figure><img src="img/page-1.jpg" alt="Couverture du guide Hors Champ" width="759" height="1075" loading="lazy"><figcaption>La couverture</figcaption></figure>
-          <figure><img src="img/page-6.jpg" alt="Page 6 du guide : la piste de montage d'une vidéo de 30 secondes et le temps passé par étape" width="759" height="1075" loading="lazy"><figcaption>Page 6 : une vidéo finie, plan par plan</figcaption></figure>
-          <figure><img src="img/page-28.jpg" alt="Page 28 du guide : le montage dans CapCut expliqué étape par étape" width="759" height="1075" loading="lazy"><figcaption>Page 28 : le montage dans CapCut</figcaption></figure>
-        </div>
-        <p class="small" style="margin-top:14px;color:var(--muted)">61 pages au format A5, faciles à lire sur téléphone, à suivre avec CapCut ouvert à côté.</p>
+    <div class="wrap">
+      <h2>61 pages, faciles à lire sur ton téléphone</h2>
+      <div class="pages">
+        <figure><img src="img/page-1.jpg" alt="Couverture du guide Hors Champ" width="759" height="1075" loading="lazy"><figcaption>La couverture</figcaption></figure>
+        <figure><img src="img/page-6.jpg" alt="Page 6 du guide" width="759" height="1075" loading="lazy"><figcaption>Page 6</figcaption></figure>
+        <figure><img src="img/page-28.jpg" alt="Page 28 du guide" width="759" height="1075" loading="lazy"><figcaption>Page 28</figcaption></figure>
       </div>
-      <div>
-        <ol class="chapters">
-          <li><span><strong>La méthode en un coup d'œil</strong>Les étapes, le rythme des plans, l'organisation de tes fichiers.</span></li>
-          <li><span><strong>Choisir sa niche et trouver ses idées</strong>Les niches faciles à illustrer, et 30 idées en 20 minutes.</span></li>
-          <li><span><strong>Écrire le script de voix off</strong>L'accroche, la structure, le découpage en plans.</span></li>
-          <li><span><strong>Créer la voix off avec l'IA</strong>Un site gratuit pas à pas, et ElevenLabs si tu veux aller plus loin.</span></li>
-          <li><span><strong>Récupérer les extraits vidéo</strong>YouTube, TikTok, films et séries : trouver la scène, la télécharger, connaître les risques.</span></li>
-          <li><span><strong>Le montage plan par plan</strong>CapCut en 10 étapes, un plan toutes les 5 secondes maximum.</span></li>
-          <li><span><strong>Publier et faire grandir la chaîne</strong>Rythme de publication, titres, hashtags, statistiques.</span></li>
-          <li><span><strong>Monétiser</strong>Les 6 sources de revenus et les règles d'originalité à respecter.</span></li>
-          <li><span><strong>Ton plan de 30 jours</strong>Jour par jour, jusqu'à ta 30<sup>e</sup> vidéo.</span></li>
-        </ol>
-        <p class="bonus"><strong>En bonus :</strong> 100 idées de vidéos dans 10 niches, 5 modèles de scripts à remplir, la liste des sources et outils gratuits, et une checklist à relire avant chaque publication.</p>
-      </div>
-    </div>
-  </section>
-
-  <section class="sec" id="revenus" style="padding-top:0">
-    <div class="wrap money-wrap">
-      <div>
-        <h2>D'où vient l'argent</h2>
-        <p class="lede" style="margin-top:16px">Une chaîne sans visage se monétise comme les autres. Certaines sources marchent dès la première vidéo, d'autres demandent d'atteindre un seuil.</p>
-        <dl class="sources">
-          <div><dt>Affiliation</dt><dd>Une commission sur les produits que tu recommandes.</dd><span class="when">Dès 0 abonné</span></div>
-          <div><dt>Produits numériques</dt><dd>Un guide, un tableau, une liste : tu vends ce que ton audience demande.</dd><span class="when">Dès 0 abonné</span></div>
-          <div><dt>Montage pour les autres</dt><dd>Des créateurs et des marques paient pour des vidéos prêtes à publier.</dd><span class="when">Dès 0 abonné</span></div>
-          <div><dt>Partenariats de marques</dt><dd>Une marque paie pour apparaître dans tes vidéos.</dd><span class="when">Audience fidèle</span></div>
-          <div><dt>Récompenses TikTok</dt><dd>Rémunère les vidéos de plus d'une minute. 10 000 abonnés et 100 000 vues sur 30 jours.</dd><span class="when">10 000 abonnés</span></div>
-          <div><dt>Partenariat YouTube</dt><dd>Part des revenus pub. 1 000 abonnés et 4 000 h de visionnage sur 12 mois, ou 10 millions de vues de Shorts sur 90 jours.</dd><span class="when">1 000 abonnés</span></div>
-        </dl>
-      </div>
-      <div class="sim">
-        <h3>Combien peut rapporter la pub ?</h3>
-        <div class="field">
-          <span class="lab" id="seg-label">Plateforme</span>
-          <div class="seg" role="group" aria-labelledby="seg-label">
-            <button type="button" data-k="yt" aria-pressed="true">YouTube<br>vidéos longues</button>
-            <button type="button" data-k="tt" aria-pressed="false">TikTok<br>plus d'1 min</button>
-            <button type="button" data-k="shorts" aria-pressed="false">YouTube<br>Shorts</button>
-          </div>
-        </div>
-        <div class="field">
-          <label for="sim-views">Vues par mois <output id="sim-views-out">300 000</output></label>
-          <input type="range" id="sim-views" min="10000" max="2000000" step="10000" value="300000">
-        </div>
-        <div class="result" aria-live="polite">
-          <span class="k">Revenu publicitaire estimé</span>
-          <span class="v" id="sim-result">450 – 1 500 € / mois</span>
-          <span class="rpm" id="sim-rpm">De 1,50 € à 5,00 € pour 1 000 vues</span>
-        </div>
-        <p class="note">Fourchettes indicatives pour une audience francophone. Le revenu réel dépend de la niche, du pays des spectateurs et de la saison. Hors affiliation et partenariats. Ce n'est pas une promesse de gain.</p>
-      </div>
+      <p class="bonus"><strong>Inclus en bonus :</strong> 100 idées de vidéos dans 10 niches, 5 modèles de scripts, la liste des outils gratuits et une checklist à relire avant chaque publication.</p>
     </div>
   </section>
 
@@ -559,7 +432,7 @@ footer nav a { padding: 6px 0; }
         <h2>Le guide complet Hors Champ</h2>
         <ul class="incl">
           <li><svg aria-hidden="true"><use href="#tick"/></svg><span>Le guide en PDF de 61 pages, lisible sur téléphone, ordinateur et liseuse</span></li>
-          <li><svg aria-hidden="true"><use href="#tick"/></svg><span>La méthode voix off IA + extraits vidéo, clic par clic</span></li>
+          <li><svg aria-hidden="true"><use href="#tick"/></svg><span>La méthode complète, clic par clic, de l'idée à la vidéo publiée</span></li>
           <li><svg aria-hidden="true"><use href="#tick"/></svg><span>Où trouver tes extraits et comment éviter les réclamations</span></li>
           <li><svg aria-hidden="true"><use href="#tick"/></svg><span>5 modèles de scripts et 100 idées de vidéos</span></li>
           <li><svg aria-hidden="true"><use href="#tick"/></svg><span>Le plan d'action sur 30 jours</span></li>
@@ -577,12 +450,9 @@ footer nav a { padding: 6px 0; }
     <div class="wrap">
       <h2>Questions fréquentes</h2>
       <div class="faq-list">
-        <details><summary>Faut-il du matériel coûteux ?</summary><p>Non. Pas de caméra ni de micro : un ordinateur ou un smartphone récent suffit. Le montage se fait dans CapCut (gratuit) et la voix avec un outil d'IA, gratuit pour commencer.</p></details>
-        <details><summary>Où je trouve les extraits vidéo ?</summary><p>Sur YouTube, TikTok et dans des films et des séries. Le guide explique comment trouver vite la scène qui illustre chaque phrase, comment la télécharger en bonne qualité, et ce qui peut arriver avec des images qui ne t'appartiennent pas (réclamations, avertissements, monétisation refusée) pour limiter ces risques.</p></details>
-        <details><summary>Je peux utiliser une voix générée par IA ?</summary><p>Oui, c'est le cœur de la méthode. Le guide explique quels outils utiliser, comment vérifier que leurs conditions autorisent l'usage commercial, et comment garder des vidéos assez originales pour être monétisées.</p></details>
+        <details><summary>Faut-il du matériel coûteux ?</summary><p>Non. Pas de caméra ni de micro : un téléphone ou un ordinateur suffit. Tous les outils du guide sont gratuits pour commencer.</p></details>
+        <details><summary>Je débute complètement, c'est pour moi ?</summary><p>Oui. Le guide part de zéro et chaque étape est expliquée clic par clic, de la création des comptes à ta première vidéo publiée.</p></details>
         <details><summary>Je vais gagner autant que toi ?</summary><p>Personne ne peut te le promettre. Mes captures montrent ce que ma chaîne a rapporté, pas ce que toutes les chaînes rapportent. Pour les récompenses TikTok, il faut d'abord atteindre 10 000 abonnés, ce qui prend en général plusieurs mois de publication régulière.</p></details>
-        <details><summary>Combien de temps avant de gagner de l'argent ?</summary><p>Cela dépend de ta régularité et de ta niche. L'affiliation et les produits numériques peuvent rapporter dès les premières semaines, alors que les programmes YouTube et TikTok demandent d'atteindre leurs seuils, ce qui prend en général plusieurs mois.</p></details>
-        <details><summary>Je débute complètement, c'est pour moi ?</summary><p>Oui. Le guide part de zéro et chaque étape est expliquée clic par clic : création des comptes, choix de la niche, premier script, première voix, premier montage.</p></details>
         <details><summary>Comment je reçois le guide ?</summary><p>Juste après le paiement, tu arrives sur une page avec le bouton pour ouvrir ou télécharger le PDF. Enregistre-le tout de suite et garde la page dans tes favoris : le lien reste valable.</p></details>
         <details><summary>Puis-je être remboursé ?</summary><p>Le guide est un contenu numérique livré immédiatement. En validant ta commande, tu acceptes sa livraison immédiate et renonces à ton droit de rétractation (article L221-28 du Code de la consommation). Si tu as un problème de téléchargement, écris-moi.</p></details>
       </div>
@@ -593,7 +463,7 @@ footer nav a { padding: 6px 0; }
     <div class="wrap">
       <h2>Ta première vidéo peut sortir cette semaine.</h2>
       <a class="btn yellow" href="#offre">Acheter le guide pour <span data-price>49 €</span></a>
-      <p class="disclaimer">Les montants de la partie « Ce que mes vidéos m'ont rapporté » sont mes revenus réels sur TikTok en 2026. Ils ne sont pas représentatifs de ce que chacun obtient. Les montants du simulateur sont des calculs indicatifs. Aucun résultat n'est garanti : il dépend du travail fourni, de la niche choisie et des règles des plateformes, qui peuvent évoluer.</p>
+      <p class="disclaimer">Les montants de la partie « Ce que mes vidéos m'ont rapporté » sont mes revenus réels sur TikTok en 2026. Ils ne sont pas représentatifs de ce que chacun obtient. Aucun résultat n'est garanti : il dépend du travail fourni, de la niche choisie et des règles des plateformes, qui peuvent évoluer.</p>
     </div>
   </section>
 </main>
@@ -806,28 +676,6 @@ const PRICE = "49 €";
     new IntersectionObserver(([e]) => { onOffer = e.isIntersecting; updateBar(); }, { threshold: 0.15 }).observe(offer);
   }
   window.addEventListener("hashchange", updateBar);
-
-  // Simulateur (RPM indicatifs en € pour 1 000 vues)
-  const RPM = { yt: [1.5, 5], tt: [0.4, 1], shorts: [0.03, 0.08] };
-  let key = "yt";
-  const fmt = new Intl.NumberFormat("fr-FR");
-  const dec = n => n.toFixed(2).replace(".", ",");
-  const money = v => v < 10 ? dec(v) : fmt.format(Math.round(v / 10) * 10);
-  const rng = document.getElementById("sim-views");
-  const segs = document.querySelectorAll(".seg button");
-  segs.forEach(b => b.addEventListener("click", () => {
-    key = b.dataset.k;
-    segs.forEach(x => x.setAttribute("aria-pressed", String(x === b)));
-    sim();
-  }));
-  function sim() {
-    const v = +rng.value, [lo, hi] = RPM[key];
-    rng.style.setProperty("--fill", ((v - rng.min) / (rng.max - rng.min) * 100) + "%");
-    document.getElementById("sim-views-out").textContent = fmt.format(v);
-    document.getElementById("sim-result").textContent = `${money(v / 1000 * lo)} – ${money(v / 1000 * hi)} € / mois`;
-    document.getElementById("sim-rpm").textContent = `De ${dec(lo)} € à ${dec(hi)} € pour 1 000 vues`;
-  }
-  rng.addEventListener("input", sim); sim();
 })();
 </script>
 </body>
