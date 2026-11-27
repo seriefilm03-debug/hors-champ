@@ -3,280 +3,365 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Hors Champ · Le guide des vidéos sans visage</title>
+<title>Hors Champ, le guide des vidéos sans visage</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <meta name="description" content="Hors Champ : la méthode voix off IA + extraits vidéo pour créer des vidéos qui rapportent sur TikTok, YouTube et Instagram, sans montrer ton visage.">
+<meta name="theme-color" content="#16B45C">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400..800&display=swap">
 <style>
-/* Concept : la table de montage. Le héros fait tourner la méthode elle-même (un plan toutes les 5 s maximum,
-   sous-titres mot à mot, timeline). Le reste de la page reste calme : fond gris-bleu, encre indigo,
-   jaune surligneur pour les actions, bleu « plan » et rouge « coupe » réservés à la timeline. */
+/* Concept : le fond vert. Le héros est un écran d'incrustation : le visage est « détouré », il ne reste
+   que les sous-titres et la chaîne qui tourne. Le reste de la page est calme : papier vert pâle,
+   encre vert forêt. Le jaune est réservé aux sous-titres et aux actions. */
 :root {
-  --table: #E9ECF2;
-  --paper: #FFFFFF;
-  --ink: #1A1D3A;
-  --ink-2: #50546F;
-  --line: #CBD0DC;
-  --hi: #FFD23F;
-  --cut: #F2542D;
-  --clip: #5468FF;
-  --clip-2: #8FA0FF;
-  --wrap: 1140px;
-  --pad: clamp(20px, 5vw, 48px);
+  --green: #16B45C;
+  --green-2: #12A052;
+  --forest: #0B2416;
+  --paper: #F3F6F1;
+  --card: #FFFFFF;
+  --line: #D3DCD2;
+  --muted: #4B5A50;
+  --yellow: #FFE14D;
+  --rec: #FF3B30;
+  --display: "Bricolage Grotesque", "Arial Narrow", system-ui, sans-serif;
+  --body: "Bricolage Grotesque", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --pad: 20px;
 }
 *, *::before, *::after { box-sizing: border-box; }
-html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
-@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
-body { margin: 0; background: var(--table); color: var(--ink); font-family: "Archivo", system-ui, sans-serif; font-stretch: 100%; font-size: 17px; line-height: 1.55; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
-[hidden] { display: none !important; }
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+body {
+  margin: 0; background: var(--paper); color: var(--forest);
+  font: 400 18px/1.55 var(--body);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
 img { max-width: 100%; height: auto; display: block; }
 a { color: inherit; }
-:focus-visible { outline: 3px solid var(--clip); outline-offset: 3px; border-radius: 4px; }
-h1, h2, h3 { margin: 0; font-weight: 800; letter-spacing: -0.012em; text-wrap: balance; }
-h1 { font-stretch: 72%; font-size: clamp(2.9rem, 6.6vw, 5.6rem); line-height: .93; }
-h2 { font-stretch: 75%; font-size: clamp(2.1rem, 4.2vw, 3.3rem); line-height: .98; }
-h3 { font-stretch: 92%; font-size: 1.2rem; line-height: 1.2; font-weight: 750; }
+h1, h2, h3 { font-family: var(--display); font-stretch: 88%; margin: 0; line-height: 1.04; letter-spacing: -0.02em; }
+h2 { font-size: clamp(2rem, 8.4vw, 3.4rem); font-weight: 800; text-wrap: balance; }
+h3 { font-size: 1.25rem; font-weight: 700; letter-spacing: -0.01em; }
 p { margin: 0; }
-.wrap { width: 100%; max-width: var(--wrap); margin-inline: auto; padding-inline: var(--pad); }
-.section { padding-block: clamp(64px, 10vw, 120px); }
-.lede { font-size: clamp(1.08rem, 1.5vw, 1.22rem); color: var(--ink-2); max-width: 36em; }
-.muted { color: var(--ink-2); }
+:focus-visible { outline: 3px solid var(--forest); outline-offset: 3px; border-radius: 6px; }
+.dark :focus-visible, .buybar :focus-visible { outline-color: var(--yellow); }
+.wrap { max-width: 1120px; margin: 0 auto; padding: 0 var(--pad); }
+.lede { font-size: 1.08rem; color: var(--muted); max-width: 60ch; }
 .small { font-size: .9rem; }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 
 /* Boutons */
-.btn { display: inline-block; text-align: center; padding: 16px 26px; line-height: 1.25; border-radius: 8px; border: 0; background: var(--hi); color: var(--ink); font: inherit; font-weight: 800; font-stretch: 90%; font-size: 1.08rem; text-decoration: none; cursor: pointer; box-shadow: 0 2px 0 var(--ink); transition: transform .12s, box-shadow .12s; }
-.btn:hover { transform: translateY(-1px); box-shadow: 0 3px 0 var(--ink); }
-.btn:active { transform: translateY(1px); box-shadow: 0 1px 0 var(--ink); }
-.btn.plain { background: transparent; box-shadow: inset 0 0 0 2px var(--ink); }
+.btn {
+  display: inline-block; min-height: 56px; padding: 16px 28px;
+  border-radius: 999px; border: 0;
+  background: var(--forest); color: #fff;
+  font: 700 1.05rem/1.5 var(--body); text-decoration: none; text-align: center;
+  cursor: pointer; transition: transform .15s ease, background-color .15s ease;
+}
+.btn:hover { background: #163A25; }
+.btn:active { transform: scale(.98); }
+.btn.yellow { background: var(--yellow); color: var(--forest); }
+.btn.yellow:hover { background: #FFE97A; }
 .btn.block { display: block; width: 100%; }
+.btn.plain { background: transparent; color: var(--forest); box-shadow: inset 0 0 0 2px var(--forest); }
 
-/* En-tête */
-.top { position: sticky; top: 0; z-index: 40; background: rgba(233, 236, 242, .88); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-bottom: 1px solid transparent; transition: border-color .2s; }
-.top.scrolled { border-bottom-color: var(--line); }
-.top .wrap { display: flex; align-items: center; gap: 28px; height: 68px; }
-.brand { display: inline-flex; align-items: center; gap: 10px; font-weight: 800; font-stretch: 78%; font-size: 1.35rem; text-decoration: none; letter-spacing: -0.01em; }
-.brand svg { width: 30px; height: 30px; flex: none; }
-.nav { display: flex; gap: 24px; margin-left: auto; }
-.nav a { text-decoration: none; font-weight: 600; font-size: .96rem; color: var(--ink-2); }
-.nav a:hover { color: var(--ink); }
-.top .btn { padding: 10px 18px; font-size: .96rem; }
+/* En-tête : le compteur avance avec la page, comme une vidéo d'une minute */
+.top {
+  position: sticky; top: 0; z-index: 30;
+  background: rgba(243, 246, 241, .94);
+  -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--line);
+}
+.top .wrap { display: flex; align-items: center; gap: 12px; height: 60px; }
+.brand { display: inline-flex; align-items: center; gap: 9px; font: 800 1.15rem/1 var(--display); font-stretch: 88%; text-decoration: none; letter-spacing: -0.01em; }
+.brand svg { width: 28px; height: 28px; flex: none; }
+.clock { margin-left: auto; font-size: .88rem; color: var(--muted); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.clock strong { color: var(--forest); }
+.top .btn { min-height: 44px; padding: 9px 18px; font-size: .95rem; }
+.nav { display: none; }
+.progress { position: absolute; left: 0; bottom: -1px; height: 3px; width: 100%; background: var(--green); transform-origin: 0 50%; transform: scaleX(0); }
 
-/* Héros */
-.hero { padding-block: clamp(36px, 6vw, 72px) clamp(56px, 8vw, 96px); }
-.hero .wrap { display: grid; grid-template-columns: minmax(0, 1.12fr) minmax(0, .88fr); gap: clamp(32px, 5vw, 72px); align-items: center; }
-.hero h1 { margin-bottom: 26px; max-width: 12.5ch; }
-.hero .lede { margin-bottom: 32px; }
-.cta { display: flex; flex-wrap: wrap; align-items: center; gap: 14px 20px; }
-.cta .small { max-width: 17em; line-height: 1.4; }
-.need { margin-top: 34px; padding-top: 20px; border-top: 1px solid var(--line); color: var(--ink-2); font-size: .98rem; max-width: 34em; }
-.need strong { color: var(--ink); font-weight: 650; }
+/* Héros : l'écran vert */
+.hero { background: var(--green); color: var(--forest); position: relative; overflow: hidden; }
+.hero .wrap { position: relative; padding-top: 64px; padding-bottom: 56px; }
+.frame { position: absolute; inset: 14px; pointer-events: none; }
+.frame i { position: absolute; width: 26px; height: 26px; border: 3px solid #fff; }
+.frame i:nth-child(1) { top: 0; left: 0; border-right: 0; border-bottom: 0; }
+.frame i:nth-child(2) { top: 0; right: 0; border-left: 0; border-bottom: 0; }
+.frame i:nth-child(3) { bottom: 0; left: 0; border-right: 0; border-top: 0; }
+.frame i:nth-child(4) { bottom: 0; right: 0; border-left: 0; border-top: 0; }
+.rec { position: absolute; top: 26px; left: 30px; display: flex; align-items: center; gap: 7px; color: #fff; font: 700 .85rem/1 var(--body); letter-spacing: .04em; }
+.rec::before { content: ""; width: 11px; height: 11px; border-radius: 50%; background: var(--rec); animation: blink 1.2s steps(2, start) infinite; }
+@keyframes blink { to { visibility: hidden; } }
+.ghost { position: absolute; right: -40px; bottom: -6px; width: 300px; height: auto; opacity: .55; pointer-events: none; }
+.hero h1 {
+  position: relative; max-width: 11ch;
+  font-size: clamp(2.7rem, 12.4vw, 6rem); font-weight: 800; line-height: 1.02; color: #fff;
+  text-shadow:
+    .045em 0 0 var(--forest), -.045em 0 0 var(--forest), 0 .045em 0 var(--forest), 0 -.045em 0 var(--forest),
+    .032em .032em 0 var(--forest), -.032em .032em 0 var(--forest), .032em -.032em 0 var(--forest), -.032em -.032em 0 var(--forest),
+    0 .09em 0 var(--forest);
+}
+.hero h1 .w { transition: color .12s linear; }
+.js .hero h1 .w { opacity: 0; }
+.js .hero h1 .w.on { opacity: 1; }
+.js .hero h1 .w.now { color: var(--yellow); }
+.hero .lede { color: var(--forest); margin-top: 22px; max-width: 34ch; position: relative; }
+.cta { margin-top: 26px; position: relative; }
+.cta .btn { width: 100%; max-width: 380px; }
+.cta .small { margin-top: 10px; color: var(--forest); }
+.chip {
+  position: relative; display: flex; align-items: center; gap: 14px; margin-top: 28px; max-width: 380px;
+  background: #fff; border-radius: 18px; padding: 12px 16px 12px 12px; text-decoration: none;
+  box-shadow: 0 2px 0 var(--forest);
+}
+.chip img { width: 54px; height: 54px; object-fit: cover; object-position: top; border-radius: 10px; flex: none; border: 1px solid var(--line); }
+.chip strong { display: block; font: 800 1.5rem/1 var(--display); font-stretch: 88%; color: var(--forest); margin-bottom: 3px; }
+.chip span { display: block; font-size: .9rem; line-height: 1.35; color: var(--muted); }
+.chip span u { color: var(--forest); text-underline-offset: 3px; }
+.need { margin-top: 22px; font-size: .95rem; max-width: 40ch; position: relative; }
 
-/* Le banc de montage : téléphone + timeline */
-.rig { display: grid; justify-items: center; gap: 18px; }
-.phone { position: relative; width: min(300px, 72vw); aspect-ratio: 9 / 16; background: var(--ink); border-radius: 38px; padding: 9px; box-shadow: 0 30px 60px -28px rgba(26, 29, 58, .55); }
-.screen { position: relative; width: 100%; height: 100%; border-radius: 30px; overflow: hidden; background: var(--ink); }
-.screen::before { content: ""; position: absolute; z-index: 3; top: 9px; left: 50%; width: 30%; height: 18px; border-radius: 10px; background: var(--ink); transform: translateX(-50%); }
-.scene { position: absolute; inset: 0; visibility: hidden; }
-.scene.on { visibility: visible; }
-.scene svg { width: 100%; height: 100%; display: block; }
-.scene.on svg { animation: push 3s linear both; }
-@keyframes push { from { transform: scale(1); } to { transform: scale(1.09); } }
-.caption { position: absolute; z-index: 2; left: 8%; right: 8%; top: 65%; text-align: center; font-weight: 900; font-stretch: 100%; font-size: clamp(1.15rem, 5.4vw, 1.6rem); line-height: 1.08; text-transform: uppercase; color: #fff; letter-spacing: 0; text-shadow: 0 0 1px #000, 2px 0 0 #000, -2px 0 0 #000, 0 2px 0 #000, 0 -2px 0 #000, 2px 2px 0 #000, -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000, 0 4px 0 #000; }
-.caption span { display: inline-block; margin: 0 .14em; opacity: 0; transform: scale(.7); transition: opacity .08s, transform .12s; }
-.caption span.on { opacity: 1; transform: none; }
-.caption span.key { color: var(--hi); }
+/* Sections */
+.sec { padding: 72px 0; scroll-margin-top: 60px; }
+.sec > .wrap > h2 + .lede, .proof-wrap h2 + .lede { margin-top: 16px; }
+.dark { background: var(--forest); color: #fff; }
+.dark .lede { color: #C9D8CD; }
 
-.tl { width: min(420px, 100%); background: var(--paper); border-radius: 10px; padding: 12px 14px 14px; box-shadow: 0 1px 0 var(--line); }
-.tl-head { display: flex; justify-content: space-between; align-items: baseline; font-size: .8rem; color: var(--ink-2); margin-bottom: 8px; font-variant-numeric: tabular-nums; }
-.tl-head strong { color: var(--ink); font-weight: 700; }
-.tracks { position: relative; display: grid; gap: 5px; }
-.track { display: grid; grid-template-columns: 44px minmax(0, 1fr); align-items: center; gap: 8px; }
-.track > span { font-size: .74rem; color: var(--ink-2); font-weight: 600; }
-.lane { display: flex; gap: 2px; height: 22px; }
-.lane i { display: block; border-radius: 3px; min-width: 0; }
-.lane.v i { background: var(--clip); }
-.lane.v i:nth-child(even) { background: var(--clip-2); }
-.lane.a { align-items: center; gap: 1px; background: #FFF3C4; border-radius: 3px; padding-inline: 3px; }
-.lane.a i { flex: 1; background: #C89A00; border-radius: 1px; }
-.lane.t i { background: #EEF0F6; border: 1px solid var(--line); }
-.playhead { position: absolute; top: -4px; bottom: -4px; left: 52px; width: 2px; background: var(--cut); pointer-events: none; }
-.playhead::before { content: ""; position: absolute; top: -3px; left: -4px; width: 10px; height: 8px; background: var(--cut); clip-path: polygon(0 0, 100% 0, 50% 100%); }
+/* Preuves */
+.proof-totals { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 34px; }
+.total { margin: 0; }
+.total .n { display: block; font: 800 clamp(2.1rem, 10vw, 3.6rem)/1 var(--display); font-stretch: 85%; letter-spacing: -0.03em; }
+.total .l { display: block; font-size: .92rem; line-height: 1.35; color: var(--muted); margin-top: 6px; min-height: 3.9em; }
+.shot { display: block; margin-top: 12px; border-radius: 16px; overflow: hidden; border: 1px solid var(--line); background: #fff; }
+.shot img { width: 100%; }
+.shot:hover { border-color: var(--forest); }
+.vids-h { margin-top: 48px; font-size: 1.4rem; }
+.vids {
+  list-style: none; margin: 16px calc(var(--pad) * -1) 0; padding: 0 var(--pad) 8px;
+  display: grid; grid-auto-flow: column; grid-auto-columns: 76%; gap: 14px;
+  overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding: 0 var(--pad);
+  -webkit-overflow-scrolling: touch;
+}
+.vids li { scroll-snap-align: start; }
+.vids .shot { margin-top: 0; }
+.vids .n { display: block; margin-top: 12px; font: 800 1.9rem/1 var(--display); font-stretch: 85%; }
+.vids .d { display: block; font-size: .9rem; color: var(--muted); margin-top: 4px; }
+.honest {
+  margin-top: 36px; padding: 18px 20px; border-left: 5px solid var(--green);
+  background: #fff; border-radius: 0 14px 14px 0; font-size: .98rem; max-width: 62ch;
+}
+.honest strong { display: block; margin-bottom: 4px; }
 
-/* Les étapes */
-.steps-head { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 24px 64px; align-items: end; margin-bottom: 44px; }
-.bar { display: flex; gap: 3px; height: 16px; margin-bottom: 10px; }
-.bar i { display: block; border-radius: 3px; }
-.bar-legend { display: flex; justify-content: space-between; font-size: .82rem; color: var(--ink-2); margin-bottom: 36px; font-variant-numeric: tabular-nums; }
-.steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 28px; counter-reset: st; }
-.steps li { counter-increment: st; border-top: 3px solid var(--c, var(--ink)); padding-top: 16px; }
-.steps li::before { content: counter(st); display: block; font-weight: 800; font-stretch: 75%; font-size: 2.4rem; line-height: 1; margin-bottom: 12px; color: var(--ink); }
-.steps h3 { margin-bottom: 4px; }
-.steps .time { display: block; font-size: .86rem; font-weight: 650; color: var(--ink-2); margin-bottom: 10px; font-variant-numeric: tabular-nums; }
-.steps p { font-size: .98rem; color: var(--ink-2); }
+/* Étapes : une piste verticale */
+.steps { list-style: none; margin: 36px 0 0; padding: 0; counter-reset: s; max-width: 720px; }
+.steps li { counter-increment: s; position: relative; padding: 0 0 30px 62px; }
+.steps li::before {
+  content: counter(s); position: absolute; left: 0; top: -4px; width: 44px; height: 44px; border-radius: 50%;
+  background: var(--green); color: var(--forest); display: grid; place-items: center;
+  font: 800 1.25rem/1 var(--display);
+}
+.steps li::after { content: ""; position: absolute; left: 21px; top: 46px; bottom: 4px; width: 2px; background: var(--line); }
+.steps li:last-child { padding-bottom: 0; }
+.steps li:last-child::after { display: none; }
+.steps .head { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; }
+.steps .time { font-size: .9rem; color: var(--muted); white-space: nowrap; font-variant-numeric: tabular-nums; }
+.steps p { margin-top: 6px; color: var(--muted); }
+.dark .steps p, .dark .steps .time { color: #C9D8CD; }
+.dark .steps li::after { background: rgba(255,255,255,.18); }
 
-/* La règle des 5 secondes */
-.rule { background: var(--paper); }
-.rule .wrap { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: clamp(32px, 6vw, 80px); align-items: start; }
-.rule h2 { margin-bottom: 22px; }
-.rule .lede + .lede { margin-top: 16px; }
-.script { width: 100%; border-collapse: collapse; font-size: .96rem; }
-.script caption { caption-side: bottom; text-align: left; padding-top: 14px; font-size: .88rem; color: var(--ink-2); }
-.script th { text-align: left; font-weight: 700; font-size: .82rem; color: var(--ink-2); padding: 0 10px 10px 0; border-bottom: 2px solid var(--ink); }
-.script td { padding: 12px 10px 12px 0; border-bottom: 1px solid var(--line); vertical-align: top; }
-.script td:first-child { font-weight: 700; color: var(--cut); font-variant-numeric: tabular-nums; white-space: nowrap; width: 3.6em; }
-.script td:last-child { color: var(--clip); font-weight: 600; font-size: .9rem; width: 34%; }
+/* La règle des 5 secondes : les plans défilent comme dans une timeline */
+.reel {
+  list-style: none; margin: 34px calc(var(--pad) * -1) 0; padding: 0 var(--pad) 10px;
+  display: flex; gap: 10px; overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding: 0 var(--pad);
+  -webkit-overflow-scrolling: touch;
+}
+.reel li { flex: 0 0 150px; scroll-snap-align: start; }
+.clip {
+  position: relative; aspect-ratio: 9 / 16; border-radius: 14px; overflow: hidden;
+  background: var(--bg, #1F5B3A); display: flex; flex-direction: column; justify-content: space-between; padding: 10px;
+}
+.clip .tcode { display: flex; justify-content: space-between; font-size: .8rem; font-variant-numeric: tabular-nums; color: rgba(255,255,255,.85); }
+.clip .tcode b { background: rgba(0,0,0,.35); padding: 1px 7px; border-radius: 999px; font-weight: 700; color: #fff; }
+.clip .scene { font: italic 400 .88rem/1.3 var(--body); color: rgba(255,255,255,.78); text-align: center; }
+.clip .says {
+  font: 800 .92rem/1.15 var(--display); font-stretch: 90%; color: #fff; text-align: center;
+  text-shadow: 1px 0 0 #000, -1px 0 0 #000, 0 1px 0 #000, 0 -1px 0 #000, 0 2px 0 #000;
+}
+.reel-note { margin-top: 14px; font-size: .92rem; color: #C9D8CD; }
 
-/* Dans le guide */
-.inside .wrap { display: grid; grid-template-columns: minmax(0, .95fr) minmax(0, 1.05fr); gap: clamp(32px, 6vw, 84px); align-items: start; }
-.pages { position: relative; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
-.pages figure { margin: 0; }
-.pages img { width: 100%; height: auto; aspect-ratio: 148 / 210; object-fit: cover; border-radius: 4px; box-shadow: 0 1px 0 var(--line), 0 18px 36px -20px rgba(26, 29, 58, .5); background: var(--paper); }
-.pages figcaption { font-size: .8rem; color: var(--ink-2); margin-top: 10px; line-height: 1.35; }
-.inside .wrap > div:first-child { position: sticky; top: 100px; }
-.pages-note { margin-top: 26px; font-size: .98rem; color: var(--ink-2); max-width: 30em; }
-.inside h2 { margin-bottom: 28px; }
-.chapters { list-style: none; margin: 0; padding: 0; counter-reset: ch; }
-.chapters li { counter-increment: ch; display: grid; grid-template-columns: 2.2em minmax(0, 1fr); gap: 4px 12px; padding: 14px 0; border-top: 1px solid var(--line); }
-.chapters li::before { content: counter(ch); grid-row: span 2; font-weight: 800; font-stretch: 75%; font-size: 1.5rem; line-height: 1.1; color: var(--clip); }
-.chapters strong { font-weight: 700; }
-.chapters span { color: var(--ink-2); font-size: .95rem; }
-.bonus { margin-top: 22px; padding: 18px 20px; background: #FFF3C4; border-radius: 8px; font-size: .98rem; }
-.bonus strong { font-weight: 750; }
+/* Le guide */
+.pages {
+  display: grid; grid-auto-flow: column; grid-auto-columns: 62%; gap: 14px;
+  margin: 34px calc(var(--pad) * -1) 0; padding: 0 var(--pad) 8px;
+  overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding: 0 var(--pad);
+}
+.pages figure { margin: 0; scroll-snap-align: start; }
+.pages img { border-radius: 8px; box-shadow: 0 1px 0 var(--line), 0 10px 24px rgba(11,36,22,.12); background: #fff; }
+.pages figcaption { font-size: .88rem; color: var(--muted); margin-top: 10px; }
+.chapters { margin: 40px 0 0; padding: 0; list-style: none; counter-reset: c; }
+.chapters li { counter-increment: c; display: grid; grid-template-columns: 2.2em 1fr; padding: 14px 0; border-top: 1px solid var(--line); }
+.chapters li::before { content: counter(c); font: 800 1.2rem/1.3 var(--display); color: var(--green-2); }
+.chapters strong { display: block; }
+.chapters span { display: block; color: var(--muted); font-size: .95rem; }
+.chapters h3 { margin-bottom: 4px; }
+.bonus { margin-top: 26px; background: var(--yellow); border-radius: 18px; padding: 18px 20px; }
 
 /* Revenus */
-.money .wrap { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr); gap: clamp(32px, 6vw, 80px); align-items: start; }
-.money h2 { margin-bottom: 18px; }
-.money .lede { margin-bottom: 30px; }
-.sources { margin: 0; }
-.sources > div { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 2px 16px; padding: 14px 0; border-top: 1px solid var(--line); }
+.sources { margin: 30px 0 0; }
+.sources div { padding: 14px 0; border-top: 1px solid var(--line); }
 .sources dt { font-weight: 700; }
-.sources dd { margin: 0; grid-column: 1; color: var(--ink-2); font-size: .95rem; }
-.sources .when { grid-column: 2; grid-row: 1; font-size: .84rem; font-weight: 650; color: var(--ink); white-space: nowrap; }
-.sim { background: var(--paper); border-radius: 12px; padding: clamp(22px, 3vw, 32px); position: sticky; top: 92px; }
-.sim h3 { font-size: 1.4rem; font-stretch: 80%; margin-bottom: 20px; }
-.field { margin-bottom: 20px; }
-.field > label { display: flex; justify-content: space-between; font-weight: 650; font-size: .92rem; margin-bottom: 10px; }
+.sources dd { margin: 2px 0 0; color: var(--muted); font-size: .95rem; }
+.sources .when { display: inline-block; margin-top: 6px; font-size: .8rem; font-weight: 700; padding: 2px 10px; border-radius: 999px; background: #E2EDE3; }
+.sim { margin-top: 40px; background: var(--card); border: 2px solid var(--forest); border-radius: 22px; padding: 22px 20px; }
+.field { margin-top: 18px; }
+.field > label, .field > .lab { display: flex; justify-content: space-between; font-weight: 700; font-size: .95rem; margin-bottom: 8px; }
 .field output { font-variant-numeric: tabular-nums; }
-.seg { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; }
-.seg button { font: inherit; font-size: .88rem; font-weight: 650; line-height: 1.25; padding: 10px 6px; border-radius: 6px; border: 1.5px solid var(--line); background: var(--paper); color: var(--ink-2); cursor: pointer; }
-.seg button[aria-pressed="true"] { border-color: var(--ink); background: var(--ink); color: #fff; }
-input[type=range] { -webkit-appearance: none; appearance: none; width: 100%; height: 8px; border-radius: 4px; background: linear-gradient(var(--clip), var(--clip)) 0 / var(--fill, 15%) 100% no-repeat, var(--table); outline-offset: 6px; }
-input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; width: 24px; height: 24px; border-radius: 50%; background: var(--paper); border: 3px solid var(--ink); cursor: grab; }
-input[type=range]::-moz-range-thumb { width: 20px; height: 20px; border-radius: 50%; background: var(--paper); border: 3px solid var(--ink); cursor: grab; }
-.result { padding: 18px 0 16px; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); margin-bottom: 14px; }
-.result .k { display: block; font-size: .88rem; color: var(--ink-2); }
-.result .v { display: block; font-weight: 800; font-stretch: 75%; font-size: clamp(2rem, 4vw, 2.6rem); line-height: 1.05; margin: 4px 0; font-variant-numeric: tabular-nums; }
-.result .rpm { font-size: .86rem; color: var(--ink-2); }
-.sim .note { font-size: .8rem; color: var(--ink-2); line-height: 1.45; }
+.seg { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; background: #E2EDE3; padding: 5px; border-radius: 16px; }
+.seg button {
+  min-height: 52px; border: 0; border-radius: 12px; background: transparent; color: var(--forest);
+  font: 700 .82rem/1.2 var(--body); cursor: pointer; padding: 6px 4px;
+}
+.seg button[aria-pressed="true"] { background: var(--forest); color: #fff; }
+input[type=range] {
+  -webkit-appearance: none; appearance: none; width: 100%; height: 34px; background: transparent; margin: 0;
+  --fill: 15%;
+}
+input[type=range]::-webkit-slider-runnable-track { height: 8px; border-radius: 99px; background: linear-gradient(90deg, var(--green) var(--fill), #DCE5DC var(--fill)); }
+input[type=range]::-moz-range-track { height: 8px; border-radius: 99px; background: linear-gradient(90deg, var(--green) var(--fill), #DCE5DC var(--fill)); }
+input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; width: 28px; height: 28px; margin-top: -10px; border-radius: 50%; background: var(--forest); border: 4px solid #fff; box-shadow: 0 0 0 1px var(--forest); }
+input[type=range]::-moz-range-thumb { width: 22px; height: 22px; border-radius: 50%; background: var(--forest); border: 4px solid #fff; }
+.result { margin-top: 20px; padding-top: 18px; border-top: 1px dashed var(--line); }
+.result .k { display: block; font-size: .9rem; color: var(--muted); }
+.result .v { display: block; font: 800 1.9rem/1.1 var(--display); font-stretch: 88%; margin-top: 4px; font-variant-numeric: tabular-nums; }
+.result .rpm { display: block; font-size: .88rem; color: var(--muted); margin-top: 4px; }
+.sim .note { margin-top: 14px; font-size: .82rem; color: var(--muted); }
 
 /* Offre */
-.offer { background: var(--ink); color: #fff; }
-.offer .wrap { display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); gap: clamp(36px, 6vw, 88px); align-items: center; }
-.cover { width: min(340px, 78vw); justify-self: center; border-radius: 4px; box-shadow: 0 40px 70px -30px rgba(0, 0, 0, .8); transform: rotate(-2deg); }
-.offer h2 { margin-bottom: 24px; }
-.incl { list-style: none; margin: 0 0 30px; padding: 0; display: grid; gap: 10px; }
-.incl li { display: grid; grid-template-columns: 22px minmax(0, 1fr); gap: 12px; align-items: start; color: rgba(255, 255, 255, .86); }
-.incl svg { width: 22px; height: 22px; margin-top: 2px; }
-.price { display: flex; align-items: baseline; flex-wrap: wrap; gap: 6px 16px; margin-bottom: 20px; }
-.price .amount { font-weight: 850; font-stretch: 70%; font-size: clamp(3.4rem, 7vw, 4.6rem); line-height: .9; color: var(--hi); }
-.price .meta { color: rgba(255, 255, 255, .7); font-size: .95rem; }
-.offer .btn { box-shadow: 0 2px 0 #000; max-width: 420px; }
-.offer .trust { margin-top: 16px; font-size: .88rem; color: rgba(255, 255, 255, .62); display: flex; align-items: center; gap: 8px; }
-.offer .trust svg { width: 16px; height: 16px; flex: none; }
-.notice { display: none; margin-top: 14px; padding: 12px 14px; border-radius: 8px; background: rgba(242, 84, 45, .18); font-size: .9rem; }
+.offer { background: var(--green); }
+.offer .wrap { display: grid; gap: 28px; }
+.offer .cover { width: 56%; max-width: 300px; border-radius: 8px; transform: rotate(-3deg); box-shadow: 0 16px 30px rgba(11,36,22,.3); justify-self: center; }
+.card { background: var(--card); border-radius: 26px; padding: 26px 22px; box-shadow: 0 3px 0 var(--forest); }
+.card h2 { font-size: clamp(1.8rem, 7vw, 2.6rem); }
+.incl { list-style: none; margin: 20px 0 0; padding: 0; }
+.incl li { display: flex; gap: 12px; padding: 8px 0; }
+.incl svg { width: 24px; height: 24px; flex: none; margin-top: 2px; }
+.price { display: flex; align-items: baseline; flex-wrap: wrap; gap: 6px 14px; margin: 22px 0 16px; }
+.price .amount { font: 800 3.4rem/1 var(--display); font-stretch: 85%; letter-spacing: -0.03em; }
+.price .meta { color: var(--muted); font-size: .92rem; }
+.notice { display: none; margin-top: 12px; background: #FFF4CC; padding: 10px 14px; border-radius: 12px; font-size: .9rem; }
 .notice.show { display: block; }
+.trust { display: flex; gap: 10px; margin-top: 14px; font-size: .88rem; color: var(--muted); }
+.trust svg { width: 18px; height: 18px; flex: none; margin-top: 2px; }
 
 /* FAQ */
-.faq .wrap { display: grid; grid-template-columns: minmax(0, .7fr) minmax(0, 1.3fr); gap: clamp(28px, 6vw, 80px); align-items: start; }
-.faq h2 { position: sticky; top: 100px; }
-.faq details { border-top: 1px solid var(--line); }
-.faq details:last-child { border-bottom: 1px solid var(--line); }
-.faq summary { list-style: none; cursor: pointer; padding: 20px 40px 20px 0; position: relative; font-weight: 700; font-stretch: 92%; font-size: 1.12rem; }
-.faq summary::-webkit-details-marker { display: none; }
-.faq summary::after { content: ""; position: absolute; right: 4px; top: 50%; width: 14px; height: 14px; margin-top: -7px; background: linear-gradient(var(--ink), var(--ink)) center / 14px 2.5px no-repeat, linear-gradient(var(--ink), var(--ink)) center / 2.5px 14px no-repeat; transition: transform .2s; }
-.faq details[open] summary::after { transform: rotate(45deg); }
-.faq details p { padding: 0 0 22px; color: var(--ink-2); max-width: 40em; }
+.faq-list { margin-top: 28px; max-width: 760px; }
+details { border-top: 1px solid var(--line); }
+details:last-child { border-bottom: 1px solid var(--line); }
+summary {
+  list-style: none; cursor: pointer; padding: 18px 40px 18px 0; position: relative;
+  font-weight: 700; font-size: 1.05rem;
+}
+summary::-webkit-details-marker { display: none; }
+summary::after {
+  content: ""; position: absolute; right: 6px; top: 50%; width: 12px; height: 12px; margin-top: -9px;
+  border-right: 3px solid var(--green-2); border-bottom: 3px solid var(--green-2); transform: rotate(45deg); transition: transform .2s ease;
+}
+details[open] summary::after { transform: rotate(-135deg); margin-top: -3px; }
+details p { padding: 0 0 20px; color: var(--muted); max-width: 62ch; }
 
 /* Fin */
-.end { padding-top: 0; }
-.end .wrap > div { border-top: 3px solid var(--ink); padding-top: 40px; display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: 28px; }
+.end { text-align: left; }
 .end h2 { max-width: 14ch; }
-.disclaimer { margin-top: 48px; font-size: .82rem; color: var(--ink-2); max-width: 60em; }
-
-footer { border-top: 1px solid var(--line); padding-block: 28px; font-size: .9rem; color: var(--ink-2); }
-footer .wrap { display: flex; flex-wrap: wrap; align-items: center; gap: 14px 28px; }
-footer nav { display: flex; flex-wrap: wrap; gap: 8px 22px; margin-left: auto; }
-footer a { text-decoration: none; }
-footer a:hover { color: var(--ink); text-decoration: underline; }
-footer .brand { font-size: 1.1rem; color: var(--ink); }
-footer .brand svg { width: 24px; height: 24px; }
+.end .btn { margin-top: 26px; }
+.disclaimer { margin-top: 40px; font-size: .85rem; color: #C9D8CD; max-width: 70ch; }
 
 /* Pages secondaires */
-.page { padding-block: clamp(40px, 7vw, 88px) clamp(64px, 9vw, 110px); }
-.page .wrap { max-width: 800px; }
-.page h1 { font-size: clamp(2.4rem, 6vw, 4rem); margin-bottom: 24px; max-width: none; }
-.page h2 { font-size: clamp(1.4rem, 2.6vw, 1.8rem); margin: 34px 0 10px; }
-.page p, .page li { color: var(--ink-2); margin-bottom: 10px; }
-.page ul { padding-left: 20px; }
-.fill { background: #FFF3C4; border-radius: 4px; padding: 0 4px; color: var(--ink); }
-.back { margin-top: 36px; }
-.done { display: inline-flex; align-items: center; gap: 8px; font-weight: 700; font-size: .95rem; color: #1F8A4C; margin-bottom: 18px; }
-.done svg { width: 20px; height: 20px; }
-.dl-card { margin: 28px 0 36px; padding: clamp(22px, 4vw, 32px); background: var(--paper); border-radius: 12px; border-left: 6px solid var(--hi); display: grid; gap: 14px; justify-items: start; }
-.dl-card .what strong { display: block; font-weight: 800; font-stretch: 85%; font-size: 1.3rem; }
-.dl-card .what span { color: var(--ink-2); font-size: .95rem; }
-.dl-alt { font-size: .95rem; color: var(--ink-2); }
-.dl-copy { background: none; border: 0; padding: 0; text-align: left; font: inherit; font-size: .95rem; color: var(--ink-2); text-decoration: underline; cursor: pointer; }
-.dl-inapp { padding: 14px 16px; border-radius: 8px; background: #FFF3C4; font-size: .95rem; line-height: 1.5; color: var(--ink) !important; margin: 0 !important; }
-.next { list-style: none; padding: 0; margin: 0; counter-reset: nx; display: grid; gap: 0; }
-.next li { counter-increment: nx; display: grid; grid-template-columns: 2em minmax(0, 1fr); gap: 12px; padding: 16px 0; border-top: 1px solid var(--line); margin: 0; }
-.next li::before { content: counter(nx); font-weight: 800; font-stretch: 75%; font-size: 1.6rem; line-height: 1; color: var(--clip); }
-.next strong { color: var(--ink); }
+.page { padding: 56px 0 96px; }
+.page .wrap { max-width: 720px; }
+.page h1 { font-size: clamp(2.2rem, 9vw, 3.2rem); font-weight: 800; }
+.page h2 { font-size: 1.3rem; margin-top: 32px; letter-spacing: -0.01em; }
+.page p, .page ul { margin-top: 10px; color: var(--muted); }
+.page .back { margin-top: 36px; }
+.fill { background: #FFF4CC; padding: 0 4px; border-radius: 4px; color: var(--forest); }
+.done { display: inline-flex; align-items: center; gap: 8px; font-weight: 700; color: var(--green-2); margin-bottom: 12px; }
+.done svg { width: 24px; height: 24px; }
+.dl-card { margin-top: 26px; background: var(--card); border: 2px solid var(--forest); border-radius: 22px; padding: 22px 20px; }
+.dl-card .what strong { display: block; font-size: 1.1rem; }
+.dl-card .what span { color: var(--muted); font-size: .95rem; }
+.dl-card .btn { display: block; width: 100%; margin-top: 18px; background: var(--green); color: var(--forest); }
+.dl-card .btn:hover { background: #2BC46E; }
+.dl-inapp { margin-top: 14px; background: #FFF4CC; padding: 12px 14px; border-radius: 12px; font-size: .95rem; color: var(--forest) !important; }
+.dl-alt { display: block; text-align: center; margin-top: 14px; font-size: .95rem; }
+.dl-copy { display: block; width: 100%; margin-top: 10px; background: none; border: 0; color: var(--muted); font: 400 .9rem/1.4 var(--body); text-decoration: underline; cursor: pointer; padding: 8px; }
+.next { margin: 30px 0 0; padding: 0; list-style: none; counter-reset: n; }
+.next li { counter-increment: n; display: grid; grid-template-columns: 40px 1fr; gap: 6px; padding: 14px 0; border-top: 1px solid var(--line); color: var(--muted); }
+.next li::before { content: counter(n); width: 30px; height: 30px; border-radius: 50%; background: var(--green); color: var(--forest); display: grid; place-items: center; font: 800 1rem/1 var(--display); }
+.next strong { color: var(--forest); }
 
 /* Barre d'achat sur téléphone */
-.buybar { display: none; }
-
-@media (max-width: 980px) {
-  .steps { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .steps li:last-child { grid-column: span 2; }
-  .inside .wrap, .money .wrap, .faq .wrap, .rule .wrap { grid-template-columns: minmax(0, 1fr); }
-  .faq h2, .sim, .inside .wrap > div:first-child { position: static; }
-  .pages { max-width: 560px; }
+.buybar {
+  position: fixed; left: 12px; right: 12px; bottom: calc(12px + env(safe-area-inset-bottom)); z-index: 40;
+  display: flex; align-items: center; gap: 12px; padding: 8px 8px 8px 18px;
+  background: var(--forest); color: #fff; border-radius: 999px;
+  box-shadow: 0 10px 30px rgba(11,36,22,.35);
+  transform: translateY(160%); transition: transform .25s ease;
 }
-@media (max-width: 760px) {
-  body { font-size: 16px; }
-  .nav { display: none; }
-  .top .btn { margin-left: auto; }
-  .hero .wrap, .steps-head, .offer .wrap { grid-template-columns: minmax(0, 1fr); }
-  .hero h1 { max-width: none; }
-  .rig { margin-top: 8px; }
-  .phone { width: min(250px, 66vw); border-radius: 32px; }
-  .screen { border-radius: 25px; }
-  .cta .btn { width: 100%; }
-  .cta .small { max-width: none; }
-  .steps { grid-template-columns: minmax(0, 1fr); gap: 24px; }
-  .steps li:last-child { grid-column: auto; }
-  .bar-legend span:nth-child(2) { display: none; }
-  .script td:last-child { width: 38%; }
-  .cover { width: min(240px, 62vw); }
-  .end .wrap > div { display: grid; }
-  .end .btn { width: 100%; }
-  footer nav { margin-left: 0; }
+.buybar.show { transform: none; }
+.buybar .t { line-height: 1.2; min-width: 0; }
+.buybar .t strong { display: block; font-size: .95rem; }
+.buybar .t span { font-size: .85rem; color: #C9D8CD; }
+.buybar .btn { margin-left: auto; min-height: 48px; padding: 12px 20px; font-size: .95rem; white-space: nowrap; }
+body.has-bar footer { padding-bottom: 110px; }
 
-  body.has-bar { padding-bottom: 84px; }
-  .buybar { display: flex; position: fixed; z-index: 50; left: 0; right: 0; bottom: 0; align-items: center; gap: 14px; padding: 12px var(--pad) calc(12px + env(safe-area-inset-bottom)); background: var(--paper); border-top: 1px solid var(--line); transform: translateY(110%); transition: transform .25s; }
-  .buybar.show { transform: none; }
-  .buybar .t { display: grid; line-height: 1.2; min-width: 0; }
-  .buybar .t strong { font-weight: 800; font-stretch: 80%; font-size: 1.05rem; }
-  .buybar .t span { font-size: .82rem; color: var(--ink-2); }
-  .buybar .btn { margin-left: auto; padding: 12px 18px; font-size: .98rem; white-space: nowrap; }
+/* Pied de page */
+footer { background: var(--paper); border-top: 1px solid var(--line); padding: 32px 0; font-size: .9rem; color: var(--muted); }
+footer .wrap { display: flex; flex-wrap: wrap; gap: 14px 24px; align-items: center; }
+footer .brand { color: var(--forest); font-size: 1rem; }
+footer nav { display: flex; flex-wrap: wrap; gap: 6px 18px; }
+footer nav a { padding: 6px 0; }
+
+/* Tablette et ordinateur */
+@media (min-width: 720px) {
+  :root { --pad: 32px; }
+  .sec { padding: 104px 0; }
+  .nav { display: flex; gap: 22px; margin-left: 28px; font-size: .95rem; }
+  .nav a { text-decoration: none; color: var(--muted); }
+  .nav a:hover { color: var(--forest); }
+  .clock { margin-left: auto; }
+  .hero .wrap { padding-top: 96px; padding-bottom: 96px; min-height: 640px; }
+  .frame { inset: 22px; }
+  .rec { top: 36px; left: 40px; }
+  .ghost { width: 460px; right: 2%; }
+  .hero .lede { max-width: 42ch; font-size: 1.15rem; }
+  .cta .btn { width: auto; }
+  .proof-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: start; }
+  .proof-totals { margin-top: 0; gap: 20px; }
+  .vids { grid-auto-flow: row; grid-template-columns: repeat(3, 1fr); overflow: visible; margin: 18px 0 0; padding: 0; }
+  .reel { flex-wrap: nowrap; }
+  .reel li { flex-basis: 156px; }
+  .guide-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: start; }
+  .pages { grid-auto-columns: 46%; }
+  .money-wrap { display: grid; grid-template-columns: 1.1fr .9fr; gap: 56px; align-items: start; }
+  .sim { margin-top: 0; position: sticky; top: 84px; padding: 28px; }
+  .offer .wrap { grid-template-columns: .8fr 1.2fr; align-items: center; gap: 48px; }
+  .offer .cover { width: 80%; }
+  .card { padding: 36px; }
+  .buybar { display: none; }
+  body.has-bar footer { padding-bottom: 32px; }
+}
+@media (min-width: 1000px) {
+  .pages { grid-auto-flow: row; grid-template-columns: repeat(3, 1fr); overflow: visible; margin: 34px 0 0; padding: 0; }
+  .guide-wrap { grid-template-columns: 1.05fr .95fr; }
+  .reel { overflow: visible; margin: 34px 0 0; padding: 0; }
+  .reel li { flex: 1 1 0; min-width: 0; }
+}
+@media (max-width: 359px) {
+  .clock { display: none; }
+  .top .btn { margin-left: auto; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .scene.on svg { animation: none; }
-  .caption span { transition: none; }
-  .btn, .buybar { transition: none; }
+  html { scroll-behavior: auto; }
+  .rec::before { animation: none; }
+  .btn, .buybar, summary::after, .hero h1 .w { transition: none; }
 }
 </style>
 </head>
@@ -284,10 +369,10 @@ footer .brand svg { width: 24px; height: 24px; }
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <defs>
-    <symbol id="logo" viewBox="0 0 32 32"><path d="M4 10V4h6M22 4h6v6M28 22v6h-6M10 28H4v-6" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/><circle cx="27" cy="5" r="4.2" fill="#F2542D"/><rect x="9" y="11" width="14" height="10" rx="2" fill="currentColor" opacity=".18"/></symbol>
-    <symbol id="tick" viewBox="0 0 24 24"><rect width="24" height="24" rx="6" fill="#FFD23F"/><path d="M7 12.5l3.2 3.2L17 9" fill="none" stroke="#1A1D3A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="logo" viewBox="0 0 32 32"><path d="M4 11V4h7M21 4h7v7M28 21v7h-7M11 28H4v-7" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><circle cx="16" cy="16" r="5" fill="#FF3B30"/></symbol>
+    <symbol id="tick" viewBox="0 0 24 24"><circle cx="12" cy="12" r="12" fill="#16B45C"/><path d="M7 12.5l3.2 3.2L17 9" fill="none" stroke="#0B2416" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
     <symbol id="lock" viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="10" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3" fill="none" stroke="currentColor" stroke-width="2"/></symbol>
-    <symbol id="ok" viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" fill="#1F8A4C"/><path d="M7 12.5l3.2 3.2L17 9" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="ok" viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" fill="#12A052"/><path d="M7 12.5l3.2 3.2L17 9" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
   </defs>
 </svg>
 
@@ -295,128 +380,145 @@ footer .brand svg { width: 24px; height: 24px; }
   <div class="wrap">
     <a class="brand" href="#"><svg aria-hidden="true"><use href="#logo"/></svg>Hors Champ</a>
     <nav class="nav" aria-label="Sections">
+      <a href="#preuves">Mes résultats</a>
       <a href="#methode">La méthode</a>
       <a href="#guide">Le guide</a>
-      <a href="#revenus">Revenus</a>
       <a href="#faq">Questions</a>
     </nav>
-    <a class="btn" href="#offre">Acheter le guide</a>
+    <span class="clock" aria-hidden="true"><strong id="clock-t">0:00</strong> / 1:00</span>
+    <a class="btn" href="#offre">Acheter</a>
+    <span class="progress" id="progress" aria-hidden="true"></span>
   </div>
 </header>
 
 <main id="view-home">
   <section class="hero">
+    <div class="frame" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+    <span class="rec" aria-hidden="true">REC</span>
+    <svg class="ghost" viewBox="0 0 300 330" aria-hidden="true"><g fill="none" stroke="#0B2416" stroke-width="4" stroke-dasharray="10 9" stroke-linecap="round"><circle cx="150" cy="118" r="66"/><path d="M28 330c0-78 54-128 122-128s122 50 122 128"/></g></svg>
     <div class="wrap">
-      <div>
-        <h1>Des vidéos qui rapportent. Ton visage reste hors champ.</h1>
-        <p class="lede">Une voix off générée par IA, des extraits de YouTube, TikTok, de films et de séries, un nouveau plan toutes les 5 secondes maximum. Le guide t'apprend cette méthode clic par clic, de l'idée à la vidéo publiée.</p>
-        <div class="cta">
-          <a class="btn" href="#offre">Acheter le guide pour <span data-price>49 €</span></a>
-          <p class="small muted">Paiement unique. PDF de 61 pages, disponible juste après le paiement.</p>
+      <h1 id="hero-title">Personne ne voit ton visage. Ta chaîne tourne quand même.</h1>
+      <p class="lede">Une voix off générée par IA, des extraits de YouTube, TikTok, de films et de séries, un nouveau plan toutes les 5 secondes maximum. Le guide t'apprend cette méthode clic par clic, de l'idée à la vidéo publiée.</p>
+      <div class="cta">
+        <a class="btn" href="#offre">Acheter le guide pour <span data-price>49 €</span></a>
+        <p class="small">Paiement unique. PDF de 61 pages, disponible juste après le paiement.</p>
+      </div>
+      <a class="chip" href="#preuves">
+        <img src="img/preuve-mois.jpg" alt="" width="640" height="956">
+        <span><strong>460 €</strong>gagnés sur TikTok en septembre 2026 avec cette méthode. <u>Voir mes captures</u></span>
+      </a>
+      <p class="need">Il te faut <strong>un téléphone ou un ordinateur</strong>, <strong>CapCut</strong> (gratuit) et <strong>une heure par jour</strong>. Pas de caméra, pas de micro.</p>
+    </div>
+  </section>
+
+  <section class="sec" id="preuves">
+    <div class="wrap">
+      <div class="proof-wrap">
+        <div>
+          <h2>Ce que mes vidéos m'ont rapporté sur TikTok</h2>
+          <p class="lede">Ma chaîne moto est faite exactement comme le guide l'explique : voix off IA, extraits vidéo, jamais mon visage. Voici les captures de mon tableau de bord, programme Récompenses pour les créateurs.</p>
         </div>
-        <p class="need">Il te faut <strong>un téléphone ou un ordinateur</strong>, <strong>CapCut</strong> (gratuit) et <strong>une heure par jour</strong>. Pas de caméra, pas de micro.</p>
+        <div class="proof-totals">
+          <figure class="total">
+            <span class="n">460 €</span>
+            <span class="l">en septembre 2026, dont 56 € d'incitation à l'activité</span>
+            <a class="shot" href="img/preuve-mois.jpg" target="_blank" rel="noopener"><img src="img/preuve-mois.jpg" alt="Capture TikTok Studio : récompenses estimées de 460,02 € du 1er au 30 septembre 2026, dont 403,54 € de récompenses de créateurs et 56,48 € d'incitation à l'activité" width="640" height="956" loading="lazy"></a>
+          </figure>
+          <figure class="total">
+            <span class="n">1 687 €</span>
+            <span class="l">du 1er janvier au 31 octobre 2026</span>
+            <a class="shot" href="img/preuve-annee.jpg" target="_blank" rel="noopener"><img src="img/preuve-annee.jpg" alt="Capture TikTok Studio : total des récompenses de 1 687,40 € du 1er janvier au 31 octobre 2026" width="640" height="956" loading="lazy"></a>
+          </figure>
+        </div>
       </div>
 
-      <div class="rig">
-        <div class="phone" role="img" aria-label="Exemple de vidéo faite avec la méthode : un nouveau plan toutes les 5 secondes maximum, avec la voix off écrite en sous-titres.">
-          <div class="screen" id="screen">
-            <div class="scene" data-i="0"><svg viewBox="0 0 90 160" preserveAspectRatio="xMidYMid slice"><rect width="90" height="160" fill="#5468FF"/><circle cx="20" cy="22" r="7" fill="#FFD23F"/><circle cx="20" cy="22" r="4.4" fill="none" stroke="#C89A00" stroke-width="1"/><circle cx="66" cy="12" r="5.5" fill="#FFD23F"/><circle cx="74" cy="40" r="6.5" fill="#FFD23F"/><circle cx="74" cy="40" r="4" fill="none" stroke="#C89A00" stroke-width="1"/><circle cx="38" cy="44" r="5" fill="#FFD23F"/><rect x="14" y="58" width="62" height="40" rx="6" fill="#1A1D3A"/><path d="M14 66h62v10H48a5 5 0 0 1 0-10" fill="#2C3170"/><rect x="58" y="69" width="18" height="10" rx="3" fill="#8FA0FF"/><circle cx="64" cy="74" r="2.2" fill="#1A1D3A"/></svg></div>
-            <div class="scene" data-i="1"><svg viewBox="0 0 90 160" preserveAspectRatio="xMidYMid slice"><rect width="90" height="160" fill="#FFD23F"/><path d="M36 22c-3 5 3 7 0 12M46 18c-3 5 3 7 0 12M56 22c-3 5 3 7 0 12" fill="none" stroke="#1A1D3A" stroke-width="2.4" stroke-linecap="round" opacity=".55"/><rect x="26" y="40" width="40" height="7" rx="3" fill="#1A1D3A"/><path d="M29 47h34l-4 52H33z" fill="#fff"/><path d="M31 62h30l-1.6 20H32.6z" fill="#F2542D"/><circle cx="46" cy="72" r="4" fill="#fff"/></svg></div>
-            <div class="scene" data-i="2"><svg viewBox="0 0 90 160" preserveAspectRatio="xMidYMid slice"><rect width="90" height="160" fill="#1A1D3A"/><rect x="16" y="18" width="58" height="62" rx="5" fill="#fff"/><rect x="16" y="18" width="58" height="13" rx="5" fill="#F2542D"/><rect x="16" y="26" width="58" height="5" fill="#F2542D"/><g fill="#D6DAE6"><rect x="22" y="37" width="8" height="7" rx="1.5"/><rect x="33" y="37" width="8" height="7" rx="1.5"/><rect x="44" y="37" width="8" height="7" rx="1.5"/><rect x="55" y="37" width="8" height="7" rx="1.5"/><rect x="22" y="48" width="8" height="7" rx="1.5"/><rect x="33" y="48" width="8" height="7" rx="1.5"/><rect x="44" y="48" width="8" height="7" rx="1.5"/><rect x="55" y="48" width="8" height="7" rx="1.5"/><rect x="22" y="59" width="8" height="7" rx="1.5"/><rect x="33" y="59" width="8" height="7" rx="1.5"/><rect x="44" y="59" width="8" height="7" rx="1.5"/><rect x="55" y="59" width="8" height="7" rx="1.5"/></g><g fill="#FFD23F"><circle cx="26" cy="40.5" r="2.6"/><circle cx="37" cy="40.5" r="2.6"/><circle cx="48" cy="40.5" r="2.6"/><circle cx="59" cy="40.5" r="2.6"/><circle cx="26" cy="51.5" r="2.6"/><circle cx="37" cy="51.5" r="2.6"/><circle cx="48" cy="51.5" r="2.6"/><circle cx="59" cy="51.5" r="2.6"/><circle cx="26" cy="62.5" r="2.6"/><circle cx="37" cy="62.5" r="2.6"/></g><rect x="66" y="37" width="2" height="30" rx="1" fill="#D6DAE6"/></svg></div>
-            <div class="scene" data-i="3"><svg viewBox="0 0 90 160" preserveAspectRatio="xMidYMid slice"><rect width="90" height="160" fill="#8FA0FF"/><rect x="24" y="12" width="42" height="80" rx="7" fill="#1A1D3A"/><rect x="27" y="17" width="36" height="70" rx="4" fill="#fff"/><g><rect x="31" y="22" width="8" height="8" rx="2" fill="#F2542D"/><rect x="41" y="22" width="8" height="8" rx="2" fill="#5468FF"/><rect x="51" y="22" width="8" height="8" rx="2" fill="#FFD23F"/><rect x="31" y="34" width="8" height="8" rx="2" fill="#1A1D3A"/><rect x="41" y="34" width="8" height="8" rx="2" fill="#F2542D"/><rect x="51" y="34" width="8" height="8" rx="2" fill="#5468FF"/><rect x="31" y="46" width="8" height="8" rx="2" fill="#FFD23F"/><rect x="41" y="46" width="8" height="8" rx="2" fill="#1A1D3A"/><rect x="51" y="46" width="8" height="8" rx="2" fill="#F2542D"/></g><g fill="#F2542D"><circle cx="39" cy="22" r="2.4"/><circle cx="49" cy="34" r="2.4"/><circle cx="59" cy="22" r="2.4"/><circle cx="39" cy="46" r="2.4"/></g></svg></div>
-            <div class="scene" data-i="4"><svg viewBox="0 0 90 160" preserveAspectRatio="xMidYMid slice"><rect width="90" height="160" fill="#F2542D"/><rect x="30" y="28" width="12" height="14" rx="2" fill="#FFD23F"/><rect x="44" y="22" width="10" height="20" rx="2" fill="#fff"/><rect x="56" y="30" width="13" height="12" rx="2" fill="#5468FF"/><rect x="34" y="18" width="7" height="10" rx="2" fill="#8FA0FF"/><path d="M10 26h9l9 34h40l6-22H24" fill="none" stroke="#1A1D3A" stroke-width="3.4" stroke-linejoin="round" stroke-linecap="round"/><path d="M26 42h44M28 51h40" stroke="#1A1D3A" stroke-width="2" opacity=".5"/><circle cx="33" cy="70" r="5" fill="#1A1D3A"/><circle cx="63" cy="70" r="5" fill="#1A1D3A"/></svg></div>
-            <p class="caption" id="caption" aria-hidden="true"></p>
-          </div>
-        </div>
-
-        <div class="tl" aria-hidden="true">
-          <div class="tl-head"><span>Timeline CapCut</span><span><strong id="tc">00:00</strong> / 00:19</span></div>
-          <div class="tracks">
-            <div class="track"><span>Vidéo</span><div class="lane v" id="lane-v"></div></div>
-            <div class="track"><span>Voix IA</span><div class="lane a" id="lane-a"></div></div>
-            <div class="track"><span>Texte</span><div class="lane t" id="lane-t"></div></div>
-            <div class="playhead" id="playhead"></div>
-          </div>
-        </div>
+      <h3 class="vids-h">Trois vidéos, une par une</h3>
+      <ul class="vids">
+        <li>
+          <a class="shot" href="img/preuve-video-1.jpg" target="_blank" rel="noopener"><img src="img/preuve-video-1.jpg" alt="Capture TikTok Studio de la vidéo « Une tueuse de tibia cette motocross » : 61,11 € de récompenses, RPM 1,17 €, 52 100 vues admissibles" width="640" height="748" loading="lazy"></a>
+          <span class="n">61 €</span>
+          <span class="d">52 100 vues, 1,17 € pour 1 000 vues</span>
+        </li>
+        <li>
+          <a class="shot" href="img/preuve-video-2.jpg" target="_blank" rel="noopener"><img src="img/preuve-video-2.jpg" alt="Capture TikTok Studio de la vidéo « C'est de la motocross !? » : 45,00 € de récompenses, RPM 0,75 €, 59 300 vues admissibles" width="640" height="748" loading="lazy"></a>
+          <span class="n">45 €</span>
+          <span class="d">59 300 vues, 0,75 € pour 1 000 vues</span>
+        </li>
+        <li>
+          <a class="shot" href="img/preuve-video-3.jpg" target="_blank" rel="noopener"><img src="img/preuve-video-3.jpg" alt="Capture TikTok Studio de la vidéo « Team 2 temps ou 4 temps ? » : 44,69 € de récompenses, RPM 1,36 €, 32 800 vues admissibles" width="640" height="748" loading="lazy"></a>
+          <span class="n">44 €</span>
+          <span class="d">32 800 vues, 1,36 € pour 1 000 vues</span>
+        </li>
+      </ul>
+      <p class="small" style="margin-top:12px;color:var(--muted)">Touche une capture pour l'ouvrir en grand.</p>
+      <div class="honest">
+        <strong>Ce sont mes résultats, pas une promesse.</strong>
+        Pour toucher ces récompenses, il faut au moins 10 000 abonnés et des vidéos de plus d'une minute. Beaucoup de créateurs gagnent moins, d'autres plus : ça dépend de ton travail, de ta niche et des règles de TikTok, qui changent.
       </div>
     </div>
   </section>
 
-  <section class="section" id="methode">
+  <section class="sec dark" id="methode">
     <div class="wrap">
-      <div class="steps-head">
-        <h2>Cinq étapes, de l'idée à la vidéo publiée</h2>
-        <p class="lede">Avec un peu d'habitude, une vidéo d'une minute te prend environ 1 h 25. La barre montre où part ce temps.</p>
-      </div>
-      <div class="bar" aria-hidden="true">
-        <i style="flex:15;background:var(--ink)"></i><i style="flex:5;background:#C89A00"></i><i style="flex:30;background:var(--clip)"></i><i style="flex:30;background:var(--clip-2)"></i><i style="flex:5;background:var(--cut)"></i>
-      </div>
-      <div class="bar-legend" aria-hidden="true"><span>0 min</span><span>45 min</span><span>1 h 25</span></div>
+      <h2>Cinq étapes, de l'idée à la vidéo publiée</h2>
+      <p class="lede">Avec un peu d'habitude, une vidéo d'une minute te prend environ 1 h 25.</p>
       <ol class="steps">
-        <li style="--c:var(--ink)"><h3>L'idée et le script</h3><span class="time">15 min</span><p>Une accroche dans les 3 premières secondes, 150 mots pour une minute. À côté de chaque phrase, la scène qui l'illustrera.</p></li>
-        <li style="--c:#C89A00"><h3>La voix off IA</h3><span class="time">5 min</span><p>Tu colles le texte dans un site de voix IA gratuit, tu choisis une voix française et tu télécharges l'audio.</p></li>
-        <li style="--c:var(--clip)"><h3>Les extraits vidéo</h3><span class="time">30 min</span><p>Une scène par phrase, trouvée sur YouTube, TikTok ou dans un film, téléchargée en 1080p.</p></li>
-        <li style="--c:var(--clip-2)"><h3>Le montage</h3><span class="time">30 min</span><p>Dans CapCut : la voix d'abord, puis un plan à chaque phrase, le son d'origine coupé, sous-titres automatiques, musique basse.</p></li>
-        <li style="--c:var(--cut)"><h3>La publication</h3><span class="time">5 min</span><p>Le même fichier sur TikTok, YouTube Shorts et Reels, avec le mot-clé dans l'accroche et la description.</p></li>
+        <li><div class="head"><h3>L'idée et le script</h3><span class="time">15 min</span></div><p>Une accroche dans les 3 premières secondes, 150 mots pour une minute. À côté de chaque phrase, la scène qui l'illustrera.</p></li>
+        <li><div class="head"><h3>La voix off IA</h3><span class="time">5 min</span></div><p>Tu colles le texte dans un site de voix IA gratuit, tu choisis une voix française et tu télécharges l'audio.</p></li>
+        <li><div class="head"><h3>Les extraits vidéo</h3><span class="time">30 min</span></div><p>Une scène par phrase, trouvée sur YouTube, TikTok ou dans un film, téléchargée en 1080p.</p></li>
+        <li><div class="head"><h3>Le montage</h3><span class="time">30 min</span></div><p>Dans CapCut : la voix d'abord, puis un plan à chaque phrase, le son d'origine coupé, sous-titres automatiques, musique basse.</p></li>
+        <li><div class="head"><h3>La publication</h3><span class="time">5 min</span></div><p>Le même fichier sur TikTok, YouTube Shorts et Reels, avec le mot-clé dans l'accroche et la description.</p></li>
       </ol>
+
+      <h2 style="margin-top:88px">Une phrase, un plan. Jamais plus de 5 secondes.</h2>
+      <p class="lede" style="margin-top:16px">C'est ce rythme qui retient le spectateur : son œil reçoit sans arrêt une nouvelle image, et chaque phrase de la voix off montre ce qu'elle raconte. Une vidéo d'une minute, c'est donc 12 à 20 extraits.</p>
+      <ol class="reel" aria-label="Extrait du chapitre 3 : le début d'un script de 60 secondes, découpé plan par plan">
+        <li><div class="clip" style="--bg:#2E7D4F"><span class="tcode"><span>0:00</span><b>4 s</b></span><span class="scene">portefeuille vide</span><span class="says">Ces cinq habitudes te font perdre de l'argent…</span></div></li>
+        <li><div class="clip" style="--bg:#345E6B"><span class="tcode"><span>0:04</span><b>3 s</b></span><span class="scene">foule dans la rue</span><span class="says">Et la troisième, tout le monde la fait.</span></div></li>
+        <li><div class="clip" style="--bg:#6B5A2E"><span class="tcode"><span>0:07</span><b>3 s</b></span><span class="scene">commande au comptoir d'un café</span><span class="says">Un : le café acheté tous les matins.</span></div></li>
+        <li><div class="clip" style="--bg:#1F5B3A"><span class="tcode"><span>0:10</span><b>5 s</b></span><span class="scene">pièces qu'on compte</span><span class="says">Trois euros par jour, plus de mille euros par an.</span></div></li>
+        <li><div class="clip" style="--bg:#4A4F7A"><span class="tcode"><span>0:15</span><b>3 s</b></span><span class="scene">doigt qui fait défiler des applis</span><span class="says">Deux : les abonnements oubliés.</span></div></li>
+        <li><div class="clip" style="--bg:#345E6B"><span class="tcode"><span>0:18</span><b>5 s</b></span><span class="scene">salle de sport vide</span><span class="says">Ils se cachent sur ton relevé.</span></div></li>
+        <li><div class="clip" style="--bg:#7A3B2E"><span class="tcode"><span>0:23</span><b>3 s</b></span><span class="scene">rayon de supermarché</span><span class="says">Trois : les courses le ventre vide.</span></div></li>
+        <li><div class="clip" style="--bg:#2E7D4F"><span class="tcode"><span>0:26</span><b>4 s</b></span><span class="scene">caddie plein qui roule</span><span class="says">Ton cerveau remplit le caddie.</span></div></li>
+      </ol>
+      <p class="reel-note">Extrait du chapitre 3 : en haut, le temps et la durée du plan ; au milieu, la scène à chercher ; en bas, la phrase de la voix off.</p>
     </div>
   </section>
 
-  <section class="section rule">
-    <div class="wrap">
-      <div>
-        <h2>Une phrase, un plan. Jamais plus de 5 secondes.</h2>
-        <p class="lede">C'est ce rythme qui retient le spectateur. Son œil reçoit sans arrêt une nouvelle image, et chaque phrase de la voix off est illustrée par ce qu'elle raconte.</p>
-        <p class="lede">Une vidéo d'une minute, c'est donc 12 à 20 extraits. Le guide te montre comment les trouver vite et les caler sur les mots dans CapCut.</p>
-      </div>
-      <table class="script">
-        <caption>Extrait du chapitre 3 : le script d'une vidéo de 60 secondes, découpé plan par plan.</caption>
-        <thead><tr><th>Temps</th><th>Voix off</th><th>Scène à trouver</th></tr></thead>
-        <tbody>
-          <tr><td>0:00</td><td>Ces cinq habitudes te font perdre de l'argent… sans que tu le remarques.</td><td>portefeuille vide</td></tr>
-          <tr><td>0:04</td><td>Et la troisième, tout le monde la fait.</td><td>foule dans la rue</td></tr>
-          <tr><td>0:07</td><td>Un : le café acheté tous les matins.</td><td>commande au comptoir d'un café</td></tr>
-          <tr><td>0:10</td><td>Trois euros par jour, c'est plus de mille euros par an.</td><td>pièces qu'on compte</td></tr>
-          <tr><td>0:15</td><td>Deux : les abonnements que tu as oubliés.</td><td>doigt qui fait défiler des applis</td></tr>
-          <tr><td>0:23</td><td>Trois : faire les courses le ventre vide.</td><td>rayon de supermarché</td></tr>
-        </tbody>
-      </table>
-    </div>
-  </section>
-
-  <section class="section inside" id="guide">
-    <div class="wrap">
-      <div>
-        <div class="pages">
-          <figure><img src="img/page-1.jpg" alt="Couverture du guide Hors Champ" width="758" height="1075" loading="lazy"><figcaption>La couverture</figcaption></figure>
-          <figure><img src="img/page-6.jpg" alt="Page 6 du guide : la piste de montage d'une vidéo de 30 secondes et le temps passé par étape" width="758" height="1075" loading="lazy"><figcaption>Page 6 : à quoi ressemble une vidéo finie</figcaption></figure>
-          <figure><img src="img/page-28.jpg" alt="Page 28 du guide : le montage dans CapCut expliqué étape par étape" width="758" height="1075" loading="lazy"><figcaption>Page 28 : le montage dans CapCut</figcaption></figure>
-        </div>
-        <p class="pages-note">61 pages au format A5, faciles à lire sur téléphone. Chaque étape est écrite pour être suivie avec CapCut ouvert à côté.</p>
-      </div>
+  <section class="sec" id="guide">
+    <div class="wrap guide-wrap">
       <div>
         <h2>Ce que tu apprends, chapitre par chapitre</h2>
+        <div class="pages">
+          <figure><img src="img/page-1.jpg" alt="Couverture du guide Hors Champ" width="759" height="1075" loading="lazy"><figcaption>La couverture</figcaption></figure>
+          <figure><img src="img/page-6.jpg" alt="Page 6 du guide : la piste de montage d'une vidéo de 30 secondes et le temps passé par étape" width="759" height="1075" loading="lazy"><figcaption>Page 6 : une vidéo finie, plan par plan</figcaption></figure>
+          <figure><img src="img/page-28.jpg" alt="Page 28 du guide : le montage dans CapCut expliqué étape par étape" width="759" height="1075" loading="lazy"><figcaption>Page 28 : le montage dans CapCut</figcaption></figure>
+        </div>
+        <p class="small" style="margin-top:14px;color:var(--muted)">61 pages au format A5, faciles à lire sur téléphone, à suivre avec CapCut ouvert à côté.</p>
+      </div>
+      <div>
         <ol class="chapters">
-          <li><strong>La méthode en un coup d'œil</strong><span>Les étapes, le rythme des plans, l'organisation de tes fichiers.</span></li>
-          <li><strong>Choisir sa niche et trouver ses idées</strong><span>Les niches faciles à illustrer, et 30 idées en 20 minutes.</span></li>
-          <li><strong>Écrire le script de voix off</strong><span>L'accroche, la structure, le découpage en plans.</span></li>
-          <li><strong>Créer la voix off avec l'IA</strong><span>Un site gratuit pas à pas, et ElevenLabs si tu veux aller plus loin.</span></li>
-          <li><strong>Récupérer les extraits vidéo</strong><span>YouTube, TikTok, films et séries : trouver la scène, la télécharger, connaître les risques.</span></li>
-          <li><strong>Le montage plan par plan</strong><span>CapCut en 10 étapes, un plan toutes les 5 secondes maximum.</span></li>
-          <li><strong>Publier et faire grandir la chaîne</strong><span>Rythme de publication, titres, hashtags, statistiques.</span></li>
-          <li><strong>Monétiser</strong><span>Les 6 sources de revenus et les règles d'originalité à respecter.</span></li>
-          <li><strong>Ton plan de 30 jours</strong><span>Jour par jour, jusqu'à ta 30<sup>e</sup> vidéo.</span></li>
+          <li><span><strong>La méthode en un coup d'œil</strong>Les étapes, le rythme des plans, l'organisation de tes fichiers.</span></li>
+          <li><span><strong>Choisir sa niche et trouver ses idées</strong>Les niches faciles à illustrer, et 30 idées en 20 minutes.</span></li>
+          <li><span><strong>Écrire le script de voix off</strong>L'accroche, la structure, le découpage en plans.</span></li>
+          <li><span><strong>Créer la voix off avec l'IA</strong>Un site gratuit pas à pas, et ElevenLabs si tu veux aller plus loin.</span></li>
+          <li><span><strong>Récupérer les extraits vidéo</strong>YouTube, TikTok, films et séries : trouver la scène, la télécharger, connaître les risques.</span></li>
+          <li><span><strong>Le montage plan par plan</strong>CapCut en 10 étapes, un plan toutes les 5 secondes maximum.</span></li>
+          <li><span><strong>Publier et faire grandir la chaîne</strong>Rythme de publication, titres, hashtags, statistiques.</span></li>
+          <li><span><strong>Monétiser</strong>Les 6 sources de revenus et les règles d'originalité à respecter.</span></li>
+          <li><span><strong>Ton plan de 30 jours</strong>Jour par jour, jusqu'à ta 30<sup>e</sup> vidéo.</span></li>
         </ol>
         <p class="bonus"><strong>En bonus :</strong> 100 idées de vidéos dans 10 niches, 5 modèles de scripts à remplir, la liste des sources et outils gratuits, et une checklist à relire avant chaque publication.</p>
       </div>
     </div>
   </section>
 
-  <section class="section money" id="revenus">
-    <div class="wrap">
+  <section class="sec" id="revenus" style="padding-top:0">
+    <div class="wrap money-wrap">
       <div>
         <h2>D'où vient l'argent</h2>
-        <p class="lede">Une chaîne sans visage se monétise comme les autres. Certaines sources marchent dès la première vidéo, d'autres demandent d'atteindre un seuil.</p>
+        <p class="lede" style="margin-top:16px">Une chaîne sans visage se monétise comme les autres. Certaines sources marchent dès la première vidéo, d'autres demandent d'atteindre un seuil.</p>
         <dl class="sources">
           <div><dt>Affiliation</dt><dd>Une commission sur les produits que tu recommandes.</dd><span class="when">Dès 0 abonné</span></div>
           <div><dt>Produits numériques</dt><dd>Un guide, un tableau, une liste : tu vends ce que ton audience demande.</dd><span class="when">Dès 0 abonné</span></div>
@@ -426,11 +528,10 @@ footer .brand svg { width: 24px; height: 24px; }
           <div><dt>Partenariat YouTube</dt><dd>Part des revenus pub. 1 000 abonnés et 4 000 h de visionnage sur 12 mois, ou 10 millions de vues de Shorts sur 90 jours.</dd><span class="when">1 000 abonnés</span></div>
         </dl>
       </div>
-
       <div class="sim">
         <h3>Combien peut rapporter la pub ?</h3>
         <div class="field">
-          <label id="seg-label">Plateforme</label>
+          <span class="lab" id="seg-label">Plateforme</span>
           <div class="seg" role="group" aria-labelledby="seg-label">
             <button type="button" data-k="yt" aria-pressed="true">YouTube<br>vidéos longues</button>
             <button type="button" data-k="tt" aria-pressed="false">TikTok<br>plus d'1 min</button>
@@ -451,10 +552,10 @@ footer .brand svg { width: 24px; height: 24px; }
     </div>
   </section>
 
-  <section class="section offer" id="offre">
+  <section class="sec offer" id="offre">
     <div class="wrap">
-      <img class="cover" src="img/page-1.jpg" alt="Couverture du guide Hors Champ" width="758" height="1075" loading="lazy">
-      <div>
+      <img class="cover" src="img/page-1.jpg" alt="Couverture du guide Hors Champ" width="759" height="1075" loading="lazy">
+      <div class="card">
         <h2>Le guide complet Hors Champ</h2>
         <ul class="incl">
           <li><svg aria-hidden="true"><use href="#tick"/></svg><span>Le guide en PDF de 61 pages, lisible sur téléphone, ordinateur et liseuse</span></li>
@@ -467,38 +568,36 @@ footer .brand svg { width: 24px; height: 24px; }
         <div class="price"><span class="amount" data-price>49 €</span><span class="meta">TTC, paiement unique, sans abonnement</span></div>
         <a class="btn block" id="buy-main" href="#">Acheter le guide pour <span data-price>49 €</span></a>
         <p class="notice" id="notice">Le lien de paiement n'est pas encore configuré. Remplace <code>CHECKOUT_URL</code> dans le script en bas de la page.</p>
-        <p class="trust"><svg aria-hidden="true"><use href="#lock"/></svg>Paiement sécurisé par Stripe. Carte bancaire ou Apple Pay. Le guide s'affiche juste après le paiement.</p>
+        <p class="trust"><svg aria-hidden="true"><use href="#lock"/></svg><span>Paiement sécurisé par Stripe. Carte bancaire ou Apple Pay. Le guide s'affiche juste après le paiement.</span></p>
       </div>
     </div>
   </section>
 
-  <section class="section faq" id="faq">
+  <section class="sec" id="faq">
     <div class="wrap">
       <h2>Questions fréquentes</h2>
-      <div>
+      <div class="faq-list">
         <details><summary>Faut-il du matériel coûteux ?</summary><p>Non. Pas de caméra ni de micro : un ordinateur ou un smartphone récent suffit. Le montage se fait dans CapCut (gratuit) et la voix avec un outil d'IA, gratuit pour commencer.</p></details>
         <details><summary>Où je trouve les extraits vidéo ?</summary><p>Sur YouTube, TikTok et dans des films et des séries. Le guide explique comment trouver vite la scène qui illustre chaque phrase, comment la télécharger en bonne qualité, et ce qui peut arriver avec des images qui ne t'appartiennent pas (réclamations, avertissements, monétisation refusée) pour limiter ces risques.</p></details>
         <details><summary>Je peux utiliser une voix générée par IA ?</summary><p>Oui, c'est le cœur de la méthode. Le guide explique quels outils utiliser, comment vérifier que leurs conditions autorisent l'usage commercial, et comment garder des vidéos assez originales pour être monétisées.</p></details>
-        <details><summary>Combien de temps avant de gagner de l'argent ?</summary><p>Cela dépend de ta régularité et de ta niche. L'affiliation et les produits numériques peuvent rapporter dès les premières semaines, alors que les programmes YouTube et TikTok demandent d'atteindre leurs seuils, ce qui prend en général plusieurs mois. Personne ne peut te garantir un montant.</p></details>
+        <details><summary>Je vais gagner autant que toi ?</summary><p>Personne ne peut te le promettre. Mes captures montrent ce que ma chaîne a rapporté, pas ce que toutes les chaînes rapportent. Pour les récompenses TikTok, il faut d'abord atteindre 10 000 abonnés, ce qui prend en général plusieurs mois de publication régulière.</p></details>
+        <details><summary>Combien de temps avant de gagner de l'argent ?</summary><p>Cela dépend de ta régularité et de ta niche. L'affiliation et les produits numériques peuvent rapporter dès les premières semaines, alors que les programmes YouTube et TikTok demandent d'atteindre leurs seuils, ce qui prend en général plusieurs mois.</p></details>
         <details><summary>Je débute complètement, c'est pour moi ?</summary><p>Oui. Le guide part de zéro et chaque étape est expliquée clic par clic : création des comptes, choix de la niche, premier script, première voix, premier montage.</p></details>
         <details><summary>Comment je reçois le guide ?</summary><p>Juste après le paiement, tu arrives sur une page avec le bouton pour ouvrir ou télécharger le PDF. Enregistre-le tout de suite et garde la page dans tes favoris : le lien reste valable.</p></details>
-        <details><summary>Puis-je être remboursé ?</summary><p>Le guide est un contenu numérique livré immédiatement. En validant ta commande, tu acceptes sa livraison immédiate et renonces à ton droit de rétractation (article L221-28 du Code de la consommation). Si tu as un problème de téléchargement, écris-nous.</p></details>
+        <details><summary>Puis-je être remboursé ?</summary><p>Le guide est un contenu numérique livré immédiatement. En validant ta commande, tu acceptes sa livraison immédiate et renonces à ton droit de rétractation (article L221-28 du Code de la consommation). Si tu as un problème de téléchargement, écris-moi.</p></details>
       </div>
     </div>
   </section>
 
-  <section class="section end">
+  <section class="sec dark end">
     <div class="wrap">
-      <div>
-        <h2>Ta première vidéo peut sortir cette semaine.</h2>
-        <a class="btn" href="#offre">Acheter le guide pour <span data-price>49 €</span></a>
-      </div>
-      <p class="disclaimer">Les exemples de revenus présentés sur cette page sont des calculs indicatifs et ne constituent pas une garantie de résultat. Les résultats dépendent du travail fourni, de la niche choisie et des règles des plateformes, qui peuvent évoluer.</p>
+      <h2>Ta première vidéo peut sortir cette semaine.</h2>
+      <a class="btn yellow" href="#offre">Acheter le guide pour <span data-price>49 €</span></a>
+      <p class="disclaimer">Les montants de la partie « Ce que mes vidéos m'ont rapporté » sont mes revenus réels sur TikTok en 2026. Ils ne sont pas représentatifs de ce que chacun obtient. Les montants du simulateur sont des calculs indicatifs. Aucun résultat n'est garanti : il dépend du travail fourni, de la niche choisie et des règles des plateformes, qui peuvent évoluer.</p>
     </div>
   </section>
 </main>
 
-<!-- Pages secondaires (#merci, #mentions-legales, #cgv, #confidentialite) -->
 <main id="view-merci" class="page" hidden>
   <div class="wrap">
     <p class="done"><svg aria-hidden="true"><use href="#ok"/></svg>Paiement validé</p>
@@ -555,7 +654,7 @@ footer .brand svg { width: 24px; height: 24px; }
     <h2>6. Licence d'utilisation</h2>
     <p>L'achat donne droit à un usage personnel du guide. Le partage, la revente ou la diffusion publique du fichier sont interdits.</p>
     <h2>7. Absence de garantie de résultat</h2>
-    <p>Le guide fournit des méthodes et des informations. Le vendeur ne garantit aucun niveau d'audience ni de revenu, qui dépendent du travail de l'acheteur et des règles des plateformes tierces.</p>
+    <p>Le guide fournit des méthodes et des informations. Le vendeur ne garantit aucun niveau d'audience ni de revenu, qui dépendent du travail de l'acheteur et des règles des plateformes tierces. Les revenus du vendeur présentés sur le site sont donnés à titre d'exemple et ne sont pas représentatifs.</p>
     <h2>8. Réclamations et médiation</h2>
     <p>Pour toute réclamation : <span class="fill">[ton-email@exemple.fr]</span>. En cas de litige, le consommateur peut recourir gratuitement au médiateur de la consommation : <span class="fill">[nom et site du médiateur]</span>.</p>
     <h2>9. Droit applicable</h2>
@@ -587,7 +686,7 @@ footer .brand svg { width: 24px; height: 24px; }
 
 <div class="buybar" id="buybar" aria-hidden="true">
   <div class="t"><strong>Hors Champ</strong><span>Guide PDF, <span data-price>49 €</span></span></div>
-  <a class="btn" href="#offre" tabindex="-1">Acheter le guide</a>
+  <a class="btn yellow" href="#offre" tabindex="-1">Acheter le guide</a>
 </div>
 
 <footer>
@@ -613,9 +712,24 @@ const CHECKOUT_URL = "https://buy.stripe.com/8x27sK0zLaxr2nR4umf3a0p";
 const PRICE = "49 €";
 
 (function () {
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  // Le titre s'écrit mot par mot, comme des sous-titres automatiques (une seule fois)
+  const title = document.getElementById("hero-title");
+  title.setAttribute("aria-label", title.textContent);
+  title.innerHTML = title.textContent.split(" ").map(w => `<span class="w" aria-hidden="true">${w}</span>`).join(" ");
+  if (!reduce) {
+    document.documentElement.classList.add("js");
+    const ws = [...title.querySelectorAll(".w")];
+    ws.forEach((w, i) => setTimeout(() => {
+      if (i) ws[i - 1].classList.remove("now");
+      w.classList.add("on", "now");
+      if (i === ws.length - 1) setTimeout(() => w.classList.remove("now"), 420);
+    }, 250 + i * 170));
+  }
+
   document.querySelectorAll("[data-price]").forEach(el => el.textContent = PRICE);
   document.getElementById("year").textContent = new Date().getFullYear();
-  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   // Bouton d'achat
   const configured = !CHECKOUT_URL.includes("TON-LIEN");
@@ -624,10 +738,18 @@ const PRICE = "49 €";
   if (configured) { buy.href = CHECKOUT_URL; buy.rel = "noopener"; }
   buy.addEventListener("click", e => { if (!configured) { e.preventDefault(); notice.classList.add("show"); } });
 
-  // Bordure de l'en-tête au défilement
-  const top = document.getElementById("top");
-  const onScroll = () => top.classList.toggle("scrolled", scrollY > 8);
-  addEventListener("scroll", onScroll, { passive: true }); onScroll();
+  // Le compteur de l'en-tête : la page se lit comme une vidéo d'une minute
+  const clock = document.getElementById("clock-t"), bar = document.getElementById("progress");
+  function onScroll() {
+    const max = document.documentElement.scrollHeight - innerHeight;
+    const p = max > 0 ? Math.min(1, Math.max(0, scrollY / max)) : 0;
+    const s = Math.round(p * 60);
+    clock.textContent = Math.floor(s / 60) + ":" + String(s % 60).padStart(2, "0");
+    bar.style.transform = "scaleX(" + p + ")";
+  }
+  addEventListener("scroll", onScroll, { passive: true });
+  addEventListener("resize", onScroll);
+  onScroll();
 
   // Pages (#merci, #cgv…)
   const views = ["merci", "mentions-legales", "cgv", "confidentialite"];
@@ -664,18 +786,19 @@ const PRICE = "49 €";
     views.forEach(v => document.getElementById("view-" + v).hidden = v !== h);
     if (isPage) window.scrollTo(0, 0);
     else if (h) { const t = document.getElementById(h); if (t) t.scrollIntoView(); }
+    onScroll();
   }
   window.addEventListener("hashchange", route);
   route();
 
   // Barre d'achat sur téléphone : visible après le héros, masquée sur l'offre et les pages secondaires
-  const bar = document.getElementById("buybar");
+  const buybar = document.getElementById("buybar");
   const heroCta = document.querySelector(".hero .cta");
   const offer = document.getElementById("offre");
   let pastHero = false, onOffer = false;
   function updateBar() {
     const home = !document.getElementById("view-home").hidden;
-    bar.classList.toggle("show", home && pastHero && !onOffer);
+    buybar.classList.toggle("show", home && pastHero && !onOffer);
     document.body.classList.toggle("has-bar", home);
   }
   if ("IntersectionObserver" in window) {
@@ -683,63 +806,6 @@ const PRICE = "49 €";
     new IntersectionObserver(([e]) => { onOffer = e.isIntersecting; updateBar(); }, { threshold: 0.15 }).observe(offer);
   }
   window.addEventListener("hashchange", updateBar);
-
-  // Le banc de montage : un plan toutes les 5 s maximum, sous-titres mot à mot, tête de lecture
-  const SCENES = [
-    { d: 3.6, w: ["Ces", "*5", "*habitudes", "te", "coûtent", "cher"] },
-    { d: 3.0, w: ["Un :", "le", "*café", "du", "matin"] },
-    { d: 4.6, w: ["*1 000 €", "par", "an"] },
-    { d: 3.6, w: ["Deux :", "les", "*abonnements", "oubliés"] },
-    { d: 4.2, w: ["Trois :", "les", "courses", "le", "*ventre", "*vide"] }
-  ];
-  const TOTAL = SCENES.reduce((s, x) => s + x.d, 0);
-  const starts = []; SCENES.reduce((s, x, i) => (starts[i] = s, s + x.d), 0);
-  const laneV = document.getElementById("lane-v"), laneT = document.getElementById("lane-t"), laneA = document.getElementById("lane-a");
-  SCENES.forEach(s => {
-    const v = document.createElement("i"); v.style.flex = s.d; laneV.appendChild(v);
-    const t = document.createElement("i"); t.style.flex = s.d; laneT.appendChild(t);
-  });
-  for (let i = 0; i < 46; i++) {
-    const b = document.createElement("i");
-    b.style.height = (22 + Math.abs(Math.sin(i * 1.7) * 60 + Math.sin(i * .45) * 18)) + "%";
-    laneA.appendChild(b);
-  }
-  const scenes = [...document.querySelectorAll(".scene")];
-  const cap = document.getElementById("caption");
-  const head = document.getElementById("playhead");
-  const tc = document.getElementById("tc");
-  const lane = laneV.getBoundingClientRect.bind(laneV);
-  let current = -1, words = [];
-  function setScene(i) {
-    current = i;
-    scenes.forEach((s, k) => s.classList.toggle("on", k === i));
-    cap.innerHTML = SCENES[i].w.map(w => `<span class="${w[0] === "*" ? "key" : ""}">${w.replace("*", "")}</span>`).join(" ");
-    words = [...cap.children];
-  }
-  function frame(t) {
-    let i = SCENES.length - 1;
-    for (let k = 0; k < SCENES.length; k++) if (t < starts[k] + SCENES[k].d) { i = k; break; }
-    if (i !== current) setScene(i);
-    const local = t - starts[i], n = words.length;
-    words.forEach((w, k) => w.classList.toggle("on", local >= k * (SCENES[i].d * .78 / n)));
-    const tracks = head.parentElement.getBoundingClientRect(), r = lane();
-    head.style.left = (r.left - tracks.left + (t / TOTAL) * r.width) + "px";
-    tc.textContent = "00:" + String(Math.floor(t)).padStart(2, "0");
-  }
-  if (reduce) {
-    frame(starts[2] + 2);
-  } else {
-    let t0 = null, running = true;
-    const loop = now => {
-      if (t0 === null) t0 = now;
-      if (running) frame(((now - t0) / 1000) % TOTAL);
-      requestAnimationFrame(loop);
-    };
-    requestAnimationFrame(loop);
-    if ("IntersectionObserver" in window) {
-      new IntersectionObserver(([e]) => { running = e.isIntersecting; }).observe(document.getElementById("screen"));
-    }
-  }
 
   // Simulateur (RPM indicatifs en € pour 1 000 vues)
   const RPM = { yt: [1.5, 5], tt: [0.4, 1], shorts: [0.03, 0.08] };
